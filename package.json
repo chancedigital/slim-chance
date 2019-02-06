@@ -1,7 +1,7 @@
 {
   "name": "slim-chance",
   "version": "2.1.0",
-  "description": "Project Description",
+  "description": "Custom WordPress theme for the Slim + Huskys website.",
   "homepage": "https://project-domain.tld",
   "repository": {
     "type": "git",
@@ -17,7 +17,7 @@
     "start": "yarn && composer install && gulp --gulpfile build/gulpfile.babel.js",
     "watch": "gulp --gulpfile build/gulpfile.babel.js watch",
     "build": "gulp --gulpfile build/gulpfile.babel.js",
-    "dev": "yarn && composer install && gulp --gulpfile build/gulpfile.babel.js",
+    "dev": "yarn start",
     "deploy": "yarn && composer install --no-dev -o && gulp --gulpfile build/gulpfile.babel.js",
     "lint-js": "eslint assets/js",
     "format-js": "eslint --fix assets/js"
