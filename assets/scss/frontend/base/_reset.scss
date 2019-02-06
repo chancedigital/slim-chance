@@ -1,0 +1,22 @@
+body {
+	font-family: $sans;
+}
+
+// Used to hide break tags in autop situations.
+.hide-breaks br,
+br.hide {
+	display: none;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.overflow-hidden {
+	overflow: hidden;
+}
+
+// suppress focus ring on for mouse users
+[data-whatintent="mouse"] *:focus {
+	outline: none;
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset>
+	<!-- Use Chance Digital Coding Standards -->
+	<rule ref="vendor/chancedigital/wp-coding-standards">
+		<!-- Extra spacing allowed for readability -->
+		<exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
+	</rule>
+</ruleset>

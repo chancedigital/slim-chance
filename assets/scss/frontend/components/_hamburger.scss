@@ -1,0 +1,58 @@
+.hamburger {
+	$self: &;
+	$hamburger-line-height: 2;
+	$hamburger-width: 30;
+	$hamburger-margin: 8;
+
+	&__line {
+		display: block;
+		width: #{ $hamburger-width }px;
+		height: #{ $hamburger-line-height }px;
+		margin: #{ $hamburger-margin }px auto;
+		transition: all 0.3s ease-in-out;
+		background-color: $black;
+
+		&:nth-child( 1 ) {
+			margin-top: 0;
+		}
+
+		&:nth-child( 3 ) {
+			margin-bottom: 0;
+		}
+	}
+
+	&--active {
+
+		&#{ $self }--minus {
+
+			#{ $self }__line {
+
+				&:nth-child( 1 ) {
+					transform: translateY( #{ $hamburger-margin + $hamburger-line-height }px );
+				}
+
+				&:nth-child( 3 ) {
+					transform: translateY( -#{ $hamburger-margin + $hamburger-line-height }px );
+				}
+			}
+		}
+
+		&#{ $self }--x {
+
+			#{ $self }__line {
+
+				&:nth-child( 1 ) {
+					transform: translateY( #{ $hamburger-margin + $hamburger-line-height }px ) rotate( 45deg );
+				}
+
+				&:nth-child( 2 ) {
+					opacity: 0;
+				}
+
+				&:nth-child( 3 ) {
+					transform: translateY( -#{ $hamburger-margin + $hamburger-line-height }px ) rotate( -45deg );
+				}
+			}
+		}
+	}
+}
