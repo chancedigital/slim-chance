@@ -1,3 +1,59 @@
+[type='text'],
+[type='password'],
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='month'],
+[type='week'],
+[type='email'],
+[type='number'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='color'],
+textarea {
+	@include make-form-field;
+}
+
+textarea {
+	max-width: 100%;
+	resize: none;
+}
+
+select {
+	@include make-form-field;
+    padding-right: 1.5rem;
+	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+    background-origin: content-box;
+    background-repeat: no-repeat;
+    background-position: right -1rem center;
+    background-size: rem( 9 ) rem( 6 );
+}
+
+.form {
+	&__field {
+		@include make-form-field;
+	}
+	&__field-wrapper {
+		display: block;
+		position: relative;
+	}
+	&__field-alert {
+		display: block;
+		position: absolute;
+		top: rem(7);
+		right: rem(8);
+		width: rem(22);
+		height: rem(22);
+		background-image: url('../img/validation-error.svg');
+		background-repeat: no-repeat;
+		background-size: contain;
+		color: transparent;
+		font-size: 0;
+	}
+}
+
 /** Search form */
 .search-form {
 	//
@@ -13,4 +69,42 @@
 
 .search-form .search-submit {
 	//
+}
+
+// CF7 stuff
+.wpcf7-form-control-wrap {
+	@extend .form__field-wrapper;
+
+	@include extend-form-fields {
+		margin-bottom: 0;
+	}
+}
+
+.wpcf7-form {
+	position: relative;
+}
+
+span.wpcf7-not-valid-tip {
+	@extend .form__field-alert;
+}
+
+div.wpcf7-response-output {
+	margin-top: $global-grid-gap;
+	margin-right: 0;
+	margin-left: 0;
+	padding: rem(6) rem(8);
+	border: 0 !important;
+	background-color: #ffd399;
+	color: $black;
+	font-size: rem(14);
+	font-style: italic;
+	font-weight: 700;
+
+	&.wpcf7-validation-errors {
+		display: none !important;
+	}
+}
+
+form span.required {
+	color: $color-danger;
 }

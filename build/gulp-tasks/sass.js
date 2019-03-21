@@ -5,41 +5,31 @@ import postcss from 'gulp-postcss';
 import notify from 'gulp-notify';
 import pump from 'pump';
 import tildeImporter from 'node-sass-tilde-importer';
-import { assets, dist, successMessage } from '../gulp.settings.babel';
+import { plugins as postcssPlugins } from '../../config/postcss.config';
+import config from '../../config';
 
-const task = 'sass';
+const taskName = 'sass';
+const fileSrc = config.scssFiles.map(
+	file => `${ config.assetsPath }/scss/${ file }/${ file }.scss`,
+);
+const mapFile = mapFilePath => {
+	return mapFilePath.replace( '.css.map', '.min.css.map' );
+};
 
-gulp.task( task, cb => {
-	const fileSrc = [ 'admin', 'editor', 'frontend', 'shared' ].map(
-		file => `${assets}/scss/${file}/${file}.scss`
-	);
-
-	pump( [
-		gulp.src( fileSrc ),
-		sourcemaps.init( { loadMaps: true } ),
-		sass( { importer: tildeImporter } )
-			.on( 'error', sass.logError ),
-		/*
-		eslint-disable
-		phpcs( {
-			bin: `${baseDir}/vendor/bin/phpcs`,
-			standard: 'wp-coding-standards',
-			warningSeverity: 0,
-		} ),
-		phpcs.reporter( 'log' ),
-		eslint-enable
-		*/
-		postcss( [
-			require( 'postcss-preset-env' )( {
-				stage: 3,
+gulp.task( taskName, cb => {
+	pump(
+		[
+			gulp.src( fileSrc ),
+			sourcemaps.init( { loadMaps: true } ),
+			sass( { importer: tildeImporter } ).on( 'error', sass.logError ),
+			postcss( postcssPlugins ),
+			sourcemaps.write( './', { mapFile } ),
+			gulp.dest( `${ config.distPath }/css` ),
+			notify( {
+				message: config.getSuccessMessage( taskName ),
+				onLast: true,
 			} ),
-		] ),
-		gulp.dest( `${dist}/css` ),
-		sourcemaps.write( './', {
-			mapFile: function( mapFilePath ) {
-				return mapFilePath.replace( '.css.map', '.min.css.map' );
-			},
-		} ),
-		notify( { message: successMessage( task ), onLast: true } ),
-	], cb );
+		],
+		cb,
+	);
 } );

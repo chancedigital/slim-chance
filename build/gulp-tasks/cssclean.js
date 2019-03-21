@@ -1,8 +1,8 @@
 import gulp from 'gulp';
 import del from 'del';
-import { dist } from '../gulp.settings.babel';
+import config from '../../config';
 
 gulp.task( 'cssclean', cb => {
-	del( [ `${dist}/css/**/*` ], { force: true } );
+	del( [ `${ config.distPath }/css/**/*` ], { force: true } );
 	cb();
 } );

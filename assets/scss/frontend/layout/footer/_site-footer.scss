@@ -1,0 +1,39 @@
+.site-footer {
+	padding: rem(40) 0;
+	background-color: $black;
+	color: $white;
+
+	@include breakpoint( medium ) {
+		padding: rem(80) 0;
+	}
+
+	&__wrapper {
+		@include make-container;
+		text-align: center;
+	}
+
+	a {
+		color: $white;
+	}
+
+	&__social-nav {
+		.icon {
+			//fill: $white;
+		}
+	}
+
+	&__copyright,
+	&__nav {
+		font-family: $font-sans-slim;
+		font-weight: 400;
+	}
+
+	&__nav {
+		margin: rem(20) 0;
+		font-size: rem(20);
+	}
+
+	&__copyright {
+		font-size: rem(16);
+	}
+}

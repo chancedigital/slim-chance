@@ -1,0 +1,13 @@
+.footer-nav {
+
+	&__menu {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__item {
+		display: inline-block;
+		margin: 0 rem(8);
+	}
+}

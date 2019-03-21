@@ -1,0 +1,43 @@
+.section-two-column {
+	margin-top: rem( 40 );
+	margin-bottom: rem( 40 );
+
+	@include breakpoint( medium ) {
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		max-width: rem( 780 );
+		@include breakpoint( medium ) {
+			display: grid;
+			grid-template-columns: repeat(1fr, 2);
+			column-gap: $global-grid-gap;
+		}
+		@include breakpoint( large ) {
+			column-gap: rem( 100 );
+		}
+	}
+
+	&__heading {
+		@include heading-underline;
+		@include breakpoint( medium ) {
+			grid-column: 1 / 3;
+			margin-bottom: 0;
+		}
+	}
+
+	&__col {
+		@include breakpoint( medium ) {
+			> *:first-child,
+			> blockquote p:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+
+	blockquote {
+		margin-bottom: 1.5em;
+	}
+}

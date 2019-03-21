@@ -1,5 +1,12 @@
 body {
-	font-family: $sans;
+	quotes: "“" "”";
+	background: $black;
+	font-family: $font-sans;
+	font-weight: 300;
+}
+
+.site-wrapper {
+	background: $white;
 }
 
 // Used to hide break tags in autop situations.
@@ -19,4 +26,18 @@ br.hide {
 // suppress focus ring on for mouse users
 [data-whatintent="mouse"] *:focus {
 	outline: none;
+}
+
+img,
+svg {
+	max-width: 100%;
+	height: auto;
+}
+
+hr {
+	height: 2px;
+	margin-top: rem( $global-grid-gap );
+    margin-bottom: rem( $global-grid-gap );
+	border: 0;
+	background-color: $color-primary;
 }

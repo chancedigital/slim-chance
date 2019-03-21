@@ -1,0 +1,48 @@
+.sign-up {
+	padding: rem( 40 ) 0;
+	background-color: #ff9000;
+	background-image: url('../img/bg-signup.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	background-blend-mode: luminosity;
+	color: $white;
+
+	@include breakpoint( medium ) {
+		padding: rem( 80 ) 0;
+		background-position: calc( 50% - 300px ) center;
+		background-size: contain;
+	}
+
+	&__wrapper {
+		@include make-container;
+		@include breakpoint( medium ) {
+			display: grid;
+			grid-template: auto / rem( 406 );
+			justify-content: end;
+		}
+	}
+
+	&__heading {
+		@include heading-underline( rgba( $white, 0.5 ) );
+		margin-bottom: 0;
+	}
+
+	&__content {
+		p:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__form-wrapper {
+
+		// CF7 stuff
+		form br {
+			display: none;
+		}
+
+		.ajax-loader {
+			display: none !important;
+		}
+	}
+}

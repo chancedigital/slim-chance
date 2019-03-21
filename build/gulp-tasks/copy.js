@@ -1,9 +1,18 @@
 import gulp from 'gulp';
 import notify from 'gulp-notify';
-import { assets, dist, successMessage } from '../gulp.settings.babel';
+import pump from 'pump';
+import config from '../../config';
 
-gulp.task( 'copy', function() {
-	gulp.src( `${assets}/fonts/**/*` )
-		.pipe( gulp.dest( `${dist}/fonts` ) )
-		.pipe( notify( { message: successMessage( 'copy' ), onLast: true } ) );
+gulp.task( 'copy', cb => {
+	pump(
+		[
+			gulp.src( `${ config.assetsPath }/fonts/**/*` ),
+			gulp.dest( `${ config.distPath }/fonts` ),
+			notify( {
+				message: config.getSuccessMessage( 'copy' ),
+				onLast: true,
+			} ),
+		],
+		cb,
+	);
 } );

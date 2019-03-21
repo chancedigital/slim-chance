@@ -1,7 +1,16 @@
 // Colors
-$black: #2c2c2c;
+$black: #252525;
+$white: #ffffff;
+$color-primary: #ff9100;
+$color-gray-mid: #909090;
+$color-gray-light: #f5f5f5;
+$color-danger: #ff4700;
 
 // Fonts and text styles
-$mono: consolas, "Liberation Mono", courier, monospace;
-$sans: "Open Sans", "Helvetica Neue", helvetica, "Roboto", arial, sans-serif;
-$bold: 700;
+$font-mono: consolas, "Liberation Mono", courier, monospace;
+$font-sans: lato, "Helvetica Neue", helvetica, "Roboto", arial, sans-serif;
+$font-sans-slim: bebas-neue, "Helvetica Neue", helvetica, "Roboto", arial, sans-serif;
+$font-sans-husky: hellenic-wide-jf, "Helvetica Neue", helvetica, "Roboto", arial, sans-serif;
+$font-marker: permanent-marker, "Helvetica Neue", helvetica, "Roboto", arial, sans-serif;
+$font-bold: 700;
+$base-line-height: 1.5;

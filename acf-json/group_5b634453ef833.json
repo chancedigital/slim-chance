@@ -23,9 +23,9 @@
         },
         {
             "key": "field_5b63447f260d8",
-            "label": "Page subtitle",
-            "name": "page_subtitle",
-            "type": "text",
+            "label": "Header paragraph",
+            "name": "header_paragraph",
+            "type": "wysiwyg",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -35,107 +35,19 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
-            "key": "field_5b6344e9260da",
-            "label": "Background type",
-            "name": "header_background_type",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "image": "Image",
-                "video": "Video",
-                "none": "None (uses whatever default is set by the theme)"
-            },
-            "default_value": [
-                "image"
-            ],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_5b63459b260dc",
-            "label": "Background video",
-            "name": "header_background_video",
-            "type": "repeater",
-            "instructions": "Set URLs for up to three video files to be used for cross-browser compatibility.",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5b6344e9260da",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 1,
-            "max": 3,
-            "layout": "row",
-            "button_label": "Add video file",
-            "sub_fields": [
-                {
-                    "key": "field_5b634641260e0",
-                    "label": "Video URL",
-                    "name": "video_url",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": ""
-                }
-            ]
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_5b63449a260d9",
             "label": "Background image",
             "name": "header_background_image",
             "type": "image",
-            "instructions": "By default, most templates will use the page's featured image as a header background image. Use this field to override that. If you are using a background video, this image will be used as a fallback where video is not supported.",
+            "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5b6344e9260da",
-                        "operator": "==",
-                        "value": "image"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_5b6344e9260da",
-                        "operator": "==",
-                        "value": "video"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -156,9 +68,38 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "post_template",
                 "operator": "==",
-                "value": "page"
+                "value": "templates\/page-flex-layout.php"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            }
+        ],
+        [
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "default"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            }
+        ],
+        [
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "templates\/page-feedback.php"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
             }
         ]
     ],
@@ -170,5 +111,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1533232740
+    "modified": 1551650812
 }

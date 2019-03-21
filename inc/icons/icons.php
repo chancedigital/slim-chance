@@ -8,9 +8,10 @@
 
 namespace ChanceDigital\SlimChance\Icons;
 
-add_action( 'wp_footer',                __NAMESPACE__ . '\\include_svg_icons', 9999 );
-add_filter( 'walker_nav_menu_start_el', __NAMESPACE__ . '\\nav_menu_social_icons', 10, 4 );
-add_filter( 'nav_menu_item_title',      __NAMESPACE__ . '\\dropdown_icon_to_menu_link', 10, 4 );
+add_action( 'wp_footer',                                __NAMESPACE__ . '\\include_svg_icons', 9999 );
+add_filter( 'walker_nav_menu_start_el',                 __NAMESPACE__ . '\\nav_menu_social_icons', 10, 4 );
+add_filter( 'slim_chance_walker_nav_menu_bem_start_el', __NAMESPACE__ . '\\nav_menu_social_icons', 10, 4 );
+add_filter( 'nav_menu_item_title',                      __NAMESPACE__ . '\\dropdown_icon_to_menu_link', 10, 4 );
 
 /**
  * Add SVG definitions to the footer.

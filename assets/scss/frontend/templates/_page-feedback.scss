@@ -1,0 +1,15 @@
+.page-feedback {
+	&__content-wrapper {
+		margin-top: rem( 40 );
+		margin-bottom: rem( 40 );
+
+		@include breakpoint( medium ) {
+			margin-top: rem( 100 );
+			margin-bottom: rem( 100 );
+		}
+	}
+
+	&__app-wrapper {
+		@include make-container;
+	}
+}

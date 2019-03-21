@@ -14,8 +14,12 @@ node_modules
 npm-debug.log
 yarn-error.log
 .vscode
+.env
+.env.development
+.env.staging
+.env.production
 
-# using yarn
+# use yarn; this shouldn't exist
 package-lock.json
 
 # large/disallowed file types

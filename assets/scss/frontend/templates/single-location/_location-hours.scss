@@ -1,0 +1,23 @@
+.location-hours {
+	margin: 1rem 0;
+	padding: rem( $global-grid-gap );
+	background: $white;
+	font-size: rem( 14 );
+
+	@include breakpoint( small down ) {
+		order: 2;
+	}
+
+	&__table {
+		margin-bottom: 0;
+	}
+
+	&__time {
+		text-align: right;
+	}
+
+	&__cell {
+		border-bottom: 1px solid $color-gray-light;
+
+	}
+}

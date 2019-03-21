@@ -1,0 +1,25 @@
+.location-contact {
+	display: grid;
+	gap: $global-grid-gap;
+	@include breakpoint( medium ) {
+		grid-template-columns: repeat(2, auto);
+	}
+
+	&__button {
+		display: block;
+	}
+
+	&__button:not(:last-of-type) {
+		margin-bottom: rem( $global-grid-gap );
+	}
+
+	&__col:last-child {
+		@include breakpoint( medium ) {
+			text-align: right;
+		}
+	}
+
+	address {
+		font-style: inherit;
+	}
+}

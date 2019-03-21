@@ -4,7 +4,7 @@ Custom WordPress theme for the Slim + Huskys website.
 
 ## Dependencies
 
-1. [Node & Yarn](https://yarnpkg.com/) - Build packages and 3rd party dependencies are managed through Yarn, so you will need that installed globally. I recommend using [`nvm`](https://github.com/creationix/nvm) to develop with Node v8.12.
+1. [Node & Yarn](https://yarnpkg.com/) - Build packages and 3rd party dependencies are managed through Yarn, so you will need that installed globally. I recommend using [`nvm`](https://github.com/creationix/nvm) to ensure you are working with the proper Node version.
 2. [Gulp](https://gulpjs.com/) - Gulp is used as the main task runner. it runs Sass, PostCSS, processes images/SVG files, and executes Webpack.
 3. [Webpack](https://webpack.js.org/) - Webpack is used to process the JavaScript.
 4. [Composer](https://getcomposer.org/) - Install and manage PHP dependencies.
@@ -27,7 +27,7 @@ Custom WordPress theme for the Slim + Huskys website.
 ### JavaScript DOM-based routing
 This theme utilizes DOM-based routing for JavaScript, inspired by [Roots by Sage](https://roots.io/sage/docs/theme-development-and-building/). This functionality enables you to run specific scripts on specific pages. Routes (and the scripts they include) run when the route name matches a class on the body element of the current page.
 
-One note: the route must be converted to camel case when the body class in question uses hyphenated strings. So if your body class matches the slug `about-us`, your route name would be `aboutUs`. Note also that the route's file name (e.g., `aboutUs.js`) doesn't have to match the body class. What's important is that the name used for the import that is registered with the router (`aboutUs`) matches.
+One note: the route must be converted to camel case when the body class in question uses hyphenated strings. So if your body class matches the slug `about-us`, your route name would be `aboutUs`. Note also that the route's file name (e.g., `about-us.js`) doesn't have to match the body class. What's important is that the name used for the import that is registered with the router (`aboutUs`) matches.
 
 Every route is defined in its own file in `assets/js/frontend/routes`.
 
@@ -54,7 +54,7 @@ More than one page-specific route might can a given page. For example, if you re
 
 To add scripts to an existing route, add the desired JavaScript within the route's `init()` or `finalize()` methods. For example, the `init()` method on the `common` route might contain the code needed to toggle your site's menu when its icon is clicked.
 
-Because all routes run after the browser has fired the DOM load event, you do not need to wrap the code in your routes within an event handler that watches for that event (e.g., `jQuery(document).ready()`).
+Because all routes run after the browser has fired the DOM load event, you do not need to wrap the code in your routes within an event handler that watches for that event (e.g., `jQuery( document ).ready()`).
 
 ### 3rd party packages
 Example of how to add 3rd party packages* and have them included in the theme:

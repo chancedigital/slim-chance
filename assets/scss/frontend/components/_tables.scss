@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+	border-collapse: collapse;
+	border-radius: 0;
+	background: transparent;
+}
+
+thead {
+	border-bottom: 1px solid $color-primary;
+	background: transparent;
+}
+
+tr,
+thead tr,
+tfoot tr {
+	background: transparent;
+}
+
+thead th,
+thead td,
+tfoot th,
+tfoot td {
+	margin: 0;
+	padding: 0.5rem 0 0.625rem;
+	background: transparent;
+}
+
+tbody th,
+tbody td {
+	padding: 0.5rem 0 0.625rem;
+	background: transparent;
+}

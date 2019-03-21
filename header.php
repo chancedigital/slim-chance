@@ -23,6 +23,5 @@
 <?php do_action( 'after_body' ); // WPCS: prefix ok. ?>
 
 <div id="js-site-wrapper" class="site-wrapper">
-	<?php get_template_part( 'parts/layout/header/masthead' ); ?>
-	<?php get_template_part( 'parts/layout/header/page-header' ); ?>
+	<?php get_template_part( 'templates/parts/layout/header/masthead' ); ?>
 	<div id="primary-content-area" class="content-area">

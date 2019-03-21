@@ -45,6 +45,7 @@ function theme_setup() {
 	add_theme_support( 'title-tag' );
 	add_theme_support( 'custom-logo' );
 	add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'align-wide' );
 	add_theme_support( 'html5', [
 		'search-form',
 		'comment-form',
@@ -84,12 +85,14 @@ function theme_setup() {
  * Enqueue scripts for front-end.
  */
 function scripts() {
+	$js_path         = 'dist/js';
+	$frontend_script = "$js_path/frontend.min.js";
 
 	// Deregister the jquery version bundled with WordPress.
 	wp_deregister_script( 'jquery' );
 
 	// CDN hosted jQuery placed in the header, as some plugins require that jQuery is loaded in the header.
-	wp_enqueue_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], '3.2.1', false );
+	wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', [], '3.2.1', false );
 
 	// Deregister the jquery-migrate version bundled with WordPress.
 	wp_deregister_script( 'jquery-migrate' );
@@ -99,9 +102,19 @@ function scripts() {
 	wp_enqueue_script( 'jquery-migrate' );
 
 	// Frontend JS.
-	wp_register_script( 'frontend', SLIM_CHANCE_TEMPLATE_URL . '/dist/js/frontend.min.js', [], SLIM_CHANCE_VERSION, true );
-	wp_localize_script( 'frontend', 'csAjax', [
-		'ajaxUrl' => esc_url( admin_url( 'admin-ajax.php' ) ),
+	wp_register_script(
+		'frontend',
+		SLIM_CHANCE_TEMPLATE_URL . "/$frontend_script",
+		[],
+		filemtime( SLIM_CHANCE_PATH . $frontend_script ),
+		true
+	);
+	wp_localize_script( 'frontend', 'slimChance', [
+		'baseUrl'              => esc_url( get_site_url() ),
+		'themeUrl'             => esc_url( get_bloginfo( 'template_url' ) ),
+		'ajaxUrl'              => esc_url( admin_url( 'admin-ajax.php' ) ),
+		'customerFeedbackTo'   => esc_html( get_field( 'customer_feedback', 'option' ) ),
+		'customerFeedbackFrom' => esc_html( get_field( 'customer_feedback_from', 'option' ) ),
 	] );
 	wp_enqueue_script( 'frontend' );
 
@@ -109,22 +122,35 @@ function scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
-
 }
 
 /**
  * Enqueue styles for front-end.
  */
 function styles() {
+	$css_path       = 'dist/css';
+	$frontend_style = "$css_path/frontend.min.css";
 
-	wp_enqueue_style( 'frontend', SLIM_CHANCE_TEMPLATE_URL . '/dist/css/frontend.min.css', [], SLIM_CHANCE_VERSION );
+	// Typekit.
+	wp_enqueue_style( 'typekit', '//use.typekit.net/pyo1eko.css' );
+
+	// Fancybox
+	// Unable to import from node_modules due to scoped package import issues, so we'll use the CDN for now
+	wp_enqueue_style( 'fancybox', '//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css' );
+
+	// Frontend styles.
+	wp_enqueue_style(
+		'frontend',
+		SLIM_CHANCE_TEMPLATE_URL . "/$frontend_style",
+		[],
+		filemtime( SLIM_CHANCE_PATH . $frontend_style )
+	);
 }
 
 /**
  * Register widget areas.
  */
 function widgets() {
-
 	register_sidebar( [
 		'name'          => 'Main sidebar',
 		'id'            => 'main-sidebar',
@@ -145,16 +171,4 @@ function acf_map_api( $api ) {
 	$api['key'] = 'API_KEY_GOES_HERE';
 
 	return $api;
-}
-
-// Add ACF options page.
-if ( function_exists( 'acf_add_options_page' ) ) {
-
-	acf_add_options_page( [
-		'page_title' => __( 'Theme Settings', 'slim-chance' ),
-		'menu_title' => __( 'Theme Settings', 'slim-chance' ),
-		'menu_slug'  => 'theme-general-settings',
-		'capability' => 'edit_posts',
-		'redirect'   => false,
-	] );
 }

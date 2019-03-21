@@ -1,6 +1,0 @@
-{
-  "publicPath": "/wp-content/themes/slim-chance",
-  "devUrl": "http://example.test",
-  "proxyUrl": "http://localhost:3000",
-  "cacheBusting": "[name]_[hash:8]"
-}

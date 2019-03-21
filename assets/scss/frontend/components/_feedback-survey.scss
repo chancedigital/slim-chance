@@ -1,0 +1,74 @@
+.feedback-survey {
+
+	&__options {
+		@include breakpoint( medium ) {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: center;
+			margin: 0 ( $global-grid-gap * -1 );
+		}
+	}
+
+	&__answer-button {
+		display: block;
+		width: 100%;
+		margin: $global-grid-gap 0;
+		padding: $global-grid-gap;
+		transition: transform 0.2s ease-in;
+		border: 0;
+		border: 2px solid $color-gray-light;
+		background: $white;
+		box-shadow: $global-box-shadow;
+		// font-family: $font-sans-slim;
+		font-size: rem( 14 );
+		font-weight: $font-bold;
+		line-height: 1.3;
+		// text-transform: uppercase;
+		cursor: pointer;
+		@include breakpoint( medium ) {
+			flex: 1 0;
+			width: auto;
+			min-width: rem( 160 );
+			max-width: rem( 260 );
+			margin: $global-grid-gap;
+			font-size: rem( 16 );
+
+			&:hover:not(:active) {
+				transform: translate3d( 0, rem( -2 ), 0 );
+			}
+		}
+
+		&--active {
+			border-color: $color-danger;
+		}
+	}
+
+	&__nav-wrapper {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	&__nav-button {
+		display: block;
+
+		&--next,
+		&--submit {
+			margin-right: 0;
+			margin-inline-end: 0;
+			margin-left: auto;
+			margin-inline-start: auto;
+		}
+	}
+
+	&__form {
+		width: 100%;
+		@include breakpoint( medium ) {
+			margin: $global-grid-gap;
+		}
+	}
+
+	&__comments {
+		min-height: rem( 160 );
+	}
+}

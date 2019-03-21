@@ -1,17 +1,19 @@
-// Import external dependencies.
 import 'what-input';
-
-// Import local dependencies.
-import Router from '../_util/Router';
+import Router from './lib/class-router';
+import polyfills from './lib/polyfills';
 
 // Import route for each page.
 import common from './routes/common';
 import home from './routes/home';
+import pageTemplatePageFeedback from './routes/page-template-feedback';
+
+polyfills();
 
 // Populate Router instance with DOM routes.
 const routes = new Router( {
 	common, // All pages
 	home, // Home page
+	pageTemplatePageFeedback,
 } );
 
 // Load route events.

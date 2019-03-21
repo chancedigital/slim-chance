@@ -1,48 +1,55 @@
-import debounce from '../../../_util/debounce';
+import { throttle } from 'lodash';
+import { breakpoints } from '../../lib/class-media-query';
 
 export default () => {
-
 	const els = {
 		$masthead: $( '#js-masthead' ),
-		$topNav: $( '#js-topnav' ),
+		$topNavWrapper: $( '#js-masthead-nav-wrapper' ),
+		$toggle: $( '#js-masthead-menu-toggle' ),
 	};
-	const { $masthead, $topNav } = els;
+	const { $masthead, $toggle, $topNavWrapper } = els;
 	const mastheadHeight = $masthead.outerHeight();
 
 	// Sticky header class.
 	const stickyFlag = 'sticky';
-	const mastheadStickyClass = `masthead--${stickyFlag}`;
-	const topNavStickyClass = `topnav--${stickyFlag}`;
+	const navOpenFlag = 'nav-open';
+	const mastheadStickyClass = `masthead--${ stickyFlag }`;
 
-	const handleMasthead = debounce( function( e ) {
+	const handleMasthead = throttle(
+		function( e ) {
+			// Set current top position.
+			const currentTop = $( window ).scrollTop();
 
-		// Set current top position.
-		const currentTop = $( window ).scrollTop();
-
-		if ( mastheadHeight * 2 < e.currentTarget.scrollY ) {
-			$masthead.addClass( mastheadStickyClass );
-			$topNav.addClass( topNavStickyClass );
-		} else {
-			$masthead.removeClass( mastheadStickyClass );
-			$topNav.removeClass( topNavStickyClass );
-		}
-
-		// Set previous top position to starting current position.
-		this.previousTop = currentTop;
-	}, 1, true );
-
-	if ( window.matchMedia( '(min-width: 40em)' ).matches ) {
-		$( window ).scroll( { previousTop: 0 }, handleMasthead );
-
-		// @todo: Rewrite without Foundation event.
-		$( window ).on( 'changed.zf.mediaquery', function( e, newSize, oldSize ) {
-			if ( 'small' === newSize ) {
+			if ( mastheadHeight / 2 < e.currentTarget.scrollY ) {
+				$masthead.addClass( mastheadStickyClass );
+			} else {
 				$masthead.removeClass( mastheadStickyClass );
-				$topNav.removeClass( topNavStickyClass );
-				$( window ).unbind( 'scroll' );
-			} else if ( 'medium' === newSize && 'small' === oldSize ) {
-				$( window ).scroll( { previousTop: 0 }, handleMasthead );
 			}
-		} );
+
+			// Set previous top position to starting current position.
+			this.previousTop = currentTop;
+		},
+		150,
+	);
+
+	if ( window.matchMedia( `(min-width: ${ breakpoints.medium }px)` ).matches ) {
+		$( window ).load( handleMasthead );
+		$( window ).scroll( { previousTop: 0 }, handleMasthead );
 	}
+
+	$( window ).on( 'mqChanged', function( e ) {
+		const { newSize, oldSize } = e.detail;
+		if ( 'small' === newSize ) {
+			$masthead.removeClass( mastheadStickyClass );
+			$( window ).unbind( 'scroll' );
+		} else if ( 'medium' === newSize && 'small' === oldSize ) {
+			$( window ).scroll( { previousTop: 0 }, handleMasthead );
+		}
+	} );
+
+	$toggle.click( function() {
+		$topNavWrapper.toggleClass( `masthead__nav-wrapper--${ navOpenFlag }` );
+		$( 'body' ).toggleClass( navOpenFlag );
+		$( this ).toggleClass( `masthead__hamburger--${ navOpenFlag }` );
+	} );
 };

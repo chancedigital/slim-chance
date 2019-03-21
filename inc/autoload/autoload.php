@@ -2,7 +2,7 @@
 /**
  * Autoloader for theme classes.
  *
- * @package pyapc
+ * @package slim-chance
  */
 
 namespace ChanceDigital\SlimChance\Autoload;
@@ -16,6 +16,8 @@ spl_autoload_register( __NAMESPACE__ . '\\autoload' );
  */
 function autoload( string $class ) {
 
+	// var_dump( $class );
+
 	// If the $class_name does not include our namespace, GTFO.
 	if ( false === strpos( $class, SLIM_CHANCE_NAMESPACE ) ) {
 		return;
@@ -24,6 +26,8 @@ function autoload( string $class ) {
 	$base_namespace_parts = explode( '\\', SLIM_CHANCE_NAMESPACE );
 	$base_namespace_count = ( (int) count( $base_namespace_parts ) );
 	$namespace_parts      = explode( '\\', $class );
+
+
 
 	// Format parts to match filenames.
 	$file_parts = array_map( function( $part ) {

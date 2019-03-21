@@ -1,0 +1,55 @@
+.section-text-columns {
+	$self: &;
+	padding-top: rem(50);
+	padding-bottom: rem(50);
+
+	@include breakpoint( medium ) {
+		padding-top: rem(100);
+		padding-bottom: rem(100);
+	}
+
+	&__wrapper {
+		@include make-container;
+	}
+
+	&__image {
+		display: block;
+	}
+
+	&__image-link {
+		display: block;
+	}
+
+	&__list {
+		display: grid;
+		grid-template: auto / auto;
+		gap: $global-grid-gap;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		@include breakpoint( medium ) {
+			grid-template: auto / repeat( 2, 1fr );
+		}
+
+		@include breakpoint( large ) {
+			grid-template: auto / repeat( 3, 1fr );
+		}
+	}
+
+	&__list-item {
+		display: block;
+		position: relative;
+		list-style-type: none;
+	}
+
+	.instagram-media,
+	.instagram-media-registered {
+		&,
+		& iframe {
+			width: initial !important;
+			min-width: initial !important;
+			max-width: initial !important;
+		}
+	}
+}

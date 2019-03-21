@@ -4,11 +4,12 @@
 	z-index: 2;
 	top: 0;
 	width: 100%;
-	padding: 22px 0;
+	padding: rem(8) 0;
 	transition: 0.2s all ease-in-out;
 
 	@include breakpoint( medium ) {
 		position: fixed;
+		padding: rem(22) 0;
 	}
 
 	body.admin-bar & {
@@ -20,17 +21,93 @@
 
 	&--sticky {
 		padding: 12px 0;
+		background-color: $white;
 		box-shadow: 0 3px 15px 0 rgba( 74, 74, 74, 0.125 );
 	}
 
+	&__logo-wrapper {
+		a {
+			display: block;
+			max-height: rem( 86 );
+		}
+	}
+
+	&__wrapper {
+		@include make-container;
+		display: grid;
+		grid-template-columns: rem( 86 ) auto;
+		gap: rem( $global-grid-gap );
+		align-items: center;
+
+		@include breakpoint( small down ) {
+			justify-content: space-between;
+		}
+	}
+
 	&__hamburger {
-		position: absolute;
-		top: 50%;
-		right: rem-calc( 15 );
-		transform: translateY( -50% );
+		padding: 0;
+		transition: 0.3s transform ease-in;
+		border: 0;
+		outline: 0;
+		background: 0;
+		box-shadow: none;
+
+		&--nav-open {
+			// position: fixed;
+			// top: rem( 100 - 46 );
+			// right: $global-grid-gap;
+			transform: translateX( #{rem( -180 ) - ( $global-grid-gap * 2 )} );
+
+			body.admin-bar & {
+				// top: rem( 100 );
+			}
+		}
 
 		@include breakpoint( medium ) {
 			display: none;
 		}
+	}
+
+	&__nav-wrapper {
+		@include breakpoint( small down ) {
+			position: fixed;
+			z-index: 10;
+			top: 0;
+			right: rem( -180 ) - ( $global-grid-gap * 2 );
+			width: rem( 180 );
+			height: calc( 100% - #{$global-grid-gap * 2} );
+			padding: rem( $global-grid-gap );
+			transition: 0.3s transform ease-in,  0.3s box-shadow ease-in;
+			background: $white;
+			box-shadow: none;
+
+			&--nav-open {
+				transform: translateX( #{rem( -180 ) - ( $global-grid-gap * 2 )} );
+				box-shadow: 0 0 rem( 30 ) rgba( $black, 0.25 );
+			}
+		}
+
+		body.admin-bar & {
+			@include breakpoint( small down ) {
+				top: 46px;
+				height: calc( 100% - #{rem( $global-grid-gap * 2 )} - 46px );
+			}
+		}
+	}
+
+	&__nav-sep {
+		margin-top: rem( 10 );
+		margin-bottom: rem( 10 );
+	}
+}
+
+@include breakpoint( small down ) {
+	body.nav-open {
+		max-height: 100vh;
+		overflow: hidden;
+	}
+
+	body.nav-open.admin-bar {
+		max-height: calc( 100vh - 46px );
 	}
 }

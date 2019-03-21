@@ -1,0 +1,33 @@
+.question-blocks {
+	display: grid;
+	grid-template: auto / auto;
+	gap: $global-grid-gap;
+	transform: translateY( $global-grid-gap );
+
+	@include breakpoint( medium ) {
+		grid-template: auto / 1fr 1fr;
+		transform: translateY( rem( 55 ) );
+	}
+
+	&__block-wrapper {
+		padding: $global-grid-gap;
+		transition: transform 0.2s ease-in;
+		border: 0;
+		background: $white;
+		box-shadow: $global-box-shadow;
+		font-family: $font-sans-slim;
+		font-size: rem( 18 );
+		text-transform: uppercase;
+		cursor: pointer;
+		@include breakpoint( medium ) {
+			font-size: rem( 22 );
+
+			&:hover {
+				transform: translate3d( 0, rem( -2 ), 0 );
+			}
+		}
+	}
+
+	&__inner {
+	}
+}

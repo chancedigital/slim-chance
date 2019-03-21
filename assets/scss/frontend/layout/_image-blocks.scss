@@ -1,0 +1,111 @@
+.image-blocks {
+	$self: &;
+	$shadow: 0 rem( 20 ) rem( 50 ) rgba( #000, 0.18 );
+	padding-top: rem( 40 );
+	padding-bottom: rem( 40 );
+	overflow: hidden;
+	background: $color-gray-light;
+	@include breakpoint(medium) {
+		padding-top: rem( 72 );
+		padding-bottom: rem( 72 );
+	}
+
+	&__block {
+		$text-col-size: minmax( rem( 300 ), rem( 480 ) );
+		$img-col-size: 50%;
+		$img-col-size-smaller: minmax( 40%, rem( 700 ) );
+
+		@include breakpoint( small down ) {
+			@include make-container( false );
+		}
+
+		@include breakpoint( medium ) {
+			display: grid;
+			grid-template-columns: $text-col-size $img-col-size;
+			justify-content: start;
+			min-height: rem( 380 );
+
+			&:nth-child( odd ) {
+				justify-content: end;
+			}
+
+			&:nth-child( 4n + 2 ) {
+				grid-template-columns: $img-col-size-smaller $text-col-size;
+			}
+
+			&:nth-child( 4n + 3 ) {
+				grid-template-columns: $text-col-size $img-col-size-smaller;
+			}
+
+			&:only-child {
+				grid-template-columns: $img-col-size-smaller $text-col-size;
+				justify-content: center;
+
+				.image-blocks__image {
+					max-width: none;
+				}
+			}
+		}
+	}
+
+	&__image-wrapper {
+		overflow: hidden;
+		@include breakpoint( medium ) {
+			position: relative;
+			#{$self}__block:nth-child( odd ):not(:only-child) & {
+				order: 2;
+			}
+		}
+	}
+
+	&__image {
+		display: block;
+		@include breakpoint(medium) {
+			position: absolute;
+			object-fit: cover;
+			top: 50%;
+			width: 100%;
+			max-width: rem( 700 );
+			height: 100%;
+			transform: translateY( -50% );
+
+			#{$self}__block:nth-child( odd ) & {
+				left: 0;
+			}
+
+			#{$self}__block:nth-child( even ) & {
+				right: 0;
+			}
+		}
+	}
+
+	&__content-wrapper {
+		padding: rem( $global-grid-gap * 2 );
+		background: $white;
+		box-shadow: $shadow;
+
+		@include breakpoint( medium ) {
+			padding: rem( 58 );
+		}
+	}
+
+	&__quote,
+	&__quote p:first-child {
+		margin-top: 0;
+	}
+
+	&__quote p:last-of-type {
+		@include heading-underline;
+		margin-bottom: 0.5em;
+
+		&:after {
+			margin-bottom: 0;
+		}
+	}
+
+	&__heading {
+		@include font-xlg;
+		@include heading-underline;
+		margin-top: 0;
+	}
+}

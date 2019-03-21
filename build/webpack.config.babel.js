@@ -1,43 +1,70 @@
 import webpack from 'webpack';
-import { assets, dist, jsFiles, publicPath, mode } from './gulp.settings.babel';
+import WebpackBar from 'webpackbar';
+import path from 'path';
+import babelConfig from '../config/babel.config';
+import cfg from '../config';
+import Dotenv from 'dotenv-webpack';
 
-const entry = jsFiles.reduce( ( acc, file ) => {
-	acc[file] = `./js/${file}/${file}.js`; // ex: /js/frontend/frontend.js
-	return acc;
-}, {} );
+const { assetsPath, basePath, distPath, jsFiles, getThemeName, isDev } = cfg;
+
+const nodeEnv = process.env.NODE_ENV;
+
+const dotEnvFile = `${ basePath }/.env${ nodeEnv ? `.${ nodeEnv }` : '' }`;
+
+const entry = {};
+jsFiles.forEach( fileName => {
+	entry[ fileName ] = `./js/${ fileName }/${ fileName }.js`;
+} );
+
+const publicPath = `/wp-content/themes/${ getThemeName() }/${ path.basename(
+	distPath,
+) }/`;
 
 const config = {
 	entry,
-	mode,
+	mode: isDev ? 'development' : 'production',
 	externals: {
 		jquery: 'jQuery',
 	},
 	output: {
-		path: dist,
+		path: distPath,
 		publicPath,
 		filename: '[name].min.js',
 	},
-	context: assets + '/',
+	context: assetsPath + '/',
 	cache: true,
-	resolve: { modules: [ 'node_modules' ] },
+	resolve: {
+		modules: [ 'node_modules' ],
+	},
 	devtool: 'source-map',
 	module: {
 		rules: [
 			{
 				test: /\.js$/,
+				include: assetsPath,
 				enforce: 'pre',
-				include: assets,
-				loader: 'eslint-loader',
+				use: [ 'eslint-loader' ],
 			},
 			{
 				test: /\.js$/,
-				exclude: [ '/node_modules/' ],
-				use: [ { loader: 'babel-loader' } ],
+				include: assetsPath,
+				use: [
+					{
+						loader: 'babel-loader',
+						options: {
+							...babelConfig,
+						},
+					},
+				],
 			},
 		],
 	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
+		new WebpackBar(),
+		new Dotenv( {
+			path: dotEnvFile,
+		} ),
 	],
 	stats: {
 		colors: true,
