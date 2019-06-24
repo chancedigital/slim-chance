@@ -1,5 +1,9 @@
 <div class="location-hours">
-	<?php if ( have_rows( 'hours' ) ) : ?>
+	<?php if ( get_field( 'coming_soon' ) ) : ?>
+		<div>
+			<h2><?php _e( 'Store opening soon!', 'slim-chance' ); ?></h2>
+		</div>
+	<?php elseif ( have_rows( 'hours' ) ) : ?>
 		<table class="location-hours__table">
 			<tbody class="location-hours__tbody">
 				<?php while ( have_rows( 'hours' ) ) : the_row(); ?>

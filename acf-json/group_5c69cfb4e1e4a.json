@@ -182,6 +182,39 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
+        },
+        {
+            "key": "field_5ccc3350f005e",
+            "label": "Eventbrite",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ccc335ef005f",
+            "label": "Eventbrite API Key",
+            "name": "eventbrite_api_key",
+            "type": "password",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -201,5 +234,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1552998523
+    "modified": 1556886384
 }

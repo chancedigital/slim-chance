@@ -9,7 +9,7 @@
 // phpcs:enable
 
 // Useful global constants.
-define( 'SLIM_CHANCE_VERSION', '0.1.1' );
+define( 'SLIM_CHANCE_VERSION', '2.1.1' );
 define( 'SLIM_CHANCE_URL', get_stylesheet_directory_uri() );
 define( 'SLIM_CHANCE_TEMPLATE_URL', get_template_directory_uri() );
 define( 'SLIM_CHANCE_PATH', trailingslashit( get_template_directory() ) );

@@ -9,9 +9,9 @@ export default () => {
 
 	function simulateClick( box ) {
 		if ( box.clicked ) {
-			box.clicked === false;
+			box.clicked = false;
 		} else {
-			box.clicked === true;
+			box.clicked = true;
 		}
 	}
 

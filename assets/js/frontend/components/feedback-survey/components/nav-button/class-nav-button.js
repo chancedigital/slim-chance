@@ -11,6 +11,7 @@ const NavButton = ( {
 } ) => {
 	return (
 		<button
+			type="button"
 			className={ classNames( 'button', className ) }
 			onClick={ e => {
 				e.preventDefault();

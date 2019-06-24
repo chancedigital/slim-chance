@@ -1,0 +1,30 @@
+.section-cards {
+	margin-top: rem( 40 );
+	margin-bottom: rem( 40 );
+
+	@include breakpoint( medium ) {
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		max-width: rem( 1400 );
+		gap: $global-grid-gap;
+		@include breakpoint( medium ) {
+			display: grid;
+			gap: $global-grid-gap * 2;
+		}
+		@include breakpoint( large ) {
+			grid-template-columns: repeat( 3, 1fr );
+		}
+	}
+
+	&__heading {
+		@include heading-underline;
+		@include breakpoint( medium ) {
+			grid-column: 1 / 4;
+			margin-bottom: 0;
+		}
+	}
+}

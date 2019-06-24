@@ -22,7 +22,7 @@ use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem;
 				'container_class' => 'social-nav site-footer__social-nav',
 				'theme_location'  => 'social',
 				'link_before'     => '<span class="screen-reader-text">',
-				'link_after'      => '<html class="screen-reader-text">',
+				'link_after'      => '</span">',
 				'walker'          => new Walker_Nav_Menu_Bem(),
 			] );
 			wp_nav_menu( [

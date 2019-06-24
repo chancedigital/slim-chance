@@ -1,8 +1,6 @@
 <?php
 /**
- * The template for displaying the header.
- *
- * @package slim-chance
+ * Template Name: Loyalty Program
  */
 
 ?>
@@ -19,9 +17,10 @@
 </head>
 
 <body <?php body_class(); ?>>
-
-<?php do_action( 'after_body' ); // WPCS: prefix ok. ?>
-
-<div id="js-site-wrapper" class="site-wrapper">
-	<?php get_template_part( 'templates/parts/layout/header/masthead' ); ?>
-	<div id="primary-content-area" class="content-area">
+<div class="loyalty-app-wrapper">
+	<div id="loyalty-app" data-engage-app-id="slimandhuskys_67209333-4a94-469d-9f90-2a5729260177"></div>
+	<script src="https://ncrengage.com/loyalty.js"></script>
+</div>
+<?php wp_footer(); ?>
+</body>
+</html>

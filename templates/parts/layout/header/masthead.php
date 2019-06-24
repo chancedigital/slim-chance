@@ -27,7 +27,7 @@
 			] );
 			?>
 		</div>
-		<button id="js-masthead-menu-toggle" class="masthead__hamburger">
+		<button id="js-masthead-menu-toggle" class="masthead__hamburger" type="button">
 			<?php get_template_part( 'templates/parts/components/hamburger' ); ?>
 		</button>
 	</div>

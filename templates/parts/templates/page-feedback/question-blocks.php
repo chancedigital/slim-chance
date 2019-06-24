@@ -21,7 +21,7 @@ $questions = [
 
 <div class="question-blocks">
 	<?php foreach ( $questions as $question ) : ?>
-		<button id="feedback-button-<?php echo sanitize_title_with_dashes( esc_attr( $question['id'] ) ); ?>" class="question-blocks__block-wrapper">
+		<button type="button" id="feedback-button-<?php echo sanitize_title_with_dashes( esc_attr( $question['id'] ) ); ?>" class="question-blocks__block-wrapper">
 			<span class="question-blocks__block-inner"><?php echo esc_html( $question['text'] ); ?></button>
 		</button>
 	<?php endforeach; ?>

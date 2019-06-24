@@ -205,7 +205,7 @@
                             "key": "field_5c68cebc11def",
                             "label": "Body",
                             "name": "body",
-                            "type": "textarea",
+                            "type": "wysiwyg",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": [
@@ -223,10 +223,10 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": "",
-                            "new_lines": "wpautop"
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 0,
+                            "delay": 0
                         },
                         {
                             "key": "field_5c68cfc911df7",
@@ -479,5 +479,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1550455431
+    "modified": 1557331296
 }

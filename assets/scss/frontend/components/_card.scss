@@ -1,0 +1,36 @@
+.card {
+	box-shadow: $global-box-shadow;
+
+	&__image-wrapper {
+		overflow: hidden;
+
+		@include breakpoint( medium ) {
+			height: rem( 300 );
+		}
+	}
+
+	&__image {
+		@include breakpoint( medium ) {
+			object-fit: cover;
+			object-position: 50%;
+			height: 100%;
+		}
+	}
+
+	&__content {
+		padding: rem( $global-grid-gap * 2 );
+		background: $white;
+
+		@include breakpoint( large ) {
+			padding: rem( 58 );
+		}
+
+		& :first-child {
+			margin-top: 0;
+		}
+
+		& :last-child {
+			margin-bottom: 0;
+		}
+	}
+}

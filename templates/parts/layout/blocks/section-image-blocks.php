@@ -49,6 +49,7 @@
 						<?php if ( $button_type === 'onclick' ) : ?>
 
 							<button
+								type="button"
 								class="button image-blocks__button"
 								onclick="<?php echo esc_attr( $block_content['button_click_handler'] ) ?>"
 							>

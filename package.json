@@ -1,8 +1,8 @@
 {
   "name": "slim-chance",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Custom WordPress theme for the Slim + Huskys website.",
-  "homepage": "https://project-domain.tld",
+  "homepage": "https://slimandhuskys.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/chancedigital/slim-chance"
@@ -14,12 +14,12 @@
     "role": "developer"
   },
   "scripts": {
-    "start": "yarn && composer install && NODE_ENV=development gulp --gulpfile build/gulpfile.babel.js",
-    "watch": "gulp --gulpfile build/gulpfile.babel.js watch",
+    "setup": "yarn && composer install && composer install-codestandards",
+    "dev": "NODE_ENV=development gulp dev --gulpfile build/gulpfile.babel.js",
+    "start": "yarn dev",
+    "watch": "NODE_ENV=development gulp --gulpfile build/gulpfile.babel.js watch",
     "build": "NODE_ENV=production gulp --gulpfile build/gulpfile.babel.js",
     "build:staging": "NODE_ENV=staging gulp --gulpfile build/gulpfile.babel.js",
-    "dev": "yarn start",
-    "deploy": "yarn && composer install --no-dev -o && gulp --gulpfile build/gulpfile.babel.js",
     "lint-js": "eslint assets/js",
     "format-js": "eslint --fix assets/js"
   },
@@ -28,12 +28,43 @@
       "pre-commit": "lint-staged"
     }
   },
+  "eslintConfig": {
+    "extends": [
+      "@chancedigital/eslint-config/react",
+      "@chancedigital/eslint-config/wp"
+    ],
+    "globals": {
+      "jQuery": false,
+      "wp": false
+    },
+    "rules": {
+      "no-console": [
+        1,
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "no-debugger": 1
+    }
+  },
   "eslintIgnore": [
     "assets/js/_vendor",
     "assets/js/admin/_vendor",
     "assets/js/frontend/_vendor",
     "assets/js/shared/_vendor"
   ],
+  "stylelint": {
+    "extends": [
+      "@chancedigital/stylelint-config"
+    ],
+    "ignore": [
+      "**/*.js",
+      "dist/**/*"
+    ]
+  },
   "lint-staged": {
     "*.js": [
       "eslint"
@@ -41,73 +72,79 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.0.0",
-    "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.5",
+    "@babel/register": "^7.4.4",
+    "@chancedigital/eslint-config": "^1.0.5",
+    "@chancedigital/stylelint-config": "^1.0.2",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
     "babel-plugin-inline-json-import": "^0.3.2",
-    "browser-sync": "^2.26.3",
-    "browserslist": "^4.4.2",
-    "caniuse-db": "^1.0.30000942",
+    "babel-plugin-lodash": "^3.3.4",
+    "browserslist": "^4.6.3",
+    "caniuse-db": "^1.0.*",
     "dateformat": "^3.0.3",
-    "del": "^4.0.0",
+    "del": "^4.1.1",
     "dotenv-webpack": "^1.7.0",
-    "eslint": "^5.15.1",
-    "eslint-config-wpcalypso": "^4.0.1",
-    "eslint-loader": "^2.1.2",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jest": "^22.3.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.17.*",
+    "eslint-plugin-jest": "^22.7.*",
     "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-wpcalypso": "^4.0.2",
-    "gulp": "^4.0.0",
-    "gulp-cache": "^1.1.1",
+    "eslint-plugin-react": "^7.13.*",
+    "eslint-plugin-react-hooks": "^1.6.*",
+    "eslint-plugin-wpcalypso": "^4.1.*",
+    "gulp": "^4.0.*",
+    "gulp-cache": "^1.1.*",
     "gulp-cssnano": "^2.1.3",
-    "gulp-filter": "^5.1.0",
-    "gulp-imagemin": "^5.0.3",
+    "gulp-env": "^0.4.0",
+    "gulp-filter": "^6.0.0",
+    "gulp-header-comment": "^0.6.1",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^6.0.0",
     "gulp-livereload": "^4.0.1",
     "gulp-notify": "^3.2.0",
-    "gulp-phpcs": "^2.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "git+https://github.com/chancestrickland/gulp-sass",
     "gulp-sourcemaps": "^2.6.5",
-    "gulp-zip": "^4.2.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.1.5",
-    "node-sass": "^4.11.0",
+    "gulp-string-replace": "^1.1.2",
+    "gulp-zip": "^5.0.0",
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "node-sass": "^4.12.0",
     "node-sass-tilde-importer": "^1.0.2",
     "postcss-preset-env": "^6.6.0",
-    "prettier": "git+https://github.com/Automattic/wp-prettier#wp-prettier-1.16.4",
+    "prettier": "git+https://github.com/Automattic/wp-prettier#wp-prettier-1.17.0",
     "pump": "^3.0.0",
     "require-dir": "^1.2.0",
-    "stylelint": "^9.10.1",
-    "stylelint-config-property-sort-order-smacss": "^4.0.2",
-    "stylelint-config-recommended-scss": "^3.2.0",
-    "stylelint-scss": "^3.5.4",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended-scss": "^3.3.0",
+    "stylelint-scss": "^3.8.0",
+    "terser-webpack-plugin": "^1.3.0",
+    "vinyl": "^2.2.0",
+    "webpack": "^4.35.0",
+    "webpack-cli": "^3.3.4",
+    "webpack-merge": "^4.2.1",
     "webpack-stream": "^5.2.1",
-    "webpackbar": "^3.1.5"
+    "webpackbar": "^3.2.0"
   },
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
     "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
-    "jquery": "^3.3.1",
     "lodash": "^4.17.11",
     "motion-ui": "^2.0.3",
     "prop-types": "^15.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-transition-group": "^2.6.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-transition-group": "^4.1.1",
     "slick-carousel": "^1.8.1",
-    "what-input": "^5.1.4"
+    "what-input": "^5.2.3"
   },
   "browserslist": [
     "> 2%",
@@ -115,6 +152,6 @@
   ],
   "engineStrict": true,
   "engines": {
-    "node": "~8.12"
+    "node": "~10"
   }
 }

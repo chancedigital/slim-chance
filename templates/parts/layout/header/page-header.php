@@ -52,7 +52,7 @@ if ( ! $bg_img && is_single() ) {
 
 	<style type="text/css">
 	.page-header {
-		background-image: url(<?php echo esc_url( $bg_img['url'] ); ?>);
+		background-image: url(<?php echo esc_url( is_array( $bg_img ) ? $bg_img['url'] : $bg_img ); ?>);
 	}
 	</style>
 
