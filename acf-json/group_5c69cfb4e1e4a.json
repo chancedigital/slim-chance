@@ -184,6 +184,54 @@
             "maxlength": ""
         },
         {
+            "key": "field_5d1a0f2c867f5",
+            "label": "App links",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5d1a0f3f867f6",
+            "label": "iOS app download URL",
+            "name": "ios_app_download_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d1a0f6a867f7",
+            "label": "Google app download URL",
+            "name": "google_app_download_url",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
             "key": "field_5ccc3350f005e",
             "label": "Eventbrite",
             "name": "",
@@ -234,5 +282,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1556886384
+    "modified": 1561989061
 }

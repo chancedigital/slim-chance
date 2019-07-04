@@ -1,0 +1,21 @@
+.section-app-download-bar {
+	$self: &;
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
+
+	@include breakpoint( medium ) {
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	&__content-wrapper {
+		max-width: rem( 500 );
+		//text-align: center;
+	}
+}
