@@ -8,6 +8,7 @@ $feat_image = get_the_post_thumbnail( $post->ID, 'medium', [ 'class' => 'post-pr
 		if ( $feat_image ) :
 			?>
 			<div class="post-preview__img-wrapper">
+			<a class="post-preview__img-link" href="<?php get_the_permalink() ?>" rel="bookmark">
 				<?php echo $feat_image ?>
 			</div>
 			<?php
