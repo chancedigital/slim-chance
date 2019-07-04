@@ -5,9 +5,26 @@
 			<h2 class="section-blog-posts__heading"><?php echo esc_html( $heading ) ?></h2>
 		<?php endif; ?>
 		<?php
+		$posts_per_page = (int) get_sub_field( 'posts_per_page' ) ?: (int) get_option( 'posts_per_page' ) ?: 20;
+		$categories     = [ 'tax' => 'category', 'terms' => get_sub_field( 'categories' ) ];
+		$tags           = [ 'tax' => 'post_tag', 'terms' => get_sub_field( 'tags' ) ];
+		$tax_query      = [];
+		foreach ( [ $categories, $tags ] as $tax ) {
+			if ( isset( $tax['terms'] ) && ! empty( $tax['terms'] ) ) {
+				$tax_query[] = [
+					'taxonomy' => $tax['tax'],
+					'field'    => 'term_id',
+					'terms'    => $tax['terms'],
+				];
+			}
+		}
+		if ( ! empty( $tax_query ) ) {
+			$tax_query['relation'] = 'OR';
+		}
 		$blog_query = new WP_Query( [
 			'post_type'      => 'post',
-			'posts_per_page' => 100,
+			'posts_per_page' => $posts_per_page,
+			'tax_query'      => $tax_query,
 		] );
 		if ( $blog_query->have_posts() ) :
 			?>

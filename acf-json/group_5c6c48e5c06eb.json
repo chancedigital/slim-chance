@@ -822,6 +822,71 @@
                             "layout": "block",
                             "prefix_label": 0,
                             "prefix_name": 0
+                        },
+                        {
+                            "key": "field_5d1e24e58bfa1",
+                            "label": "Posts per page",
+                            "name": "posts_per_page",
+                            "type": "number",
+                            "instructions": "If this value is not set, the section will default to the global `Blog pages show at most` setting under Settings > Reading.",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "min": 1,
+                            "max": 50,
+                            "step": 1
+                        },
+                        {
+                            "key": "field_5d1e25e359d2c",
+                            "label": "Filter by categories",
+                            "name": "categories",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "category",
+                            "field_type": "multi_select",
+                            "allow_null": 1,
+                            "add_term": 1,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0
+                        },
+                        {
+                            "key": "field_5d1e289e59d2d",
+                            "label": "Filter by tags",
+                            "name": "tags",
+                            "type": "taxonomy",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "taxonomy": "post_tag",
+                            "field_type": "multi_select",
+                            "allow_null": 1,
+                            "add_term": 1,
+                            "save_terms": 0,
+                            "load_terms": 0,
+                            "return_format": "id",
+                            "multiple": 0
                         }
                     ],
                     "min": "",
@@ -1139,5 +1204,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1561963814
+    "modified": 1562257594
 }
