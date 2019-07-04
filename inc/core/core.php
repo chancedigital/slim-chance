@@ -110,12 +110,17 @@ function scripts() {
 		filemtime( SLIM_CHANCE_PATH . $frontend_script ),
 		true
 	);
-	wp_localize_script( 'frontend', 'slimChance', [
+	wp_localize_script( 'frontend', '__slimChanceAjax__', [
 		'baseUrl'              => esc_url( get_site_url() ),
-		'themeUrl'             => esc_url( get_bloginfo( 'template_url' ) ),
-		'ajaxUrl'              => esc_url( admin_url( 'admin-ajax.php' ) ),
+		'themeUrl'             => SLIM_CHANCE_TEMPLATE_URL,
 		'customerFeedbackTo'   => esc_html( get_field( 'customer_feedback', 'option' ) ),
 		'customerFeedbackFrom' => esc_html( get_field( 'customer_feedback_from', 'option' ) ),
+		'ajaxUrl'     => esc_url( admin_url( 'admin-ajax.php' ) ),
+		'loadButton'  => [
+			'loading'     => esc_html__( 'Loading&hellip;', 'slim-chance' ),
+			'noPosts'     => esc_html__( 'No Posts Found', 'slim-chance' ),
+		],
+		'nonce'       => wp_create_nonce( 'load_posts_nonce' ),
 	] );
 	wp_enqueue_script( 'frontend' );
 

@@ -1,5 +1,6 @@
 import initHamburger from '../components/hamburger';
 import initButton from '../components/button';
+import loadMore from '../components/load-more';
 import initCheckboxes from '../components/checkboxes';
 import initMasthead from '../layout/header/masthead';
 import { MediaQuery } from '../lib/class-media-query';
@@ -16,5 +17,6 @@ export default {
 		initHamburger();
 		initMasthead();
 		initCheckboxes();
+		loadMore.init();
 	}, // End finalize.
 };

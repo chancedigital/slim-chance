@@ -24,6 +24,7 @@ foreach ( [
 	'template',
 	'images',
 	'icons',
+	'ajax',
 	'rest-api',
 ] as $inc ) {
 	$filename = SLIM_CHANCE_INC . "$inc/$inc.php";

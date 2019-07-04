@@ -97,3 +97,48 @@ function make_ig_tag_async( string $tag, string $handle ) {
 	}
 	return str_replace( ' src', ' async src', $tag );
 }
+
+/**
+ * Create an AJAX post loader button.
+ *
+ * @param  string    $section_id ID for the containing section
+ * @param  \WP_Query $query      The WP_Query object. Defaults to the global $wp_query.
+ * @param  array     $data_atts  Additional data attributes to add to the button.
+ * @return void
+ */
+function load_more_button( string $section_id, \WP_Query $query = null, $data_atts = [] ) : void {
+	if ( empty( $query ) ) {
+		global $wp_query;
+		$query = $wp_query;
+	}
+	if ( $query->max_num_pages > 1 ) :
+		$section_id = esc_attr( $section_id );
+		$button_id  = 'js-load-more-' . $section_id;
+		if ( ! empty( $data_atts ) ) {
+			$clean_atts = '';
+			foreach ( $data_atts as $prop => $value ) {
+				$prop                = sanitize_title( $prop );
+				$value               = esc_attr( $value );
+				$clean_atts         .= ' data-' . $prop . '="' . $value . '"';
+			}
+		}
+		?>
+		<button
+			type="button"
+			id="<?php echo $button_id ?>"
+			class="button button--load-more"
+			data-query="<?php echo htmlspecialchars( wp_json_encode( $query->query_vars ), ENT_QUOTES, 'UTF-8' ); ?>"
+			data-current-page="<?php echo esc_attr( trim( $query->paged ? (int) $query->paged : 1 ) ) ?>"
+			data-max-pages="<?php echo esc_attr( trim( (int) $query->max_num_pages ?: null ) ) ?>"
+			data-offset="<?php echo esc_attr( trim( (int) $query->post_count ) ) ?>"
+			data-section-id="<?php echo $section_id ?>"
+			<?php echo $clean_atts ?>
+		>
+			<?php
+			/* translator: 1. Screen-reader opening tag, 2. Sreen-reader closing tag */
+			printf( __( 'Load More%s Posts%s', 'slim-chance' ), '<span class="screen-reader-text">', '</span>' );
+			?>
+		</button>
+		<?php
+	endif;
+}

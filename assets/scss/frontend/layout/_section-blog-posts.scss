@@ -1,11 +1,11 @@
 .section-blog-posts {
 	$self: &;
-	padding-top: rem(50);
-	padding-bottom: rem(50);
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
 
 	@include breakpoint( medium ) {
-		padding-top: rem(100);
-		padding-bottom: rem(100);
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
 	}
 
 	&__wrapper {
@@ -26,19 +26,36 @@
 
 		@include breakpoint( large ) {
 			grid-template: auto / repeat( 3, 1fr );
+			gap: $global-grid-gap * 2;
 		}
 	}
 
 	&__list-item {
-		display: block;
+		display: flex;
+		flex-direction: column;
 		position: relative;
-		padding: $global-grid-gap;
 		list-style-type: none;
-		background: $white;
 		box-shadow: $global-box-shadow;
+
+		> * {
+			flex: 0 1 100%;
+			z-index: 1;
+		}
 	}
 
-	&__article-title {
-		margin-bottom: 0.125em;
+	&__load-more-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		z-index: 1;
+
+		> * {
+			margin: $global-grid-gap 0 0;
+			width: 100%;
+
+			@include breakpoint( large ) {
+				margin: ( $global-grid-gap * 2 ) 0 0;
+			}
+		}
 	}
 }

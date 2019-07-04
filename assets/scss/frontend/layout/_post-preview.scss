@@ -1,0 +1,16 @@
+.post-preview {
+	padding: $global-grid-gap;
+	background: $white;
+
+	&__article-title {
+		margin-bottom: 0.125em;
+	}
+
+	&__link {
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+}

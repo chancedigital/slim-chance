@@ -1,10 +1,18 @@
-<?php $heading = get_sub_field( 'section_heading' ); ?>
-<section class="section-blog-posts" id="<?php echo esc_attr( get_sub_field( 'section_id' ) ?: uniqid() ) ?>">
+<?php
+
+use function ChanceDigital\SlimChance\Template\load_more_button;
+
+$heading    = get_sub_field( 'section_heading' );
+$section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
+?>
+<section class="section-blog-posts" id="<?php echo $section_id ?>">
 	<div class="section-blog-posts__wrapper">
 		<?php if ( $heading ) : ?>
 			<h2 class="section-blog-posts__heading"><?php echo esc_html( $heading ) ?></h2>
 		<?php endif; ?>
+
 		<?php
+		$load_more      = get_sub_field( 'load_more' );
 		$posts_per_page = (int) get_sub_field( 'posts_per_page' ) ?: (int) get_option( 'posts_per_page' ) ?: 20;
 		$categories     = [ 'tax' => 'category', 'terms' => get_sub_field( 'categories' ) ];
 		$tags           = [ 'tax' => 'post_tag', 'terms' => get_sub_field( 'tags' ) ];
@@ -26,36 +34,36 @@
 			'posts_per_page' => $posts_per_page,
 			'tax_query'      => $tax_query,
 		] );
+
 		if ( $blog_query->have_posts() ) :
 			?>
-			<ul class="section-blog-posts__list">
+			<ul class="section-blog-posts__list more-wrapper" id="js-posts-container-<?php echo $section_id ?>">
 				<?php
 				while ( $blog_query->have_posts() ) :
 					$blog_query->the_post();
 					?>
 					<li class="section-blog-posts__list-item">
-						<article <?php post_class( 'section-blog-posts__article' ) ?>>
-							<header class="section-blog-posts__article-header">
-								<a class="section-blog-posts__article-link" href="<?php the_permalink() ?>" rel="bookmark">
-									<h3 class="section-blog-posts__article-title">
-										<?php the_title(); ?>
-									</h3>
-								</a>
-								<span class="section-blog-posts__article-date"><?php echo get_the_date( 'F j, Y' ); ?></span>
-							</header>
-							<div class="section-blog-posts__article-content">
-								<div class="section-blog-posts__article-excerpt">
-									<?php the_excerpt(); ?>
-								</div>
-							</div>
-						</article>
-
+						<?php get_template_part( 'templates/parts/layout/blocks/post-preview' ); ?>
 					</li>
-					<?php
-				endwhile;
-				wp_reset_postdata();
-				?>
+				<?php endwhile; ?>
 			</ul>
-		<?php endif; ?>
+
+			<?php if ( $load_more ) : ?>
+
+				<div class="section-blog-posts__load-more-wrapper">
+					<?php
+					$data_atts = [
+						'wrapper-element' => 'li',
+						'wrapper-class'   => 'section-blog-posts__list-item',
+					];
+					load_more_button( $section_id, $blog_query, $data_atts );
+					?>
+				</div>
+
+				<?php
+			endif;
+			wp_reset_postdata();
+		endif;
+		?>
 	</div>
 </section>
