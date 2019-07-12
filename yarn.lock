@@ -6003,6 +6003,11 @@ livereload-js@^2.3.0:
   resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.4.0.tgz#447c31cf1ea9ab52fc20db615c5ddf678f78009c"
   integrity sha512-XPQH8Z2GDP/Hwz2PCDrh2mth4yFejwA1OZ/81Ti3LgKyhDcEjsSsqFWZojHG0va/duGd+WyosY7eXLDoOyqcPw==
 
+load-google-maps-api@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/load-google-maps-api/-/load-google-maps-api-2.0.0.tgz#7e0ee9de7557ef38a5d3bf383645ddf631df0843"
+  integrity sha512-CEwR9yrTI0J75jQbZmDrTK6R0Kn7PyKFvVZ6G48NbuTjvJfCWZyV/sZTj14n7ZsxwlgXrrE01Dh/w6AV/KcM5A==
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"

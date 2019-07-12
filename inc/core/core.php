@@ -24,7 +24,7 @@ function setup() {
 	add_action( 'wp_enqueue_scripts',        $n( 'styles' ) );
 	add_action( 'widgets_init',              $n( 'widgets' ) );
 	add_filter( 'acf/update_value',          $n( 'acf_on_update' ), 10, 3 );
-	//add_filter( 'acf/fields/google_map/api', $n( 'acf_map_api' ) );
+	add_filter( 'acf/fields/google_map/api', $n( 'acf_map_api' ) );
 }
 
 /**
@@ -116,6 +116,7 @@ function scripts() {
 		'customerFeedbackTo'   => esc_html( get_field( 'customer_feedback', 'option' ) ),
 		'customerFeedbackFrom' => esc_html( get_field( 'customer_feedback_from', 'option' ) ),
 		'ajaxUrl'     => esc_url( admin_url( 'admin-ajax.php' ) ),
+		'gMapsApi'    => esc_html( get_option( 'options_google_maps_api_key' ) ),
 		'loadButton'  => [
 			'loading'     => esc_html__( 'Loading&hellip;', 'slim-chance' ),
 			'noPosts'     => esc_html__( 'No Posts Found', 'slim-chance' ),
@@ -174,9 +175,10 @@ function widgets() {
  * @return array       API array with key added.
  */
 function acf_map_api( $api ) {
-	$api['key'] = 'API_KEY_GOES_HERE';
-
-	return $api;
+	if ( function_exists( '\\get_field' ) ) {
+		$api['key'] = get_field( 'google_maps_api_key', 'option' );
+		return $api;
+	}
 }
 
 /**
