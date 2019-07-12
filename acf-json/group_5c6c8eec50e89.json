@@ -206,6 +206,24 @@
             "placeholder": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_5d1ea8e96113c",
+            "label": "Address",
+            "name": "address",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "36.1627",
+            "center_lng": "-86.7816",
+            "zoom": "",
+            "height": ""
         }
     ],
     "location": [
@@ -235,5 +253,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1554085990
+    "modified": 1562291189
 }

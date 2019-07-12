@@ -11,9 +11,9 @@ namespace ChanceDigital\SlimChance\Util;
  * Checks if an array is multidimensional.
  *
  * @param  array $a Array to check.
- * @return boolean  Whether or not the array is multidimensional.
+ * @return bool     Whether or not the array is multidimensional.
  */
-function is_multi_array( array $a = [] ) {
+function is_multi_array( array $a = [] ) : bool {
 	foreach ( $a as $v ) {
 		if ( is_array( $v ) ) {
 			return true;
@@ -29,7 +29,7 @@ function is_multi_array( array $a = [] ) {
  * @param  string $name State name or abbreviation.
  * @return string       Converted name or abbreviation.
  */
-function convert_state_name( string $name ) {
+function convert_state_name( string $name ) : string {
 	$states = array(
 		[ 'name' => 'Alabama',        'abbr' => 'AL' ],
 		[ 'name' => 'Alaska',         'abbr' => 'AK' ],
@@ -118,4 +118,44 @@ function convert_state_name( string $name ) {
  */
 function is_whole_number( $var ) : bool {
 	return ( is_numeric( $var ) && ( intval( $var ) == floatval( $var ) ) ); // phpcs:ignore
+}
+
+/**
+ * Calculates the great-circle distance between two points, with
+ * the Haversine formula.
+ * @param  float $latitude_from  Latitude of start point in [deg decimal]
+ * @param  float $longitude_from Longitude of start point in [deg decimal]
+ * @param  float $latitude_to    Latitude of target point in [deg decimal]
+ * @param  float $longitude_to   Longitude of target point in [deg decimal]
+ * @param  float $earth_radius   Mean earth radius in [m]
+ * @return float                 Distance between points in [m] (same as earth_radius)
+ */
+function haversine_great_circle_distance(
+	float $latitude_from,
+	float $longitude_from,
+	float $latitude_to,
+	float $longitude_to,
+	float $earth_radius = 6371000
+) : float {
+	// convert from degrees to radians
+	$lat_from     = deg2rad( $latitude_from );
+	$long_to_from = deg2rad( $longitude_from );
+	$lat_to       = deg2rad( $latitude_to );
+	$long_to_to   = deg2rad( $longitude_to );
+
+	$lat_delta = $lat_to - $lat_from;
+	$long_delta = $long_to_to - $long_to_from;
+
+	$angle = 2 * asin( sqrt( pow( sin( $lat_delta / 2 ), 2 ) + cos( $lat_from ) * cos( $lat_to ) * pow( sin( $long_delta / 2 ), 2 ) ) );
+	return $angle * $earth_radius;
+}
+
+/**
+ * Convert meters to miles.
+ *
+ * @param  float $meters Distance in meters to convert.
+ * @return float         Distance in miles.
+ */
+function meters_to_miles( float $meters ) : float {
+	return $meters / 1609.344;
 }

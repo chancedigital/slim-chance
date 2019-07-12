@@ -57,6 +57,39 @@
             "new_lines": "wpautop"
         },
         {
+            "key": "field_5ccc3350f005e",
+            "label": "Eventbrite",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "left",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5ccc335ef005f",
+            "label": "Eventbrite API Key",
+            "name": "eventbrite_api_key",
+            "type": "password",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_5c6c77bdaebb2",
             "label": "Print Menus",
             "name": "",
@@ -232,8 +265,8 @@
             "placeholder": ""
         },
         {
-            "key": "field_5ccc3350f005e",
-            "label": "Eventbrite",
+            "key": "field_5d1ea98c6626b",
+            "label": "Google Maps",
             "name": "",
             "type": "tab",
             "instructions": "",
@@ -248,10 +281,10 @@
             "endpoint": 0
         },
         {
-            "key": "field_5ccc335ef005f",
-            "label": "Eventbrite API Key",
-            "name": "eventbrite_api_key",
-            "type": "password",
+            "key": "field_5d1ea9996626c",
+            "label": "Google Maps API key",
+            "name": "google_maps_api_key",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -260,9 +293,11 @@
                 "class": "",
                 "id": ""
             },
+            "default_value": "",
             "placeholder": "",
             "prepend": "",
-            "append": ""
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -282,5 +317,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1561989061
+    "modified": 1562290595
 }
