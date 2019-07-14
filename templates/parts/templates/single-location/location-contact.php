@@ -1,12 +1,7 @@
 <?php
 
-use function ChanceDigital\SlimChance\Util\convert_state_name;
+use function ChanceDigital\SlimChance\Template\get_address_from_location_post;
 
-$address_1 = get_field( 'address_line_1' );
-$address_2 = get_field( 'address_line_2' );
-$city      = get_field( 'city' );
-$state     = get_field( 'state' );
-$zip       = get_field( 'zip' );
 $phone     = get_field( 'phone' );
 $map_url   = get_field( 'map_link' );
 $has_phone = preg_match(
@@ -18,10 +13,7 @@ $has_phone = preg_match(
 <div class="location-contact">
 	<div class="location-contact__col">
 		<address>
-			<?php echo esc_html( $address_1 ) ?><br />
-			<?php echo $address_2 ?  esc_html( $address_2 ) . '<br />' : ''; ?>
-			<?php echo esc_html( $city ) ?>, <?php echo esc_html( convert_state_name( $state ) ) ?> <?php echo esc_html( $zip ) ?>
-			<?php echo $has_phone ? '<br />' . esc_html( $phone ) : ''; ?>
+			<?php echo get_address_from_location_post() ?>
 		</address>
 	</div>
 	<div class="location-contact__col">

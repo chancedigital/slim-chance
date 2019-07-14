@@ -1,6 +1,3 @@
-import loadGoogleMapsApi from 'load-google-maps-api';
-const { __slimChanceAjax__ } = window;
-
 function getQueryParams() {
 	const search = window.location.search.substring( 1 );
 	if ( search ) {
@@ -23,6 +20,7 @@ export default {
 		this.address = document.getElementById( 'js-location-search-address' );
 		this.lat = document.getElementById( 'js-location-search-lat' );
 		this.lng = document.getElementById( 'js-location-search-lng' );
+		this.submitButton = document.getElementById( 'js-location-search-submit' );
 		this.initAutocomplete();
 	},
 
@@ -50,21 +48,22 @@ export default {
 	},
 
 	initAutocomplete() {
-		const key = __slimChanceAjax__.gMapsApi;
-		loadGoogleMapsApi( { key } )
-			.then( googleMaps => {
-				console.log( googleMaps );
-				const searchBox = new googleMaps.places.SearchBox( this.address );
-				this.geoLocate();
+		try {
+			const searchBox = new window.google.maps.places.SearchBox( this.address );
+			this.geoLocate();
 
-				searchBox.addListener( 'places_changed', () => {
-					const place = searchBox.getPlaces()[ 0 ];
-					const lat = place.geometry.location.lat();
-					const lng = place.geometry.location.lng();
-					this.lat.value = lat;
-					this.lng.value = lng;
-				} );
-			} )
-			.catch( console.error );
+			searchBox.addListener( 'places_changed', () => {
+				const place = searchBox.getPlaces()[ 0 ];
+				const lat = place.geometry.location.lat();
+				const lng = place.geometry.location.lng();
+				this.lat.value = lat;
+				this.lng.value = lng;
+				if ( this.submitButton && this.submitButton.disabled ) {
+					this.submitButton.disabled = false;
+				}
+			} );
+		} catch ( e ) {
+			console.error( e );
+		}
 	},
 };

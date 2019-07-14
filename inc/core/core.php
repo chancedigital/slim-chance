@@ -24,7 +24,8 @@ function setup() {
 	add_action( 'wp_enqueue_scripts',        $n( 'styles' ) );
 	add_action( 'widgets_init',              $n( 'widgets' ) );
 	add_filter( 'acf/update_value',          $n( 'acf_on_update' ), 10, 3 );
-	add_filter( 'acf/fields/google_map/api', $n( 'acf_map_api' ) );
+	add_filter( 'acf/fields/google_map/api', $n( 'acf_map_api' ), 10, 1 );
+	add_filter( 'script_loader_tag',         $n( 'script_loader_tag' ), 10, 2 );
 }
 
 /**
@@ -35,7 +36,7 @@ function setup() {
  * filename of '/languages/slim-chance.pot' to the name of your project.
  */
 function i18n() {
-	load_theme_textdomain( 'slim-chance', SLIM_CHANCE_PATH . '/languages' );
+	load_theme_textdomain( 'slim-chance', SLIM_CHANCE_PATH . 'languages' );
 }
 
 /**
@@ -88,6 +89,7 @@ function theme_setup() {
 function scripts() {
 	$js_path         = 'dist/js';
 	$frontend_script = "$js_path/frontend.min.js";
+	$gmaps_api_key   = esc_html( get_option( 'options_google_maps_api_key' ) );
 
 	// Deregister the jquery version bundled with WordPress.
 	wp_deregister_script( 'jquery' );
@@ -101,6 +103,12 @@ function scripts() {
 	// CDN hosted jQuery migrate for compatibility with jQuery 3.x.
 	wp_register_script( 'jquery-migrate', '//code.jquery.com/jquery-migrate-3.0.1.min.js', [ 'jquery' ], '3.0.1', false );
 	wp_enqueue_script( 'jquery-migrate' );
+
+	// Google maps API
+	if ( $gmaps_api_key ) {
+		wp_enqueue_script( 'googlemaps', '//maps.googleapis.com/maps/api/js?key=' . $gmaps_api_key . '&libraries=places', [], null, false );
+		// wp_script_add_data( 'googlemaps', 'script_execution', 'async defer' );
+	}
 
 	// Frontend JS.
 	wp_register_script(
@@ -129,6 +137,39 @@ function scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+}
+
+/**
+ * Add async/defer attributes to enqueued scripts that have the specified script_execution flag.
+ *
+ * @link https://core.trac.wordpress.org/ticket/12009
+ * @param  string $tag    The script tag.
+ * @param  string $handle The script handle.
+ * @return string
+ */
+function script_loader_tag( string $tag, string $handle ) {
+	$script_execution = wp_scripts()->get_data( $handle, 'script_execution' );
+
+	if ( ! $script_execution ) {
+		return $tag;
+	}
+
+	if ( ! in_array( $script_execution, [ 'async', 'defer', 'async defer', 'defer async' ], true ) ) {
+		return $tag;
+	}
+
+	// Abort adding async/defer for scripts that have this script as a dependency. _doing_it_wrong()?
+	foreach ( wp_scripts()->registered as $script ) {
+		if ( in_array( $handle, $script->deps, true ) ) {
+			return $tag;
+		}
+	}
+
+	// Add the attribute if it hasn't already been added.
+	if ( ! preg_match( ":\s$script_execution(=|>|\s):", $tag ) ) {
+		$tag = preg_replace( ':(?=></script>):', " $script_execution", $tag, 1 );
+	}
+	return $tag;
 }
 
 /**

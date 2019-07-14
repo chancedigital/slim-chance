@@ -7,6 +7,8 @@
 
 namespace ChanceDigital\SlimChance\Template;
 
+use function ChanceDigital\SlimChance\Util\convert_state_name;
+
 add_filter( 'body_class',        __NAMESPACE__ . '\\body_classes' );
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\\make_ig_tag_async', 10, 2 );
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_options_page', 10, 0 );
@@ -141,4 +143,89 @@ function load_more_button( string $section_id, \WP_Query $query = null, $data_at
 		</button>
 		<?php
 	endif;
+}
+
+/**
+ * Like WP core's get_template_part(), but this lets you pass args to the template file
+ * Args are available in the template as $template_args array.
+ *
+ * @param  string              $file          Filename for the template.
+ * @param  string|array|object $template_args Argument list.
+ * @param  string|array|object $cache_args    Arguments to cache.
+ * @return mixed
+ */
+function get_template_part( string $file, $template_args = [], $cache_args = [] ) {
+	$template_args = wp_parse_args( $template_args );
+	$cache_args    = wp_parse_args( $cache_args );
+	if ( $cache_args ) {
+		foreach ( $template_args as $key => $value ) {
+			if ( is_scalar( $value ) || is_array( $value ) ) {
+				$cache_args[ $key ] = $value;
+			} elseif ( is_object( $value ) && method_exists( $value, 'get_id' ) ) {
+				$cache_args[ $key ] = call_user_func( [ $value, 'get_id' ] );
+			}
+		}
+		$cache = wp_cache_get( $file, serialize( $cache_args ) ); // phpcs:ignore
+		if ( $cache !== false ) {
+			if ( ! empty( $template_args['return'] ) ) {
+				return $cache;
+			}
+			echo $cache; // phpcs:ignore
+			return;
+		}
+	}
+	$file_handle = $file;
+	do_action( 'start_operation', "slim_chance_template_part::$file_handle" );
+	if ( file_exists( SLIM_CHANCE_PATH . "{$file}.php" ) ) {
+		$file = SLIM_CHANCE_PATH . "{$file}.php";
+	} elseif ( file_exists( SLIM_CHANCE_PATH . $file ) ) {
+		$file = SLIM_CHANCE_PATH . $file;
+	} elseif ( ! file_exists( $file ) ) {
+		return;
+	}
+	ob_start();
+	$return = require $file;
+	$data   = ob_get_clean();
+	do_action( 'end_operation', "slim_chance_template_part::$file_handle" );
+	if ( $cache_args ) {
+		wp_cache_set( $file, $data, serialize( $cache_args ), 3600 ); // phpcs:ignore
+	}
+	if ( ! empty( $template_args['return'] ) ) {
+		return $return === false ? false : $data;
+	}
+	echo $data; // phpcs:ignore
+}
+
+/**
+ * Get a formatted address for location posts.
+ *
+ * @param integer $post_id Post ID; Defaults to current post.
+ * @return string          Address as formatted HTML string, if it exists.
+ */
+function get_address_from_location_post( $post_id = 0 ) {
+	global $post;
+	$ouput = '';
+	if ( function_exists( 'get_field' ) ) {
+		if ( ! $post_id ) {
+			$post_id = $post->ID;
+		}
+		$address_1 = get_field( 'address_line_1', $post_id );
+		$address_2 = get_field( 'address_line_2', $post_id );
+		$city      = get_field( 'city', $post_id );
+		$state     = get_field( 'state', $post_id );
+		$zip       = get_field( 'zip', $post_id );
+		$phone     = get_field( 'phone', $post_id );
+		$map_url   = get_field( 'map_link', $post_id );
+		$has_phone = preg_match(
+			'/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/',
+			$phone
+		);
+		$ouput .= $address_1 ? esc_html( $address_1 ) : '';
+		$ouput .= $address_2 ? ( $ouput ? '<br />' : '' ) . esc_html( $address_2 ) : '';
+		$ouput .= $city      ? ( $ouput ? '<br />' : '' ) . esc_html( $city ) : '';
+		$ouput .= $state     ? ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) . esc_html( convert_state_name( $state ) ) : '';
+		$ouput .= $zip       ? ( $state ? ' ' : ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) ) . esc_html( $zip ) : '';
+		$ouput .= $has_phone ? ( $ouput ? '<br />' : '' ) . esc_html( $phone ) : '';
+	}
+	return $ouput;
 }

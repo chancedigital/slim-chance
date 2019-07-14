@@ -1,12 +1,12 @@
 .section-team-members {
 	$self: &;
-	padding-top: rem(50);
-	padding-bottom: rem(50);
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
 	background-color: $color-gray-light;
 
 	@include breakpoint( medium ) {
-		padding-top: rem(100);
-		padding-bottom: rem(100);
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
 	}
 
 	&__wrapper {
@@ -107,18 +107,21 @@
 		&__team-member {
 			row-gap: $global-grid-gap * 2;
 			grid-template: auto / auto;
-			grid-template-areas: "head"
-								 "bio";
+			grid-template-areas:
+				"head"
+				"bio";
 
 			&--has-image {
 				grid-template: auto / 1fr 1.5fr;
-				grid-template-areas: "head head"
-									  "img bio";
+				grid-template-areas:
+					"head head"
+					"img bio";
 				column-gap: $global-grid-gap * 4;
 				#{ $self }__list-item:nth-child( even ) & {
 					grid-template: auto / 1.5fr 1fr;
-					grid-template-areas: "head head"
-										 "bio img";
+					grid-template-areas:
+						"head head"
+						"bio img";
 				}
 			}
 		}
