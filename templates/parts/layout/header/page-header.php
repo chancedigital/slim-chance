@@ -5,7 +5,7 @@ if ( ! $bg_img && is_single() ) {
 }
 ?>
 
-<section class="page-header">
+<div class="page-header">
 	<div class="page-header__wrapper">
 		<?php if ( is_singular( 'location' ) ) : ?>
 			<?php get_template_part( 'templates/parts/templates/single-location/location-hours' ) ?>
@@ -46,7 +46,7 @@ if ( ! $bg_img && is_single() ) {
 		<?php endif; ?>
 
 	</div>
-</section>
+</div>
 
 <?php if ( $bg_img ) : ?>
 

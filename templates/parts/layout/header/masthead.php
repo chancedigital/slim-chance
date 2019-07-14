@@ -1,6 +1,6 @@
 <?php use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem; ?>
 
-<section class="masthead" id="js-masthead">
+<header class="masthead" id="js-masthead">
 	<div class="masthead__wrapper">
 		<div class="masthead__logo-wrapper">
 			<?php the_custom_logo(); ?>
@@ -31,4 +31,4 @@
 			<?php get_template_part( 'templates/parts/components/hamburger' ); ?>
 		</button>
 	</div>
-</section>
+</header>

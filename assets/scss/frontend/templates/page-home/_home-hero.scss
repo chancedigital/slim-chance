@@ -8,7 +8,7 @@
 		align-items: center;
 
 		@include breakpoint( medium ) {
-			grid-template: auto / auto minmax( 40%, #{rem(380)} );
+			grid-template: auto / auto minmax( 40%, #{rem( 380 )} );
 			margin-top: rem( 200 );
 			margin-bottom: rem( 200 );
 		}

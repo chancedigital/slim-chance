@@ -1,15 +1,14 @@
 .section-food-menu {
-	margin-top: rem(50);
-	margin-bottom: rem(50);
+	margin-top: rem( 50 );
+	margin-bottom: rem( 50 );
 
 	@include breakpoint( medium ) {
-		margin-top: rem(100);
-		margin-bottom: rem(100);
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
 	}
 
 	&__wrapper {
-		@include make-container;
-		max-width: rem( 780 );
+		@include make-container( 780 );
 	}
 
 	&__header,

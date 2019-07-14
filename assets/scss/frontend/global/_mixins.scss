@@ -21,9 +21,9 @@
 	}
 }
 
-@mixin make-container( $constrain-width: true ) {
-	@if $constrain-width {
-		max-width: $global-container-width;
+@mixin make-container( $constrain-width: $global-container-width ) {
+	@if $constrain-width != false {
+		max-width: rem( $constrain-width );
 	}
 	width: calc( 100% - #{rem( $global-grid-gap * 2 )} );
 	margin-right: auto;

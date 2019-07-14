@@ -3,6 +3,42 @@
     "title": "Location Contact",
     "fields": [
         {
+            "key": "field_5ca17858994b3",
+            "label": "Job email",
+            "name": "jobs_email",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_5d1ea8e96113c",
+            "label": "Address",
+            "name": "address",
+            "type": "google_map",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "36.1627",
+            "center_lng": "-86.7816",
+            "zoom": "",
+            "height": ""
+        },
+        {
             "key": "field_5c6c8f5fa50bb",
             "label": "Address (line 1)",
             "name": "address_line_1",
@@ -188,42 +224,6 @@
             "prepend": "",
             "append": "",
             "maxlength": ""
-        },
-        {
-            "key": "field_5ca17858994b3",
-            "label": "Jobs email",
-            "name": "jobs_email",
-            "type": "email",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
-            "key": "field_5d1ea8e96113c",
-            "label": "Address",
-            "name": "address",
-            "type": "google_map",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "center_lat": "36.1627",
-            "center_lng": "-86.7816",
-            "zoom": "",
-            "height": ""
         }
     ],
     "location": [
@@ -253,5 +253,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1562291189
+    "modified": 1563142109
 }
