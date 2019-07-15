@@ -229,3 +229,17 @@ function get_address_from_location_post( $post_id = 0 ) {
 	}
 	return $ouput;
 }
+
+/**
+ * Get ACF flex content fields.
+ *
+ * @return void
+ */
+function get_flex_content() {
+	if ( function_exists( 'have_rows' ) && have_rows( 'page_layout' ) ) {
+		while ( have_rows( 'page_layout' ) ) {
+			the_row();
+			get_template_part( 'templates/parts/layout/blocks/section-' . str_replace( '_', '-', get_row_layout() ) );
+		}
+	}
+}

@@ -1,5 +1,7 @@
 <?php
 
+use function ChanceDigital\SlimChance\Template\get_flex_content;
+
 get_header();
 ?>
 
@@ -15,7 +17,10 @@ get_header();
 			?>
 		</div>
 
-		<?php get_template_part( 'templates/parts/layout/section', 'sign-up' ); ?>
+		<?php
+		get_flex_content();
+		get_template_part( 'templates/parts/layout/section', 'sign-up' );
+		?>
 
 	</main>
 

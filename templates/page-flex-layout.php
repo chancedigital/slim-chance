@@ -3,6 +3,8 @@
  * Template Name: Flex Layout
  */
 
+use function ChanceDigital\SlimChance\Template\get_flex_content;
+
 get_header();
 ?>
 
@@ -12,12 +14,7 @@ get_header();
 
 		<?php
 		get_template_part( 'templates/parts/layout/header/page-header' );
-		if ( have_rows( 'page_layout' ) ) {
-			while ( have_rows( 'page_layout' ) ) {
-				the_row();
-				get_template_part( 'templates/parts/layout/blocks/section-' . str_replace( '_', '-', get_row_layout() ) );
-			}
-		}
+		get_flex_content();
 		get_template_part( 'templates/parts/layout/section', 'sign-up' );
 		?>
 

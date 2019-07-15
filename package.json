@@ -58,7 +58,7 @@
   ],
   "stylelint": {
     "extends": [
-      "@chancedigital/stylelint-config"
+      "@chancedigital/stylelint-config/wp"
     ],
     "ignore": [
       "**/*.js",

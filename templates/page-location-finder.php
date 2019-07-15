@@ -3,6 +3,7 @@
  * Template Name: Location Finder
  */
 
+use function ChanceDigital\SlimChance\Template\get_flex_content;
 use function ChanceDigital\SlimChance\Template\get_template_part;
 use function ChanceDigital\SlimChance\Util\haversine_great_circle_distance;
 use function ChanceDigital\SlimChance\Util\meters_to_miles;
@@ -92,7 +93,10 @@ get_header();
 		</aside>
 	</div>
 
-	<?php get_template_part( 'templates/parts/layout/section-sign-up' ) ?>
+	<?php
+	get_flex_content();
+	get_template_part( 'templates/parts/layout/section-sign-up' );
+	?>
 
 
 </div><!-- .container -->

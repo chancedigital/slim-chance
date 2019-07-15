@@ -1202,6 +1202,25 @@
                 "operator": "!=",
                 "value": "front_page"
             }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "location"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "templates\/page-location-finder.php"
+            },
+            {
+                "param": "page_type",
+                "operator": "!=",
+                "value": "front_page"
+            }
         ]
     ],
     "menu_order": 0,
@@ -1223,5 +1242,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1562259016
+    "modified": 1563151591
 }
