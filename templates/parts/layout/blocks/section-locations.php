@@ -30,20 +30,22 @@
 							</h3>
 							<ul class="section-locations__locations">
 								<?php
-								$location_query = new WP_Query( [
-									'post_type'      => 'location',
-									'posts_per_page' => 50,
-									'order'          => 'ASC',
-									'orderby'        => 'meta_value',
-									'meta_key'       => 'city',
-									'meta_query'     => [
-										[
-											'key'     => 'state',
-											'value'   => $state,
-											'compare' => '=',
+								$location_query = new WP_Query(
+									[
+										'post_type'      => 'location',
+										'posts_per_page' => 50,
+										'order'          => 'ASC',
+										'orderby'        => 'meta_value',
+										'meta_key'       => 'city',
+										'meta_query'     => [
+											[
+												'key'     => 'state',
+												'value'   => $state,
+												'compare' => '=',
+											],
 										],
-									],
-								] );
+									]
+								);
 								while ( $location_query->have_posts() ) :
 									$location_query->the_post();
 									?>

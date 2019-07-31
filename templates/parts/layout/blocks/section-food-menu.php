@@ -22,10 +22,12 @@ $ingr_list = get_field( 'ingredient_list', 'option' );
 		</header>
 
 		<?php
-		$menu_query = new WP_Query( [
-			'post_type'      => 'food',
-			'posts_per_page' => 50,
-		] );
+		$menu_query = new WP_Query(
+			[
+				'post_type'      => 'food',
+				'posts_per_page' => 50,
+			]
+		);
 		if ( $menu_query->have_posts() ) :
 			?>
 			<ul class="section-food-menu__menu">

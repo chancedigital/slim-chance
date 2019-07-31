@@ -12,10 +12,7 @@ get_header();
 		<?php get_template_part( 'templates/parts/layout/header/page-header' ); ?>
 
 		<div class="page-single-location__content-wrapper">
-			<?php
-
-			?>
-		</div>
+					</div>
 
 		<?php
 		get_flex_content();

@@ -7,10 +7,10 @@
 		if ( have_rows( 'cards' ) ) :
 			while ( have_rows( 'cards' ) ) :
 				the_row();
-				$image         = get_sub_field( 'image' );
-				$content       = get_sub_field( 'content' );
-				$button_label  = get_sub_field( 'button_label' );
-				$button_type   = get_sub_field( 'button_link_type' );
+				$image        = get_sub_field( 'image' );
+				$content      = get_sub_field( 'content' );
+				$button_label = get_sub_field( 'button_label' );
+				$button_type  = get_sub_field( 'button_link_type' );
 				?>
 				<div class="section-cards__card card">
 					<div class="card__image-wrapper">

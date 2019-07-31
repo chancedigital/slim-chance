@@ -23,7 +23,7 @@ add_shortcode( 'dd_button',      __NAMESPACE__ . '\\shortcode_dd_button' );
  * @return string       Filtered content containing only the allowed HTML.
  */
 function kses_post( $data ) {
-	$allowed_tags = wp_kses_allowed_html( 'post' );
+	$allowed_tags        = wp_kses_allowed_html( 'post' );
 	$allowed_tags['svg'] = [
 		'aria-describedby' => true,
 		'aria-details'     => true,
@@ -31,12 +31,12 @@ function kses_post( $data ) {
 		'aria-labelledby'  => true,
 		'aria-hidden'      => true,
 		'class'            => true,
-        'id'               => true,
-        'style'            => true,
-        'title'            => true,
+		'id'               => true,
+		'style'            => true,
+		'title'            => true,
 		'role'             => true,
 		'viewBox'          => true,
-        'data-*'           => true,
+		'data-*'           => true,
 	];
 	$allowed_tags['use'] = [
 		'href'       => true,
@@ -82,9 +82,11 @@ function body_classes( array $classes ) {
 	}
 
 	// Clean up class names for custom templates.
-	$classes = array_map( function ( $class ) {
-		return preg_replace( [ '/(-php)?$/', '/^templates/', '/^page-templates/' ], '', $class );
-	}, $classes );
+	$classes = array_map(
+		function ( $class ) {
+				return preg_replace( [ '/(-php)?$/', '/^templates/', '/^page-templates/' ], '', $class );
+		}, $classes
+	);
 	return array_filter( $classes );
 }
 
@@ -151,9 +153,9 @@ function load_more_button( string $section_id, \WP_Query $query = null, $data_at
 		if ( ! empty( $data_atts ) ) {
 			$clean_atts = '';
 			foreach ( $data_atts as $prop => $value ) {
-				$prop                = sanitize_title( $prop );
-				$value               = esc_attr( $value );
-				$clean_atts         .= ' data-' . $prop . '="' . $value . '"';
+				$prop        = sanitize_title( $prop );
+				$value       = esc_attr( $value );
+				$clean_atts .= ' data-' . $prop . '="' . $value . '"';
 			}
 		}
 		?>
@@ -170,7 +172,7 @@ function load_more_button( string $section_id, \WP_Query $query = null, $data_at
 		>
 			<?php
 			/* translator: 1. Screen-reader opening tag, 2. Sreen-reader closing tag */
-			printf( __( 'Load More%s Posts%s', 'slim-chance' ), '<span class="screen-reader-text">', '</span>' );
+			printf( __( 'Load More%1$s Posts%2$s', 'slim-chance' ), '<span class="screen-reader-text">', '</span>' );
 			?>
 		</button>
 		<?php
@@ -252,12 +254,12 @@ function get_address_from_location_post( $post_id = 0 ) {
 			'/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/',
 			$phone
 		);
-		$ouput .= $address_1 ? esc_html( $address_1 ) : '';
-		$ouput .= $address_2 ? ( $ouput ? '<br />' : '' ) . esc_html( $address_2 ) : '';
-		$ouput .= $city      ? ( $ouput ? '<br />' : '' ) . esc_html( $city ) : '';
-		$ouput .= $state     ? ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) . esc_html( convert_state_name( $state ) ) : '';
-		$ouput .= $zip       ? ( $state ? ' ' : ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) ) . esc_html( $zip ) : '';
-		$ouput .= $has_phone ? ( $ouput ? '<br />' : '' ) . esc_html( $phone ) : '';
+		$ouput    .= $address_1 ? esc_html( $address_1 ) : '';
+		$ouput    .= $address_2 ? ( $ouput ? '<br />' : '' ) . esc_html( $address_2 ) : '';
+		$ouput    .= $city ? ( $ouput ? '<br />' : '' ) . esc_html( $city ) : '';
+		$ouput    .= $state ? ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) . esc_html( convert_state_name( $state ) ) : '';
+		$ouput    .= $zip ? ( $state ? ' ' : ( $city ? ', ' : ( $ouput ? '<br />' : '' ) ) ) . esc_html( $zip ) : '';
+		$ouput    .= $has_phone ? ( $ouput ? '<br />' : '' ) . esc_html( $phone ) : '';
 	}
 	return $ouput;
 }
@@ -277,11 +279,13 @@ function get_flex_content() {
 }
 
 function shortcode_dd_button( $atts = [] ) {
-	$atts = shortcode_atts( [
-		'id'           => '74682', // default to business ID
-		'button_text'  => __( 'Order Delivery', 'slim-chance' ),
-		'button_type'  => 'business', // business or store
-	], $atts, 'dd_button' );
+	$atts = shortcode_atts(
+		[
+			'id'           => '74682', // default to business ID
+			'button_text'  => __( 'Order Delivery', 'slim-chance' ),
+			'button_type'  => 'business', // business or store
+		], $atts, 'dd_button'
+	);
 
 	$id          = esc_attr( $atts['id'] );
 	$button_type = esc_attr( $atts['button_type'] );

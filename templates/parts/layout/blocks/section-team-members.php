@@ -6,10 +6,12 @@
 		<?php endif; ?>
 		<?php
 		if ( get_sub_field( 'display_type' ) === 'all' ) :
-			$team_query = new WP_Query( [
-				'post_type'      => 'team',
-				'posts_per_page' => 90,
-			] );
+			$team_query = new WP_Query(
+				[
+					'post_type'      => 'team',
+					'posts_per_page' => 90,
+				]
+			);
 			if ( $team_query->have_posts() ) :
 				?>
 				<ul class="section-team-members__list">
@@ -27,10 +29,10 @@
 				</ul>
 				<?php
 			endif;
-		elseif ( get_sub_field( 'display_type' ) === 'select' ) :
-			$team_members = get_sub_field( 'team_members' );
-			if ( $team_members ) :
-				?>
+			elseif ( get_sub_field( 'display_type' ) === 'select' ) :
+				$team_members = get_sub_field( 'team_members' );
+				if ( $team_members ) :
+					?>
 				<ul class="section-team-members__list">
 					<?php
 					foreach ( $team_members as $post ) :
@@ -40,13 +42,13 @@
 							<?php get_template_part( 'templates/parts/layout/blocks/post', 'team-member' ) ?>
 						</li>
 						<?php
-					endforeach;
+						endforeach;
 					wp_reset_postdata();
 					?>
 				</ul>
-				<?php
-			endif;
+					<?php
+				endif;
 		endif;
-		?>
+			?>
 	</div>
 </section>

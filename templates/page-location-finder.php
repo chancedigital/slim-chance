@@ -20,54 +20,62 @@ get_header();
 		<main id="main" class="page-location-finder__main">
 
 			<?php
-			$location_posts = get_posts( [
-				'post_type'      => 'location',
-				'posts_per_page' => 50,
-			] );
+			$location_posts = get_posts(
+				[
+					'post_type'      => 'location',
+					'posts_per_page' => 50,
+				]
+			);
 			if ( isset( $_REQUEST['lat'] ) && isset( $_REQUEST['lng'] ) ) {
 				try {
 					$lat_to = (float) $_REQUEST['lat'];
 					$lng_to = (float) $_REQUEST['lng'];
 
-					$locations = array_map( function( $location ) use ( $lat_to, $lng_to ) {
-						$loc_id  = $location->ID;
-						$address = get_field( 'address', $loc_id );
-						$lat     = is_array( $address ) ? (float) $address['lat'] : 0;
-						$lng     = is_array( $address ) ? (float) $address['lng'] : 0;
-						$distance = $lat && $lng ? haversine_great_circle_distance( $lat, $lng, $lat_to, $lng_to ) : 0;
-						return [
-							'post'     => $location,
-							'lat'      => $lat ?: null,
-							'lng'      => $lng ?: null,
-							'distance' => $distance ?: null,
+					$locations = array_map(
+						function( $location ) use ( $lat_to, $lng_to ) {
+								$loc_id   = $location->ID;
+								$address  = get_field( 'address', $loc_id );
+								$lat      = is_array( $address ) ? (float) $address['lat'] : 0;
+								$lng      = is_array( $address ) ? (float) $address['lng'] : 0;
+								$distance = $lat && $lng ? haversine_great_circle_distance( $lat, $lng, $lat_to, $lng_to ) : 0;
+								return [
+									'post'     => $location,
+									'lat'      => $lat ?: null,
+									'lng'      => $lng ?: null,
+									'distance' => $distance ?: null,
 
-						];
-					}, $location_posts );
+								];
+						}, $location_posts
+					);
 
-					usort( $locations, function( $loc_a, $loc_b ) {
-						if ( ! isset( $loc_a['distance'] ) && ! isset( $loc_b['distance'] ) ) {
-							return 0;
+					usort(
+						$locations, function( $loc_a, $loc_b ) {
+							if ( ! isset( $loc_a['distance'] ) && ! isset( $loc_b['distance'] ) ) {
+								return 0;
+							}
+							if ( ! isset( $loc_a['distance'] ) ) {
+								return 1;
+							}
+							if ( ! isset( $loc_b['distance'] ) ) {
+								return -1;
+							}
+							return $loc_a['distance'] > $loc_b['distance'] ? 1 : -1;
 						}
-						if ( ! isset( $loc_a['distance'] ) ) {
-							return 1;
-						}
-						if ( ! isset( $loc_b['distance'] ) ) {
-							return -1;
-						}
-						return $loc_a['distance'] > $loc_b['distance'] ? 1 : -1;
-					} );
-				} catch( \Exception $e ) {
+					);
+				} catch ( \Exception $e ) {
 					error_log( $e );
 				}
 			} else {
-				$locations = array_map( function( $location ) {
-					return [
-						'post'     => $location,
-						'lat'      => null,
-						'lng'      => null,
-						'distance' => null,
-					];
-				}, $location_posts );
+				$locations = array_map(
+					function( $location ) {
+							return [
+								'post'     => $location,
+								'lat'      => null,
+								'lng'      => null,
+								'distance' => null,
+							];
+					}, $location_posts
+				);
 			}
 			echo '<ul class="page-location-finder__location-list">';
 			foreach ( $locations as $location ) {

@@ -5,10 +5,12 @@
 	<div class="section-jobs__wrapper">
 		<h2 class="section-jobs__heading">Current Openings</h2>
 		<?php
-		$jobs_query = new WP_Query( [
-			'post_type'      => 'job',
-			'posts_per_page' => 90,
-		] );
+		$jobs_query = new WP_Query(
+			[
+				'post_type'      => 'job',
+				'posts_per_page' => 90,
+			]
+		);
 		if ( $jobs_query->have_posts() ) :
 			?>
 			<ul class="section-jobs__listings">

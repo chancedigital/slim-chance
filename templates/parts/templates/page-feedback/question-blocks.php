@@ -2,19 +2,19 @@
 $questions = [
 	[
 		'id'   => 'order-experience',
-		'text' => "Order & Restaurant Experience Feedback"
+		'text' => 'Order & Restaurant Experience Feedback',
 	],
 	[
 		'id'   => 'menu-information',
-		'text' => "Menu Information"
+		'text' => 'Menu Information',
 	],
 	[
 		'id'   => 'press-marketing-inquiries',
-		'text' => "Press & Marketing Inquiries"
+		'text' => 'Press & Marketing Inquiries',
 	],
 	[
 		'id'   => 'tech-support',
-		'text' => "Technical & Account Support"
+		'text' => 'Technical & Account Support',
 	],
 ];
 ?>

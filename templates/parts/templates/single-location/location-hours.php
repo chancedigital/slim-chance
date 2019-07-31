@@ -6,7 +6,10 @@
 	<?php elseif ( have_rows( 'hours' ) ) : ?>
 		<table class="location-hours__table">
 			<tbody class="location-hours__tbody">
-				<?php while ( have_rows( 'hours' ) ) : the_row(); ?>
+				<?php
+				while ( have_rows( 'hours' ) ) :
+					the_row();
+					?>
 					<tr class="location-hours__row">
 						<td class="location-hours__cell location-hours__day"><?php echo esc_html( get_sub_field( 'day' ) ) ?></td>
 						<?php

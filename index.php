@@ -27,4 +27,3 @@ get_header();
 </div><!-- .container -->
 
 <?php get_footer(); ?>
-

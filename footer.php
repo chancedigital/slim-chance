@@ -16,22 +16,26 @@ use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem;
 <footer class="site-footer">
 	<div class="site-footer__wrapper">
 			<?php
-			wp_nav_menu( [
-				'menu_class'      => 'social-nav__menu',
-				'container'       => 'nav',
-				'container_class' => 'social-nav site-footer__social-nav',
-				'theme_location'  => 'social',
-				'link_before'     => '<span class="screen-reader-text">',
-				'link_after'      => '</span">',
-				'walker'          => new Walker_Nav_Menu_Bem(),
-			] );
-			wp_nav_menu( [
-				'menu_class'      => 'footer-nav__menu',
-				'container'       => 'nav',
-				'container_class' => 'footer-nav site-footer__nav',
-				'theme_location'  => 'footer-navigation',
-				'walker'          => new Walker_Nav_Menu_Bem(),
-			] );
+			wp_nav_menu(
+				[
+					'menu_class'      => 'social-nav__menu',
+					'container'       => 'nav',
+					'container_class' => 'social-nav site-footer__social-nav',
+					'theme_location'  => 'social',
+					'link_before'     => '<span class="screen-reader-text">',
+					'link_after'      => '</span">',
+					'walker'          => new Walker_Nav_Menu_Bem(),
+				]
+			);
+			wp_nav_menu(
+				[
+					'menu_class'      => 'footer-nav__menu',
+					'container'       => 'nav',
+					'container_class' => 'footer-nav site-footer__nav',
+					'theme_location'  => 'footer-navigation',
+					'walker'          => new Walker_Nav_Menu_Bem(),
+				]
+			);
 			?>
 		<nav></nav>
 		<div class="site-footer__copyright">

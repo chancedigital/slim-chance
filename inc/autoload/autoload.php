@@ -27,12 +27,12 @@ function autoload( string $class ) {
 	$base_namespace_count = ( (int) count( $base_namespace_parts ) );
 	$namespace_parts      = explode( '\\', $class );
 
-
-
 	// Format parts to match filenames.
-	$file_parts = array_map( function( $part ) {
-		return str_replace( '_', '-', strtolower( $part ) );
-	}, $namespace_parts );
+	$file_parts = array_map(
+		function( $part ) {
+				return str_replace( '_', '-', strtolower( $part ) );
+		}, $namespace_parts
+	);
 
 	// Set up file path.
 	$class_path = SLIM_CHANCE_INC;

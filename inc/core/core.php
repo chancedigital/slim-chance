@@ -51,13 +51,15 @@ function theme_setup() {
 	add_theme_support( 'custom-logo' );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'align-wide' );
-	add_theme_support( 'html5', [
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	] );
+	add_theme_support(
+		'html5', [
+			'search-form',
+			'comment-form',
+			'comment-list',
+			'gallery',
+			'caption',
+		]
+	);
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
 	// Additional theme support for woocommerce 3.0.+
@@ -78,12 +80,14 @@ function theme_setup() {
 	add_editor_style( get_asset_url( 'css', 'editor' ) );
 
 	// Register nav menus.
-	register_nav_menus( [
-		'main-navigation'      => __( 'Main Navigation', 'slim-chance' ),
-		'secondary-navigation' => __( 'Secondary Navigation', 'slim-chance' ),
-		'footer-navigation'    => __( 'Footer Navigation', 'slim-chance' ),
-		'social'               => __( 'Social Navigation', 'slim-chance' ),
-	] );
+	register_nav_menus(
+		[
+			'main-navigation'      => __( 'Main Navigation', 'slim-chance' ),
+			'secondary-navigation' => __( 'Secondary Navigation', 'slim-chance' ),
+			'footer-navigation'    => __( 'Footer Navigation', 'slim-chance' ),
+			'social'               => __( 'Social Navigation', 'slim-chance' ),
+		]
+	);
 }
 
 /**
@@ -113,19 +117,21 @@ function scripts() {
 
 	// Frontend JS.
 	wp_register_script( 'frontend', get_asset_url( 'js', 'frontend' ), [ 'jquery' ], get_asset_version( 'js', 'frontend' ), true );
-	wp_localize_script( 'frontend', '__slimChanceAjax__', [
-		'baseUrl'              => esc_url( get_site_url() ),
-		'themeUrl'             => SLIM_CHANCE_TEMPLATE_URL,
-		'customerFeedbackTo'   => esc_html( get_field( 'customer_feedback', 'option' ) ),
-		'customerFeedbackFrom' => esc_html( get_field( 'customer_feedback_from', 'option' ) ),
-		'ajaxUrl'     => esc_url( admin_url( 'admin-ajax.php' ) ),
-		'gMapsApi'    => esc_html( get_option( 'options_google_maps_api_key' ) ),
-		'loadButton'  => [
-			'loading'     => esc_html__( 'Loading&hellip;', 'slim-chance' ),
-			'noPosts'     => esc_html__( 'No Posts Found', 'slim-chance' ),
-		],
-		'nonce'       => wp_create_nonce( 'load_posts_nonce' ),
-	] );
+	wp_localize_script(
+		'frontend', '__slimChanceAjax__', [
+			'baseUrl'              => esc_url( get_site_url() ),
+			'themeUrl'             => SLIM_CHANCE_TEMPLATE_URL,
+			'customerFeedbackTo'   => esc_html( get_field( 'customer_feedback', 'option' ) ),
+			'customerFeedbackFrom' => esc_html( get_field( 'customer_feedback_from', 'option' ) ),
+			'ajaxUrl'     => esc_url( admin_url( 'admin-ajax.php' ) ),
+			'gMapsApi'    => esc_html( get_option( 'options_google_maps_api_key' ) ),
+			'loadButton'  => [
+				'loading'     => esc_html__( 'Loading&hellip;', 'slim-chance' ),
+				'noPosts'     => esc_html__( 'No Posts Found', 'slim-chance' ),
+			],
+			'nonce'       => wp_create_nonce( 'load_posts_nonce' ),
+		]
+	);
 	wp_enqueue_script( 'frontend' );
 
 	// Add the comment-reply library on pages where it is necessary.
@@ -187,14 +193,16 @@ function styles() {
  * Register widget areas.
  */
 function widgets() {
-	register_sidebar( [
-		'name'          => 'Main sidebar',
-		'id'            => 'main-sidebar',
-		'before_widget' => '<div class="sidebar__wrapper">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="sidebar__heading">',
-		'after_title'   => '</h3>',
-	] );
+	register_sidebar(
+		[
+			'name'          => 'Main sidebar',
+			'id'            => 'main-sidebar',
+			'before_widget' => '<div class="sidebar__wrapper">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="sidebar__heading">',
+			'after_title'   => '</h3>',
+		]
+	);
 }
 
 /**

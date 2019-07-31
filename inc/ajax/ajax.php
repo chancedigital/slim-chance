@@ -61,9 +61,9 @@ function load_more_posts() {
 	$params = isset( $_POST['query'] ) ? $_POST['query'] : [];
 
 	// Remove params we won't use that may cause conflicts.
-	$params['cat']                = '';
-	$params['category_name']      = '';
-	$params['comments_per_page']  = '';
+	$params['cat']               = '';
+	$params['category_name']     = '';
+	$params['comments_per_page'] = '';
 
 	$params                = prepare_query_params_from_json( $params );
 	$params['post_status'] = 'publish';
@@ -85,7 +85,7 @@ function load_more_posts() {
 
 			// Check for wrapper data from the request
 			if ( ! empty( $wrapper ) && isset( $wrapper['element'] ) && in_array( $wrapper['element'], $ok_wrappers, true ) ) {
-				$el = $wrapper['element'];
+				$el        = $wrapper['element'];
 				$class_att = isset( $wrapper['className'] ) ? ' class="' . esc_attr( $wrapper['className'] ) . '"' : '';
 				echo "\n<{$el}{$class_att}>\n\t";
 				get_template_part( 'templates/parts/layout/blocks/post-preview' );

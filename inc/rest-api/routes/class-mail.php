@@ -28,40 +28,42 @@ if ( class_exists( '\\WP_REST_Controller' ) ) {
 		 */
 		public function register_routes() {
 			$blog_name = wp_strip_all_tags( trim( get_option( 'blogname' ) ) );
-			register_rest_route( self::NAMESPACE, '/send', [
-				'methods'  => \WP_REST_Server::CREATABLE,
-				'callback' => [ $this, 'send_mail' ],
-				'args'     => [
-					'email_subject'      => [
-						'default'           => "New message sent from the $blog_name website",
-						'sanitize_callback' => 'sanitize_text_field',
+			register_rest_route(
+				self::NAMESPACE, '/send', [
+					'methods'  => \WP_REST_Server::CREATABLE,
+					'callback' => [ $this, 'send_mail' ],
+					'args'     => [
+						'email_subject'      => [
+							'default'           => "New message sent from the $blog_name website",
+							'sanitize_callback' => 'sanitize_text_field',
+						],
+						'contact_from_name'  => [
+							'sanitize_callback' => 'sanitize_text_field',
+						],
+						'contact_from_email' => [
+							'required'          => true,
+							'sanitize_callback' => 'sanitize_email',
+							'validate_callback' => [ $this, 'validate_email' ],
+						],
+						'contact_to_email'   => [
+							'required'          => true,
+							'sanitize_callback' => 'sanitize_email',
+							'validate_callback' => [ $this, 'validate_email' ],
+						],
+						'reply_to_name'      => [
+							'sanitize_callback' => 'sanitize_text_field',
+						],
+						'reply_to_email'     => [
+							'sanitize_callback' => 'sanitize_email',
+							'validate_callback' => [ $this, 'validate_email' ],
+						],
+						'email_body'         => [
+							'required'          => true,
+							'sanitize_callback' => 'wp_kses_post',
+						],
 					],
-					'contact_from_name'  => [
-						'sanitize_callback' => 'sanitize_text_field',
-					],
-					'contact_from_email' => [
-						'required'          => true,
-						'sanitize_callback' => 'sanitize_email',
-						'validate_callback' => [ $this, 'validate_email' ],
-					],
-					'contact_to_email'   => [
-						'required'          => true,
-						'sanitize_callback' => 'sanitize_email',
-						'validate_callback' => [ $this, 'validate_email' ],
-					],
-					'reply_to_name'      => [
-						'sanitize_callback' => 'sanitize_text_field',
-					],
-					'reply_to_email'     => [
-						'sanitize_callback' => 'sanitize_email',
-						'validate_callback' => [ $this, 'validate_email' ],
-					],
-					'email_body'         => [
-						'required'          => true,
-						'sanitize_callback' => 'wp_kses_post',
-					],
-				],
-			] );
+				]
+			);
 		}
 
 		/**

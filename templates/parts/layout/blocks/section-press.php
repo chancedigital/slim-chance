@@ -5,10 +5,12 @@
 			<h2 class="section-press__heading"><?php echo esc_html( $heading ) ?></h2>
 		<?php endif; ?>
 		<?php
-		$press_query = new WP_Query( [
-			'post_type'      => 'press',
-			'posts_per_page' => 90,
-		] );
+		$press_query = new WP_Query(
+			[
+				'post_type'      => 'press',
+				'posts_per_page' => 90,
+			]
+		);
 		if ( $press_query->have_posts() ) :
 			?>
 			<ul class="section-press__list">

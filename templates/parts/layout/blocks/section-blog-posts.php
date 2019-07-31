@@ -14,8 +14,14 @@ $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 		<?php
 		$load_more      = get_sub_field( 'load_more' );
 		$posts_per_page = (int) get_sub_field( 'posts_per_page' ) ?: (int) get_option( 'posts_per_page' ) ?: 20;
-		$categories     = [ 'tax' => 'category', 'terms' => get_sub_field( 'categories' ) ];
-		$tags           = [ 'tax' => 'post_tag', 'terms' => get_sub_field( 'tags' ) ];
+		$categories     = [
+			'tax' => 'category',
+			'terms' => get_sub_field( 'categories' ),
+		];
+		$tags           = [
+			'tax' => 'post_tag',
+			'terms' => get_sub_field( 'tags' ),
+		];
 		$tax_query      = [];
 		foreach ( [ $categories, $tags ] as $tax ) {
 			if ( isset( $tax['terms'] ) && ! empty( $tax['terms'] ) ) {
@@ -29,11 +35,13 @@ $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 		if ( ! empty( $tax_query ) ) {
 			$tax_query['relation'] = 'OR';
 		}
-		$blog_query = new WP_Query( [
-			'post_type'      => 'post',
-			'posts_per_page' => $posts_per_page,
-			'tax_query'      => $tax_query,
-		] );
+		$blog_query = new WP_Query(
+			[
+				'post_type'      => 'post',
+				'posts_per_page' => $posts_per_page,
+				'tax_query'      => $tax_query,
+			]
+		);
 
 		if ( $blog_query->have_posts() ) :
 			?>
