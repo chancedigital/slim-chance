@@ -1,87 +1,74 @@
 import path from 'path';
-import notify from 'gulp-notify';
 
-/** Theme config. */
-class Config {
-	/** @type {string} Development URL for BrowserSync. */
-	devUrl = 'http://slim.local';
-
+export const theme = {
 	/** @type {string} Theme base directory. */
-	basePath = path.resolve( __dirname, '../' );
+	name: 'Slim Chance',
+	slug: 'slim-chance',
+	url: 'https://slimandhuskys.com',
+	version: '1.0.0',
+	description: 'Custom WordPress theme for the Slim + Huskys website.',
+	author: {
+		name: 'Chance Strickland',
+		url: 'https://chancedigital.io',
+	},
+	domainPath: '/languages',
 
-	/** @type {string} Theme assets directory. */
-	assetsPath = path.resolve( __dirname, '../assets' );
+	/** @type {string[]} Theme tags */
+	tags: [],
+};
 
-	/** @type {string} Theme directory for public compiled assets. */
-	distPath = path.resolve( __dirname, '../dist' );
+export const settings = {
+	theme,
+	liveReload: false,
+	devUrl: process.env.LOCAL_DEV_URL || 'https://slim.test',
+	proxyUrl: process.env.LOCAL_DEV_PROXY || 'slim.test',
+	port: process.env.LOCAL_DEV_PORT || '4000',
+};
 
-	/** @type {Array.<string>} JavaScript filenames to be processed by Webpack. */
-	jsFiles = [ 'admin', 'editor', 'frontend', 'shared' ];
+/** @type {string} Theme base directory. */
+export const baseDir = path.resolve( __dirname, '../' );
 
-	/** @type {Array.<string>} Sass filenames to be processed by gulp-sass. */
-	scssFiles = [ 'admin', 'editor', 'frontend', 'shared' ];
+/** @type {string} Theme assets directory. */
+export const assets = path.resolve( baseDir, 'assets' );
 
-	/** @type {boolean} Whether or not we are in a dev environment. */
-	isDev = process.env.NODE_ENV === 'development';
+/** @type {string} Node modules directory. */
+export const nodeModules = path.resolve( baseDir, 'node_modules' );
 
-	/** @type {boolean} Whether or not we are in a staging environment. */
-	isStaging = process.env.NODE_ENV === 'staging';
+/** @type {string} Theme directory for public compiled assets. */
+export const dist = path.resolve( baseDir, 'dist' );
 
-	/** @type {boolean} Whether or not we are in a production environment. */
-	isProd = process.env.NODE_ENV === 'production';
+/** @type {string} Node environment */
+export const nodeEnv = process.env.NODE_ENV;
 
-	/**
-	 * Get the theme name from the base directory.
-	 *
-	 * @returns {string} - Theme name slug.
-	 * @memberof Config
-	 */
-	getThemeName = () => {
-		return path.basename( this.basePath );
-	};
+/** @type {boolean} Whether or not we are in a dev environment. */
+export const isDev = nodeEnv === 'development';
 
-	/**
-	 * Get a success message for Gulp task completion.
-	 *
-	 * @type {Function}
-	 * @param {string} task - Name of the task.
-	 * @returns {string} - Task completion message.
-	 * @memberof Config
-	 */
-	getSuccessMessage = task => {
-		return `Gulp task "${ task }" completed! 🍻`;
-	};
+/** @type {boolean} Whether or not we are in a production environment. */
+export const isProd = nodeEnv === 'production';
 
-	/**
-	 * Get an error message when Gulp tasks fail.
-	 *
-	 * @type {Function}
-	 * @param {string} task - Name of the task.
-	 * @returns {string} - Task error message.
-	 * @memberof Config
-	 */
-	getErrorMessage = task => {
-		return `Gulp task "${ task }" failed 🤦‍`;
-	};
+/** @type {boolean} Whether or not we are in a staging environment. */
+export const isStaging = nodeEnv === 'staging';
 
-	/**
-	 * Generate a error handler for pump to display our error message via notify.
-	 *
-	 * @todo Add to gulp tasks for clearer output when terminal isn't focused.
-	 * @param {string} task - Name of our task.
-	 * @param {Function} cb - Callback function to fire on completion.
-	 * @returns {Function} - Error handler.
-	 * @memberof Config
-	 */
-	getErrorCallback = ( task, cb ) => err => {
-		if ( err ) {
-			notify( {
-				message: this.getErrorMessage( task ),
-				onLast: true,
-			} );
-		}
-		cb();
-	};
-}
+/** @type {string[]} JavaScript filenames to be processed by Webpack. */
+export const jsFiles = [ 'admin', 'editor', 'frontend', 'shared' ];
 
-export default new Config();
+/** @type {string[]} Sass filenames to be processed by gulp-sass. */
+export const scssFiles = [ 'admin', 'editor', 'frontend', 'shared' ];
+
+/** @type {Array.<string>} Sass filenames to be processed by gulp-sass. */
+export const successMessage = task => `TASK: "${ task }" Completed! 🍻`;
+
+export default {
+	...settings,
+	baseDir,
+	nodeModules,
+	assets,
+	dist,
+	nodeEnv,
+	isDev,
+	isProd,
+	isStaging,
+	successMessage,
+	jsFiles,
+	scssFiles,
+};

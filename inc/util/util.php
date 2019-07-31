@@ -30,9 +30,9 @@ function is_multi_array( array $a = [] ) : bool {
  * @return string       Converted name or abbreviation.
  */
 function convert_state_name( string $name ) : string {
-	$states = array(
-		[ 'name' => 'Alabama',        'abbr' => 'AL' ],
-		[ 'name' => 'Alaska',         'abbr' => 'AK' ],
+	$states = [
+		[ 'name' => 'Alabama', 'abbr' => 'AL' ],
+		[ 'name' => 'Alaska', 'abbr' => 'AK' ],
 		[ 'name' => 'Arizona',        'abbr' => 'AZ' ],
 		[ 'name' => 'Arkansas',       'abbr' => 'AR' ],
 		[ 'name' => 'California',     'abbr' => 'CA' ],
@@ -84,7 +84,7 @@ function convert_state_name( string $name ) : string {
 		[ 'name' => 'Virgin Islands', 'abbr' => 'V.I.' ],
 		[ 'name' => 'Guam',           'abbr' => 'GU' ],
 		[ 'name' => 'Puerto Rico',    'abbr' => 'PR' ],
-	);
+	];
 
 	$return = false;
 	$strlen = strlen( $name );
@@ -118,6 +118,44 @@ function convert_state_name( string $name ) : string {
  */
 function is_whole_number( $var ) : bool {
 	return ( is_numeric( $var ) && ( intval( $var ) == floatval( $var ) ) ); // phpcs:ignore
+}
+
+/**
+ * Get the correct asset file.
+ * Falls back to unminified if the minified version cannot be found.
+ *
+ * @param  string $asset_type Correct asset type. Must be `css` or `js`.
+ * @param  string $filename   Name of the file, minus its extension.
+ * @return string             File URL.
+ */
+function get_asset_url( string $asset_type, string $filename ) : string {
+	if ( ! in_array( $asset_type, [ 'css', 'js' ], true ) ) {
+		throw new \Exception( 'Invalid asset type.' );
+	}
+	return file_exists( SLIM_CHANCE_PATH . "dist/$asset_type/$filename.min.$asset_type" )
+		? SLIM_CHANCE_TEMPLATE_URL . "/dist/$asset_type/$filename.min.$asset_type"
+		: SLIM_CHANCE_TEMPLATE_URL . "/dist/$asset_type/$filename.$asset_type";
+}
+
+/**
+ * Get asset version based on last saved timestamp.
+ *
+ * @param  string $asset_type Correct asset type. Must be `css` or `js`.
+ * @param  string $filename   Name of the file, minus its extension.
+ * @return string             File saved timestamp.
+ */
+function get_asset_version( string $asset_type, string $filename ) : int {
+	if ( ! in_array( $asset_type, [ 'css', 'js' ], true ) ) {
+		throw new \Exception( 'Invalid asset type.' );
+	}
+	try {
+		return file_exists( SLIM_CHANCE_PATH . "dist/$asset_type/$filename.min.$asset_type" )
+			? filemtime( SLIM_CHANCE_PATH . "dist/$asset_type/$filename.min.$asset_type" )
+			: filemtime( SLIM_CHANCE_PATH . "dist/$asset_type/$filename.$asset_type" );
+	} catch ( \Exception $e ) {
+		error_log( $e ); // phpcs:ignore
+		return 0;
+	}
 }
 
 /**

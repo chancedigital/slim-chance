@@ -1,16 +1,26 @@
 import webpack from 'webpack';
-import WebpackBar from 'webpackbar';
-import path from 'path';
+import merge from 'webpack-merge';
 import TerserPlugin from 'terser-webpack-plugin';
-import babelConfig from '../config/babel.config';
-import cfg from '../config';
+import WebpackBar from 'webpackbar';
 import Dotenv from 'dotenv-webpack';
+import path from 'path';
+import babelConfig from './babel.config';
+import {
+	assets,
+	baseDir,
+	dist,
+	isDev,
+	isProd,
+	jsFiles,
+	nodeEnv,
+	theme,
+} from './index';
 
-const { assetsPath, basePath, distPath, jsFiles, getThemeName, isDev } = cfg;
+const dotEnvFile = `${ baseDir }/${ nodeEnv ? `.env.${ nodeEnv }` : '.env' }`;
 
-const nodeEnv = process.env.NODE_ENV;
-
-const dotEnvFile = `${ basePath }/.env${ nodeEnv ? `.${ nodeEnv }` : '' }`;
+const publicPath = `/wp-content/themes/${ theme.slug }/${ path.basename(
+	dist,
+) }/`;
 
 const optimization = {
 	minimizer: [
@@ -51,28 +61,23 @@ const optimization = {
 	],
 };
 
-const entry = {};
-jsFiles.forEach( fileName => {
-	entry[ fileName ] = `./js/${ fileName }/${ fileName }.js`;
-} );
-
-const publicPath = `/wp-content/themes/${ getThemeName() }/${ path.basename(
-	distPath,
-) }/`;
+const entry = jsFiles.reduce( ( acc, file ) => {
+	acc[ file ] = `./js/${ file }/${ file }.js`; // ex: /js/frontend/frontend.js
+	return acc;
+}, {} );
 
 const config = {
 	entry,
-	optimization,
 	mode: isDev ? 'development' : 'production',
 	externals: {
 		jquery: 'jQuery',
 	},
 	output: {
-		path: distPath,
+		path: dist,
 		publicPath,
-		filename: '[name].min.js',
+		filename: isProd ? '[name].min.js' : '[name].js',
 	},
-	context: assetsPath + '/',
+	context: `${ assets }/`,
 	cache: true,
 	resolve: {
 		modules: [ 'node_modules' ],
@@ -82,13 +87,18 @@ const config = {
 		rules: [
 			{
 				test: /\.js$/,
-				include: assetsPath,
+				enforce: 'pre',
+				include: assets,
+				loader: 'eslint-loader',
+			},
+			{
+				test: /\.js$/,
+				exclude: [ '/node_modules/' ],
+				include: assets,
 				use: [
 					{
 						loader: 'babel-loader',
-						options: {
-							...babelConfig,
-						},
+						options: babelConfig,
 					},
 				],
 			},
@@ -96,10 +106,10 @@ const config = {
 	},
 	plugins: [
 		new webpack.NoEmitOnErrorsPlugin(),
-		new WebpackBar(),
 		new Dotenv( {
 			path: dotEnvFile,
 		} ),
+		new WebpackBar(),
 	],
 	stats: {
 		colors: true,
@@ -107,4 +117,4 @@ const config = {
 	},
 };
 
-module.exports = config;
+module.exports = isProd ? merge( config, { optimization } ) : config;

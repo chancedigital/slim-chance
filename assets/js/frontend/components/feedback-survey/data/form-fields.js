@@ -60,7 +60,7 @@ export const initialFormValidation = formFields.reduce( ( fields, field ) => {
 export const initialFormFieldsTouched = formFields.reduce(
 	( fields, field ) => {
 		let touched = false;
-		if ( field.hasOwnProperty( 'touched' ) ) {
+		if ( Object.prototype.hasOwnProperty.call( field, 'touched' ) ) {
 			touched = !! field.touched;
 		}
 		return {

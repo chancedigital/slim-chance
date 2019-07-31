@@ -169,9 +169,13 @@ class FeedbackSurvey extends Component {
 			return acc;
 		}, '' );
 		const params = {
-			contactFromEmail: get( window, 'slimChance.customerFeedbackFrom' ) || 'noreply@slimandhuskys.com',
+			contactFromEmail:
+				get( window, 'slimChance.customerFeedbackFrom' ) ||
+				'noreply@slimandhuskys.com',
 			contactFromName: 'S+H Admin',
-			contactToEmail: get( window, 'slimChance.customerFeedbackTo' ) || 'info@slimandhuskys.com',
+			contactToEmail:
+				get( window, 'slimChance.customerFeedbackTo' ) ||
+				'info@slimandhuskys.com',
 			emailBody,
 			emailSubject: 'New feedback submission from slimandhuskys.com',
 			replyToEmail: email,
@@ -205,7 +209,10 @@ class FeedbackSurvey extends Component {
 				{ method: 'POST' },
 			);
 			const response = await res.json();
+
+			// eslint-disable-next-line no-console
 			DEV && console.log( { params, response } );
+
 			if ( response.status === 200 ) {
 				this.setState( { submitted: true, submitError: false } );
 				return true;
@@ -279,7 +286,7 @@ class FeedbackSurvey extends Component {
 			const newValues = { ...state.formValues, [ field ]: value };
 			const fieldObject = formFields.find( f => f.name === field );
 			const isValid = validateField( fieldObject, newValues[ field ] );
-			if ( state.formValues.hasOwnProperty( field ) ) {
+			if ( Object.prototype.hasOwnProperty.call( state.formValues, field ) ) {
 				return {
 					...state,
 					formValidation: {

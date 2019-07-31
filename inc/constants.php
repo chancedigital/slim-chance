@@ -1,12 +1,19 @@
 <?php
+/**
+ * Define global constants.
+ *
+ * @package slim-chance
+ */
 
-// phpcs:disable
-// Set environment @todo move this to WP-Config
-// define( 'SLIM_CHANCE_MODE', 'development' );
+// This should be defined in wp-config
+// Defining here as a fallback
+if ( ! defined( 'SLIM_CHANCE_ENV' ) ) {
+	define( 'SLIM_CHANCE_ENV', 'development' );
+}
+
 // Load environment variables
-// $dotenv = \Dotenv\Dotenv::create( get_template_directory(), '.env.' . SLIM_CHANCE_MODE );
-// $dotenv->load();
-// phpcs:enable
+$dotenv = \Dotenv\Dotenv::create( get_template_directory(), '.env.' . SLIM_CHANCE_ENV );
+$dotenv->load();
 
 // Useful global constants.
 define( 'SLIM_CHANCE_VERSION', '2.1.1' );

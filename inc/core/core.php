@@ -7,6 +7,9 @@
 
 namespace ChanceDigital\SlimChance\Core;
 
+use function ChanceDigital\SlimChance\Util\get_asset_url;
+use function ChanceDigital\SlimChance\Util\get_asset_version;
+
 /**
  * Set up theme defaults and register supported WordPress features.
  */
@@ -72,7 +75,7 @@ function theme_setup() {
 	add_image_size( 'featured-xlarge', 1920, 9999 );
 
 	// Load editor stylesheet.
-	add_editor_style( SLIM_CHANCE_TEMPLATE_URL . '/dist/css/editor.min.css' );
+	add_editor_style( get_asset_url( 'css', 'editor' ) );
 
 	// Register nav menus.
 	register_nav_menus( [
@@ -87,9 +90,7 @@ function theme_setup() {
  * Enqueue scripts for front-end.
  */
 function scripts() {
-	$js_path         = 'dist/js';
-	$frontend_script = "$js_path/frontend.min.js";
-	$gmaps_api_key   = esc_html( get_option( 'options_google_maps_api_key' ) );
+	$gmaps_api_key = esc_html( get_option( 'options_google_maps_api_key' ) );
 
 	// Deregister the jquery version bundled with WordPress.
 	wp_deregister_script( 'jquery' );
@@ -111,13 +112,7 @@ function scripts() {
 	}
 
 	// Frontend JS.
-	wp_register_script(
-		'frontend',
-		SLIM_CHANCE_TEMPLATE_URL . "/$frontend_script",
-		[],
-		filemtime( SLIM_CHANCE_PATH . $frontend_script ),
-		true
-	);
+	wp_register_script( 'frontend', get_asset_url( 'js', 'frontend' ), [ 'jquery' ], get_asset_version( 'js', 'frontend' ), true );
 	wp_localize_script( 'frontend', '__slimChanceAjax__', [
 		'baseUrl'              => esc_url( get_site_url() ),
 		'themeUrl'             => SLIM_CHANCE_TEMPLATE_URL,
@@ -176,8 +171,6 @@ function script_loader_tag( string $tag, string $handle ) {
  * Enqueue styles for front-end.
  */
 function styles() {
-	$css_path       = 'dist/css';
-	$frontend_style = "$css_path/frontend.min.css";
 
 	// Typekit.
 	wp_enqueue_style( 'typekit', '//use.typekit.net/pyo1eko.css' );
@@ -187,12 +180,7 @@ function styles() {
 	wp_enqueue_style( 'fancybox', '//cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css' );
 
 	// Frontend styles.
-	wp_enqueue_style(
-		'frontend',
-		SLIM_CHANCE_TEMPLATE_URL . "/$frontend_style",
-		[],
-		filemtime( SLIM_CHANCE_PATH . $frontend_style )
-	);
+	wp_enqueue_style( 'frontend', get_asset_url( 'css', 'frontend' ), [], get_asset_version( 'css', 'frontend' ) );
 }
 
 /**
