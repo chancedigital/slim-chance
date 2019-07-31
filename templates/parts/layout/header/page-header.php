@@ -1,4 +1,7 @@
 <?php
+
+use function ChanceDigital\SlimChance\Template\kses_post;
+
 $bg_img = get_field( 'header_background_image' );
 if ( ! $bg_img && is_single() ) {
 	$bg_img = get_the_post_thumbnail_url();
@@ -23,10 +26,10 @@ if ( ! $bg_img && is_single() ) {
 			<div class="page-header__body">
 
 				<?php if ( is_singular( 'job' ) ) : ?>
-					<?php echo wp_kses_post( get_field( 'excerpt' ) ) ?>
+					<?php echo kses_post( get_field( 'excerpt' ) ) ?>
 				<?php endif; ?>
 
-				<?php echo wp_kses_post( get_field( 'header_paragraph' ) ) ?>
+				<?php echo kses_post( get_field( 'header_paragraph' ) ) ?>
 
 				<?php if ( is_singular( 'location' ) ) : ?>
 					<?php get_template_part( 'templates/parts/templates/single-location/location-contact' ) ?>

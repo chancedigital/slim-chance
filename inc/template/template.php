@@ -7,11 +7,43 @@
 
 namespace ChanceDigital\SlimChance\Template;
 
+use function ChanceDigital\SlimChance\Icons\get_svg;
 use function ChanceDigital\SlimChance\Util\convert_state_name;
 
+add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_options_page', 10, 0 );
 add_filter( 'body_class',        __NAMESPACE__ . '\\body_classes' );
 add_filter( 'script_loader_tag', __NAMESPACE__ . '\\make_ig_tag_async', 10, 2 );
-add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_options_page', 10, 0 );
+add_shortcode( 'dd_button',      __NAMESPACE__ . '\\shortcode_dd_button' );
+
+/**
+ * Extend wp_kses_post to allow HTML tags.
+ * TODO: Add support for all valid SVG child elements
+ *
+ * @param  string $data Text content to filter.
+ * @return string       Filtered content containing only the allowed HTML.
+ */
+function kses_post( $data ) {
+	$allowed_tags = wp_kses_allowed_html( 'post' );
+	$allowed_tags['svg'] = [
+		'aria-describedby' => true,
+		'aria-details'     => true,
+		'aria-label'       => true,
+		'aria-labelledby'  => true,
+		'aria-hidden'      => true,
+		'class'            => true,
+        'id'               => true,
+        'style'            => true,
+        'title'            => true,
+		'role'             => true,
+		'viewBox'          => true,
+        'data-*'           => true,
+	];
+	$allowed_tags['use'] = [
+		'href'       => true,
+		'xlink:href' => true,
+	];
+	return wp_kses( $data, $allowed_tags );
+}
 
 /**
  * Add an ACF options page.
@@ -242,4 +274,24 @@ function get_flex_content() {
 			get_template_part( 'templates/parts/layout/blocks/section-' . str_replace( '_', '-', get_row_layout() ) );
 		}
 	}
+}
+
+function shortcode_dd_button( $atts = [] ) {
+	$atts = shortcode_atts( [
+		'id'          => '74682',
+		'button_text' => __( 'Order Delivery', 'slim-chance' ),
+	], $atts, 'dd_button' );
+
+	ob_start();
+	?>
+	<a class="button" href="https://www.doordash.com/store/<?php echo esc_attr( $atts['id'] ) ?>/?utm_source=partner-link&utm_medium=website&utm_campaign=<?php echo esc_attr( $atts['id'] ) ?>" target="_blank">
+		<?php echo esc_html( $atts['button_text'] ) ?>
+		<span class="button__icon">
+			<?php echo get_svg( [ 'icon' => 'doordash' ] ) ?>
+		</span>
+	</a>
+	<?php
+	$out = ob_get_contents();
+	ob_end_clean();
+	return $out;
 }

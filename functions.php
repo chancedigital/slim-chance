@@ -21,9 +21,9 @@ foreach ( [
 	'autoload',
 	'core',
 	'cleanup',
+	'icons',
 	'template',
 	'images',
-	'icons',
 	'ajax',
 	'rest-api',
 ] as $inc ) {
