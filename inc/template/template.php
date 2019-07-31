@@ -278,13 +278,18 @@ function get_flex_content() {
 
 function shortcode_dd_button( $atts = [] ) {
 	$atts = shortcode_atts( [
-		'id'          => '74682',
-		'button_text' => __( 'Order Delivery', 'slim-chance' ),
+		'id'           => '74682', // default to business ID
+		'button_text'  => __( 'Order Delivery', 'slim-chance' ),
+		'button_type'  => 'business', // business or store
 	], $atts, 'dd_button' );
+
+	$id          = esc_attr( $atts['id'] );
+	$button_type = esc_attr( $atts['button_type'] );
+	$link        = "https://www.doordash.com/{$button_type}/{$id}/?utm_source=partner-link&utm_medium=website&utm_campaign={$id}";
 
 	ob_start();
 	?>
-	<a class="button" href="https://www.doordash.com/store/<?php echo esc_attr( $atts['id'] ) ?>/?utm_source=partner-link&utm_medium=website&utm_campaign=<?php echo esc_attr( $atts['id'] ) ?>" target="_blank">
+	<a class="button" href="<?php echo $link ?>" target="_blank">
 		<?php echo esc_html( $atts['button_text'] ) ?>
 		<span class="button__icon">
 			<?php echo get_svg( [ 'icon' => 'doordash' ] ) ?>
