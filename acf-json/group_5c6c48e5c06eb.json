@@ -1174,6 +1174,25 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": ""
+                        },
+                        {
+                            "key": "field_5d41d8ce6d352",
+                            "label": "Dark text",
+                            "name": "dark_text",
+                            "type": "true_false",
+                            "instructions": "Use this option if you are using a light background image and want dark text for better contrast",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "",
+                            "default_value": 0,
+                            "ui": 0,
+                            "ui_on_text": "",
+                            "ui_off_text": ""
                         }
                     ],
                     "min": "",
@@ -1242,5 +1261,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1563151591
+    "modified": 1564596471
 }

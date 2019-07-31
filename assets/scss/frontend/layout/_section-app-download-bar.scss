@@ -18,4 +18,13 @@
 		max-width: rem( 500 );
 		//text-align: center;
 	}
+
+	&:not( #{$self}--dark-text ) {
+		color: $white;
+
+		& #{$self}__content {
+			text-shadow: 0 2px 3px rgba( black, 0.8 );
+		}
+	}
+
 }

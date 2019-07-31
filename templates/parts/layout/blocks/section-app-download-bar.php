@@ -1,10 +1,15 @@
 <?php
-$bg_image = get_sub_field( 'background_image' );
-$heading  = get_sub_field( 'heading' );
-$content  = get_sub_field( 'content' );
+$bg_image  = get_sub_field( 'background_image' );
+$heading   = get_sub_field( 'heading' );
+$content   = get_sub_field( 'content' );
+
+$classnames = [ 'section-app-download-bar' ];
+if ( get_sub_field( 'dark_text' ) ) {
+	$classnames[] = 'section-app-download-bar--dark-text';
+}
 ?>
 
-<section class="section-app-download-bar" style="background-image: url(<?php echo esc_url( $bg_image['url'] ) ?>);">
+<section class="<?php echo esc_attr( implode( ' ', $classnames ) ) ?>" style="background-image: url(<?php echo esc_url( $bg_image['url'] ) ?>);">
 	<div class="section-app-download-bar__wrapper">
 		<div class="section-app-download-bar__content-wrapper">
 			<?php if ( $heading ) : ?>

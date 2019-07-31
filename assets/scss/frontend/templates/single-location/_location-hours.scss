@@ -4,8 +4,9 @@
 	background: $white;
 	font-size: rem( 14 );
 
-	@include breakpoint( small down ) {
+	@include breakpoint( medium down ) {
 		order: 2;
+		margin-top: 0;
 	}
 
 	&__table {

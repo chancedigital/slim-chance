@@ -8,7 +8,7 @@
 	background: $white;
 	color: $black;
 	font-family: $font-sans-husky;
-	font-size: rem(12);
+	font-size: rem( 10.5 );
 	letter-spacing: 0.1em;
 	line-height: 1;
 	text-align: center;
@@ -18,7 +18,11 @@
 	cursor: pointer;
 	appearance: none;
 
-	[data-whatinput='mouse'] & {
+	@include breakpoint( medium ) {
+		font-size: rem( 12 );
+	}
+
+	[data-whatinput="mouse"] & {
 		outline: 0;
 	}
 
@@ -29,19 +33,19 @@
 		cursor: auto;
 	}
 
-	&:hover:not(:disabled),
-	&:focus:not(:disabled) {
+	&:hover:not( :disabled ),
+	&:focus:not( :disabled ) {
 		color: $black;
 		text-decoration: none;
 	}
 
-	&:hover:not(:active):not(:disabled),
-	&:focus:not(:active):not(:disabled) {
-		transform: translate(-2px, -2px);
+	&:hover:not( :active ):not( :disabled ),
+	&:focus:not( :active ):not( :disabled ) {
+		transform: translate( -2px, -2px );
 	}
 
 	&:after {
-		content: '';
+		content: "";
 		display: block;
 		position: absolute;
 		top: 0;
@@ -54,15 +58,18 @@
 		background: transparent;
 	}
 
-	&:hover:not(:active):not(:disabled):after,
-	&:focus:not(:active):not(:disabled):after {
-		transform: translate(3px, 3px);
-		border-color: darken($color-primary, 10%);
+	&:hover:not( :active ):not( :disabled ):after,
+	&:focus:not( :active ):not( :disabled ):after {
+		transform: translate( 3px, 3px );
+		border-color: darken( $color-primary, 10% );
 	}
 
 	&__inner {
+		display: flex;
 		position: relative;
 		z-index: 1;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&--inverted {
@@ -76,18 +83,31 @@
 			color: rgba( $white, 0.6 );
 		}
 
-		&:hover:not(:disabled),
-		&:focus:not(:disabled) {
+		&:hover:not( :disabled ),
+		&:focus:not( :disabled ) {
 			color: $white;
 		}
 
-		&:hover:not(:active):not(:disabled):after,
-		&:focus:not(:active):not(:disabled):after {
-			border-color: rgba($white, 0.5);
+		&:hover:not( :active ):not( :disabled ):after,
+		&:focus:not( :active ):not( :disabled ):after {
+			border-color: rgba( $white, 0.5 );
 		}
 	}
 
 	&__icon {
-		margin-left: 2px;
+		display: inline-block;
+		width: rem( 14 );
+		height: rem( 14 );
+		margin-left: rem( 6 );
+
+		@include breakpoint( medium ) {
+			width: rem( 16 );
+			height: rem( 16 );
+		}
+
+		.icon {
+			width: inherit;
+			height: inherit;
+		}
 	}
 }

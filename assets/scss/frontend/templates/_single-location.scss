@@ -1,19 +1,31 @@
-@import 'single-location/location-contact';
-@import 'single-location/location-hours';
+@import "single-location/location-contact";
+@import "single-location/location-hours";
 
 .page-single-location {
+
 	.page-header__wrapper {
 		display: grid;
 		gap: $global-grid-gap;
 		align-items: end;
+
 		@include breakpoint( medium ) {
+			grid-template: auto / auto;
+			justify-content: center;
+		}
+
+		@include breakpoint( large ) {
 			gap: $global-grid-gap * 3;
-			grid-template-columns: 1fr 1.3fr;
+			grid-template-columns: 1fr rem( 550 );
 		}
 	}
 
 	.page-header__content-wrapper {
+		grid-column: initial;
 		max-width: none;
 		margin: 0;
+
+		@include breakpoint( medium down ) {
+			transform: none;
+		}
 	}
 }
