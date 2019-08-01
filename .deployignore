@@ -8,8 +8,6 @@ assets/**
 .git
 .nvmrc
 .prettierrc
-composer.json
-composer.lock
 package.json
 phpcs.ruleset.xml
 README.md

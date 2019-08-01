@@ -31,9 +31,6 @@
     }
   },
   "scripts": {
-    "post-install-cmd": [
-      "@install-codestandards"
-    ],
     "install-codestandards": [
       "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
     ],
