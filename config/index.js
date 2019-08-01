@@ -5,7 +5,7 @@ export const theme = {
 	name: 'Slim Chance',
 	slug: 'slim-chance',
 	url: 'https://slimandhuskys.com',
-	version: '1.0.0',
+	version: '3.0.0',
 	description: 'Custom WordPress theme for the Slim + Huskys website.',
 	author: {
 		name: 'Chance Strickland',

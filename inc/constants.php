@@ -11,12 +11,8 @@ if ( ! defined( 'SLIM_CHANCE_ENV' ) ) {
 	define( 'SLIM_CHANCE_ENV', 'development' );
 }
 
-// Load environment variables
-$dotenv = \Dotenv\Dotenv::create( get_template_directory(), '.env.' . SLIM_CHANCE_ENV );
-$dotenv->load();
-
 // Useful global constants.
-define( 'SLIM_CHANCE_VERSION', '2.1.1' );
+define( 'SLIM_CHANCE_VERSION', '3.0.0' );
 define( 'SLIM_CHANCE_URL', get_stylesheet_directory_uri() );
 define( 'SLIM_CHANCE_TEMPLATE_URL', get_template_directory_uri() );
 define( 'SLIM_CHANCE_PATH', trailingslashit( get_template_directory() ) );

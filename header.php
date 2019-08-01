@@ -19,8 +19,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-
-<?php do_action( 'after_body' ); // WPCS: prefix ok. ?>
+<?php wp_body_open(); ?>
 
 <div id="js-site-wrapper" class="site-wrapper">
 	<?php get_template_part( 'templates/parts/layout/header/masthead' ); ?>

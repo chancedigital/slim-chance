@@ -1,4 +1,9 @@
 <?php
+/**
+ * Single location template.
+ *
+ * @package slim-chance
+ */
 
 use function ChanceDigital\SlimChance\Template\get_flex_content;
 

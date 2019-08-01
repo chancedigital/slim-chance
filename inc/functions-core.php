@@ -217,19 +217,3 @@ function acf_map_api( $api ) {
 		return $api;
 	}
 }
-
-/**
- * Return API key for use in ACF filter.
- *
- * @param  string $api Google Maps API key.
- * @return array       API array with key added.
- */
-function acf_on_update( $value, $post_id, $field ) {
-	if ( $post_id === 'options' ) {
-		if ( $field['name'] === 'eventbrite_api_key' ) {
-			// $value = wp_hash_password( $value );
-			// TODO: Authentication/key hashing logic
-		}
-	}
-	return $value;
-}

@@ -12,6 +12,8 @@ use function ChanceDigital\SlimChance\Util\is_whole_number;
 add_action( 'wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
 add_action( 'wp_ajax_load_more_posts',        __NAMESPACE__ . '\\load_more_posts' );
 
+// phpcs:disable WordPress.Security
+
 /**
  * Utility to format parsed JSON data and reformat the variables needed for `query_posts`.
  *
@@ -74,8 +76,6 @@ function load_more_posts() {
 	// Get wrapper data if it exists
 	$wrapper     = isset( $_POST['wrapper'] ) ? $_POST['wrapper'] : [];
 	$ok_wrappers = [ 'div', 'span', 'li' ];
-
-	// var_dump( $wrapper );
 
 	query_posts( $params ); // phpcs:ignore
 	if ( have_posts() ) {

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Single post template.
+ *
+ * @package slim-chance
+ */
 
 get_header();
 ?>

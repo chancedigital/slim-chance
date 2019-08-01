@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Rest_Api\Routes;
+namespace ChanceDigital\SlimChance\Rest_API\Routes;
 
 if ( ! defined( 'WPINC' ) ) {
 	exit;
@@ -116,7 +116,6 @@ if ( class_exists( '\\WP_REST_Controller' ) ) {
 			}
 			return json_encode( $response );
 			// phpcs:enable
-			exit();
 		}
 	}
 }

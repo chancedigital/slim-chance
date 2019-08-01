@@ -15,7 +15,6 @@ if ( ! defined( 'WPINC' ) ) {
  * Custon walker for BEM nav menu.
  */
 class Walker_Nav_Menu_Bem extends \Walker_Nav_Menu {
-
 	/**
 	 * Start the element output.
 	 *

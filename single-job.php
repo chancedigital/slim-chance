@@ -1,4 +1,9 @@
 <?php
+/**
+ * Single job template.
+ *
+ * @package slim-chance
+ */
 
 get_header();
 ?>

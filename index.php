@@ -16,7 +16,7 @@ get_header();
 
 		<div class="page-index__content-wrapper">
 			<div class="page-index__content-inner">
-				<?php // the_content(); ?>
+				<?php the_content(); ?>
 			</div>
 		</div>
 

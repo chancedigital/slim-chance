@@ -91,6 +91,57 @@ function body_classes( array $classes ) {
 }
 
 /**
+ * Like WP core's get_template_part(), but this lets you pass args to the template file
+ * Args are available in the template as $template_args array.
+ *
+ * @param  string              $file          Filename for the template.
+ * @param  string|array|object $template_args Argument list.
+ * @param  string|array|object $cache_args    Arguments to cache.
+ * @return mixed
+ */
+function get_template_part( string $file, $template_args = [], $cache_args = [] ) {
+	$template_args = wp_parse_args( $template_args );
+	$cache_args    = wp_parse_args( $cache_args );
+	if ( $cache_args ) {
+		foreach ( $template_args as $key => $value ) {
+			if ( is_scalar( $value ) || is_array( $value ) ) {
+				$cache_args[ $key ] = $value;
+			} elseif ( is_object( $value ) && method_exists( $value, 'get_id' ) ) {
+				$cache_args[ $key ] = call_user_func( [ $value, 'get_id' ] );
+			}
+		}
+		$cache = wp_cache_get( $file, serialize( $cache_args ) ); // phpcs:ignore
+		if ( $cache !== false ) {
+			if ( ! empty( $template_args['return'] ) ) {
+				return $cache;
+			}
+			echo $cache; // phpcs:ignore
+			return;
+		}
+	}
+	$file_handle = $file;
+	do_action( 'start_operation', "slim_chance_template_part::$file_handle" );
+	if ( file_exists( SLIM_CHANCE_PATH . "{$file}.php" ) ) {
+		$file = SLIM_CHANCE_PATH . "{$file}.php";
+	} elseif ( file_exists( SLIM_CHANCE_PATH . $file ) ) {
+		$file = SLIM_CHANCE_PATH . $file;
+	} elseif ( ! file_exists( $file ) ) {
+		return;
+	}
+	ob_start();
+	$return = require $file;
+	$data   = ob_get_clean();
+	do_action( 'end_operation', "slim_chance_template_part::$file_handle" );
+	if ( $cache_args ) {
+		wp_cache_set( $file, $data, serialize( $cache_args ), 3600 ); // phpcs:ignore
+	}
+	if ( ! empty( $template_args['return'] ) ) {
+		return $return === false ? false : $data;
+	}
+	echo $data; // phpcs:ignore
+}
+
+/**
  * Enqueue Instagram emded script.
  * Use in any template before calling `instagram_embed`
  *
@@ -101,7 +152,7 @@ function enqueue_instagram_embed_script() {
 	$script_url    = '//www.instagram.com/embed.js';
 
 	if ( ! wp_script_is( $script_handle, 'enqueued' ) ) {
-		wp_enqueue_script( $script_handle, $script_url );
+		wp_enqueue_script( $script_handle, $script_url, [], SLIM_CHANCE_VERSION, false );
 	}
 }
 
@@ -161,73 +212,22 @@ function load_more_button( string $section_id, \WP_Query $query = null, $data_at
 		?>
 		<button
 			type="button"
-			id="<?php echo $button_id ?>"
+			id="<?php echo esc_attr( $button_id ) ?>"
 			class="button button--load-more"
-			data-query="<?php echo htmlspecialchars( wp_json_encode( $query->query_vars ), ENT_QUOTES, 'UTF-8' ); ?>"
-			data-current-page="<?php echo esc_attr( trim( $query->paged ? (int) $query->paged : 1 ) ) ?>"
-			data-max-pages="<?php echo esc_attr( trim( (int) $query->max_num_pages ?: null ) ) ?>"
-			data-offset="<?php echo esc_attr( trim( (int) $query->post_count ) ) ?>"
-			data-section-id="<?php echo $section_id ?>"
-			<?php echo $clean_atts ?>
+			data-query="<?php echo htmlspecialchars( wp_json_encode( $query->query_vars ), ENT_QUOTES, 'UTF-8' ) // phpcs:ignore ?>"
+			data-current-page="<?php echo $query->paged ? (int) $query->paged : 1 ?>"
+			data-max-pages="<?php echo (int) $query->max_num_pages ?: null ?>"
+			data-offset="<?php echo (int) $query->post_count ?>"
+			data-section-id="<?php echo esc_attr( $section_id ) ?>"
+			<?php echo $clean_atts // phpcs:ignore ?>
 		>
 			<?php
-			/* translator: 1. Screen-reader opening tag, 2. Sreen-reader closing tag */
-			printf( __( 'Load More%1$s Posts%2$s', 'slim-chance' ), '<span class="screen-reader-text">', '</span>' );
+			/* translators: 1. Screen-reader opening tag, 2. Sreen-reader closing tag */
+			printf( esc_html__( 'Load More%1$s Posts%2$s', 'slim-chance' ), '<span class="screen-reader-text">', '</span>' );
 			?>
 		</button>
 		<?php
 	endif;
-}
-
-/**
- * Like WP core's get_template_part(), but this lets you pass args to the template file
- * Args are available in the template as $template_args array.
- *
- * @param  string              $file          Filename for the template.
- * @param  string|array|object $template_args Argument list.
- * @param  string|array|object $cache_args    Arguments to cache.
- * @return mixed
- */
-function get_template_part( string $file, $template_args = [], $cache_args = [] ) {
-	$template_args = wp_parse_args( $template_args );
-	$cache_args    = wp_parse_args( $cache_args );
-	if ( $cache_args ) {
-		foreach ( $template_args as $key => $value ) {
-			if ( is_scalar( $value ) || is_array( $value ) ) {
-				$cache_args[ $key ] = $value;
-			} elseif ( is_object( $value ) && method_exists( $value, 'get_id' ) ) {
-				$cache_args[ $key ] = call_user_func( [ $value, 'get_id' ] );
-			}
-		}
-		$cache = wp_cache_get( $file, serialize( $cache_args ) ); // phpcs:ignore
-		if ( $cache !== false ) {
-			if ( ! empty( $template_args['return'] ) ) {
-				return $cache;
-			}
-			echo $cache; // phpcs:ignore
-			return;
-		}
-	}
-	$file_handle = $file;
-	do_action( 'start_operation', "slim_chance_template_part::$file_handle" );
-	if ( file_exists( SLIM_CHANCE_PATH . "{$file}.php" ) ) {
-		$file = SLIM_CHANCE_PATH . "{$file}.php";
-	} elseif ( file_exists( SLIM_CHANCE_PATH . $file ) ) {
-		$file = SLIM_CHANCE_PATH . $file;
-	} elseif ( ! file_exists( $file ) ) {
-		return;
-	}
-	ob_start();
-	$return = require $file;
-	$data   = ob_get_clean();
-	do_action( 'end_operation', "slim_chance_template_part::$file_handle" );
-	if ( $cache_args ) {
-		wp_cache_set( $file, $data, serialize( $cache_args ), 3600 ); // phpcs:ignore
-	}
-	if ( ! empty( $template_args['return'] ) ) {
-		return $return === false ? false : $data;
-	}
-	echo $data; // phpcs:ignore
 }
 
 /**
@@ -293,7 +293,7 @@ function shortcode_dd_button( $atts = [] ) {
 
 	ob_start();
 	?>
-	<a class="button" href="<?php echo $link ?>" target="_blank">
+	<a class="button" href="<?php echo $link // phpcs:ignore ?>" target="_blank">
 		<?php echo esc_html( $atts['button_text'] ) ?>
 		<span class="button__icon">
 			<?php echo get_svg( [ 'icon' => 'doordash' ] ) ?>

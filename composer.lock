@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8af9f55ffb624a3d36bbc7a32812328",
+    "content-hash": "7ee2f0a3013c8964d6bfde206379fa21",
     "packages": [
         {
             "name": "phpoption/phpoption",
@@ -252,33 +252,35 @@
         },
         {
             "name": "chancedigital/wp-coding-standards",
-            "version": "v0.2.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/chancedigital/wp-coding-standards.git",
-                "reference": "f3dd72e8a03e146cb94750ec981a3ee44004c978"
+                "reference": "9f2a28fdca38475dc84ce8e4b1dfc6e2426d904b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chancedigital/wp-coding-standards/zipball/f3dd72e8a03e146cb94750ec981a3ee44004c978",
-                "reference": "f3dd72e8a03e146cb94750ec981a3ee44004c978",
+                "url": "https://api.github.com/repos/chancedigital/wp-coding-standards/zipball/9f2a28fdca38475dc84ce8e4b1dfc6e2426d904b",
+                "reference": "9f2a28fdca38475dc84ce8e4b1dfc6e2426d904b",
                 "shasum": ""
             },
             "require": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
                 "fig-r/psr2r-sniffer": "^0.5.0",
-                "squizlabs/php_codesniffer": "^3.1",
-                "wp-coding-standards/wpcs": "^0.14.0"
+                "php": ">=7.1",
+                "squizlabs/php_codesniffer": "^3.4.2",
+                "wp-coding-standards/wpcs": "^2.1.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7"
             },
-            "type": "project",
+            "type": "phpcodesniffer-standard",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "GPL-2.0-or-later"
+                "GPL-3.0-or-later"
             ],
             "description": "Chance Digital coding standards",
-            "time": "2018-08-18T22:01:47+00:00"
+            "time": "2019-06-20T16:32:45+00:00"
         },
         {
             "name": "composer/installers",
@@ -2308,24 +2310,29 @@
         },
         {
             "name": "wp-coding-standards/wpcs",
-            "version": "0.14.1",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordPress/WordPress-Coding-Standards.git",
-                "reference": "cf6b310caad735816caef7573295f8a534374706"
+                "reference": "bd9c33152115e6741e3510ff7189605b35167908"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/cf6b310caad735816caef7573295f8a534374706",
-                "reference": "cf6b310caad735816caef7573295f8a534374706",
+                "url": "https://api.github.com/repos/WordPress/WordPress-Coding-Standards/zipball/bd9c33152115e6741e3510ff7189605b35167908",
+                "reference": "bd9c33152115e6741e3510ff7189605b35167908",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3",
-                "squizlabs/php_codesniffer": "^2.9.0 || ^3.0.2"
+                "php": ">=5.4",
+                "squizlabs/php_codesniffer": "^3.3.1"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
+                "phpcompatibility/php-compatibility": "^9.0",
+                "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0 || ^7.0"
             },
             "suggest": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3"
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0 || This Composer plugin will sort out the PHPCS 'installed_paths' automatically."
             },
             "type": "phpcodesniffer-standard",
             "notification-url": "https://packagist.org/downloads/",
@@ -2344,7 +2351,7 @@
                 "standards",
                 "wordpress"
             ],
-            "time": "2018-02-16T01:57:48+00:00"
+            "time": "2019-05-21T02:50:00+00:00"
         }
     ],
     "aliases": [],
