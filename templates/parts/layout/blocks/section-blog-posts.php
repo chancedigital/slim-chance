@@ -1,11 +1,12 @@
 <?php
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
 use function ChanceDigital\SlimChance\Template\load_more_button;
 
 $heading    = get_sub_field( 'section_heading' );
 $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 ?>
-<section class="section-blog-posts" id="<?php echo $section_id ?>">
+<section class="section-blog-posts" id="<?php echo $section_id // phpcs:ignore ?>">
 	<div class="section-blog-posts__wrapper">
 		<?php if ( $heading ) : ?>
 			<h2 class="section-blog-posts__heading"><?php echo esc_html( $heading ) ?></h2>
@@ -23,12 +24,12 @@ $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 			'terms' => get_sub_field( 'tags' ),
 		];
 		$tax_query      = [];
-		foreach ( [ $categories, $tags ] as $tax ) {
-			if ( isset( $tax['terms'] ) && ! empty( $tax['terms'] ) ) {
+		foreach ( [ $categories, $tags ] as $_tax ) {
+			if ( isset( $_tax['terms'] ) && ! empty( $_tax['terms'] ) ) {
 				$tax_query[] = [
-					'taxonomy' => $tax['tax'],
+					'taxonomy' => $_tax['tax'],
 					'field'    => 'term_id',
-					'terms'    => $tax['terms'],
+					'terms'    => $_tax['terms'],
 				];
 			}
 		}
@@ -51,7 +52,7 @@ $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 					$blog_query->the_post();
 					?>
 					<li class="section-blog-posts__list-item">
-						<?php get_template_part( 'templates/parts/layout/blocks/post-preview' ); ?>
+						<?php get_template_part( 'layout/blocks/post-preview' ); ?>
 					</li>
 				<?php endwhile; ?>
 			</ul>

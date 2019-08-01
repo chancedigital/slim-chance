@@ -1,4 +1,15 @@
-<?php $heading = get_sub_field( 'section_heading' ); ?>
+<?php
+/**
+ * Team members block.
+ *
+ * @package slim-chance
+ */
+
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
+$heading = get_sub_field( 'section_heading' );
+?>
+
 <section class="section-team-members" id="<?php echo esc_attr( get_sub_field( 'section_id' ) ?: uniqid() ) ?>">
 	<div class="section-team-members__wrapper">
 		<?php if ( $heading ) : ?>
@@ -20,7 +31,7 @@
 						$team_query->the_post();
 						?>
 						<li class="section-team-members__list-item">
-							<?php get_template_part( 'templates/parts/layout/blocks/post', 'team-member' ) ?>
+							<?php get_template_part( 'layout/blocks/post-team-member' ) ?>
 						</li>
 						<?php
 					endwhile;
@@ -39,7 +50,7 @@
 						setup_postdata( $post );
 						?>
 						<li class="section-team-members__list-item">
-							<?php get_template_part( 'templates/parts/layout/blocks/post', 'team-member' ) ?>
+							<?php get_template_part( 'layout/blocks/post-team-member' ) ?>
 						</li>
 						<?php
 						endforeach;

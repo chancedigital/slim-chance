@@ -7,6 +7,7 @@
 
 namespace ChanceDigital\SlimChance\Ajax;
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
 use function ChanceDigital\SlimChance\Util\is_whole_number;
 
 add_action( 'wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
@@ -88,11 +89,11 @@ function load_more_posts() {
 				$el        = $wrapper['element'];
 				$class_att = isset( $wrapper['className'] ) ? ' class="' . esc_attr( $wrapper['className'] ) . '"' : '';
 				echo "\n<{$el}{$class_att}>\n\t";
-				get_template_part( 'templates/parts/layout/blocks/post-preview' );
+				get_template_part( 'layout/blocks/post-preview' );
 				echo "\n</{$el}>";
 			} else {
 				echo "\n";
-				get_template_part( 'templates/parts/layout/blocks/post-preview' );
+				get_template_part( 'layout/blocks/post-preview' );
 			}
 		}
 		$out = ob_get_contents();

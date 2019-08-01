@@ -1,5 +1,6 @@
 <?php
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
 use function ChanceDigital\SlimChance\Template\kses_post;
 
 $bg_img = get_field( 'header_background_image' );
@@ -11,16 +12,16 @@ if ( ! $bg_img && is_single() ) {
 <div class="page-header">
 	<div class="page-header__wrapper">
 		<?php if ( is_singular( 'location' ) ) : ?>
-			<?php get_template_part( 'templates/parts/templates/single-location/location-hours' ) ?>
+			<?php get_template_part( 'templates/single-location/location-hours' ) ?>
 		<?php endif; ?>
 
 		<div class="page-header__content-wrapper">
 			<h1 class="page-header__heading">
 				<?php
-				echo is_archive()
+				echo esc_html( is_archive()
 					? get_the_archive_title()
-					: get_field( 'alternate_page_title' )
-						?: get_the_title();
+					: get_field( 'alternate_page_title' ) ?: get_the_title()
+				);
 				?>
 			</h1>
 			<div class="page-header__body">
@@ -32,12 +33,15 @@ if ( ! $bg_img && is_single() ) {
 				<?php echo kses_post( get_field( 'header_paragraph' ) ) ?>
 
 				<?php if ( is_singular( 'location' ) ) : ?>
-					<?php get_template_part( 'templates/parts/templates/single-location/location-contact' ) ?>
+					<?php get_template_part( 'templates/single-location/location-contact' ) ?>
 				<?php endif; ?>
 
 				<?php if ( is_singular( 'post' ) ) : ?>
 					<span class="page-header__meta">
-						<?php printf( __( 'Published on %s', 'slim-chance' ), get_the_date( 'F j, Y' ) ); ?>
+						<?php
+						/* translators: publish date */
+						printf( esc_html__( 'Published on %s', 'slim-chance' ), get_the_date( 'F j, Y' ) );
+						?>
 					</span>
 				<?php endif; ?>
 
@@ -45,7 +49,7 @@ if ( ! $bg_img && is_single() ) {
 		</div>
 
 		<?php if ( get_page_template_slug() === 'templates/page-feedback.php' ) : ?>
-			<?php get_template_part( 'templates/parts/templates/page-feedback/question-blocks' ) ?>
+			<?php get_template_part( 'templates/page-feedback/question-blocks' ) ?>
 		<?php endif; ?>
 
 	</div>

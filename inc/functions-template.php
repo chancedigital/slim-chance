@@ -121,10 +121,20 @@ function get_template_part( string $file, $template_args = [], $cache_args = [] 
 	}
 	$file_handle = $file;
 	do_action( 'start_operation', "slim_chance_template_part::$file_handle" );
-	if ( file_exists( SLIM_CHANCE_PATH . "{$file}.php" ) ) {
+
+	// First check in templates/parts.
+	if ( file_exists( SLIM_CHANCE_PATH . "templates/parts/{$file}.php" ) ) {
+		$file = SLIM_CHANCE_PATH . "templates/parts/{$file}.php";
+	} elseif ( file_exists( SLIM_CHANCE_PATH . "templates/parts/{$file}" ) ) {
+		$file = SLIM_CHANCE_PATH . "templates/parts/{$file}";
+
+		// Next check in the root path
+	} elseif ( file_exists( SLIM_CHANCE_PATH . "{$file}.php" ) ) {
 		$file = SLIM_CHANCE_PATH . "{$file}.php";
 	} elseif ( file_exists( SLIM_CHANCE_PATH . $file ) ) {
 		$file = SLIM_CHANCE_PATH . $file;
+
+		// If nothing is found, bail.
 	} elseif ( ! file_exists( $file ) ) {
 		return;
 	}
@@ -273,7 +283,7 @@ function get_flex_content() {
 	if ( function_exists( 'have_rows' ) && have_rows( 'page_layout' ) ) {
 		while ( have_rows( 'page_layout' ) ) {
 			the_row();
-			get_template_part( 'templates/parts/layout/blocks/section-' . str_replace( '_', '-', get_row_layout() ) );
+			get_template_part( 'layout/blocks/section-' . str_replace( '_', '-', get_row_layout() ) );
 		}
 	}
 }

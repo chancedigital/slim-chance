@@ -1,4 +1,14 @@
-<?php use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem; ?>
+<?php
+/**
+ * Site masthead.
+ *
+ * @package slim-chance
+ */
+
+use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem;
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
+?>
 
 <header class="masthead" id="js-masthead">
 	<div class="masthead__wrapper">
@@ -32,7 +42,7 @@
 			?>
 		</div>
 		<button id="js-masthead-menu-toggle" class="masthead__hamburger" type="button">
-			<?php get_template_part( 'templates/parts/components/hamburger' ); ?>
+			<?php get_template_part( 'components/hamburger' ); ?>
 		</button>
 	</div>
 </header>

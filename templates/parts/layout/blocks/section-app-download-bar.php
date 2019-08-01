@@ -1,4 +1,7 @@
 <?php
+
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
 $bg_image        = get_sub_field( 'background_image' );
 $heading         = get_sub_field( 'heading' );
 $content         = get_sub_field( 'content' );
@@ -27,7 +30,7 @@ if ( $show_app_screen && $app_screen ) {
 					<?php echo do_shortcode( wp_kses_post( $content ) ) ?>
 				</div>
 			<?php endif; ?>
-			<?php get_template_part( 'templates/parts/components/app-dl-buttons' ); ?>
+			<?php get_template_part( 'components/app-dl-buttons' ); ?>
 		</div>
 
 		<?php if ( $show_app_screen && $app_screen ) : ?>

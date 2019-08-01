@@ -3,6 +3,8 @@
  * Template Name: Customer Feedback
  */
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
 get_header();
 ?>
 
@@ -10,7 +12,7 @@ get_header();
 
 	<main id="main" class="page-feedback__main">
 
-		<?php get_template_part( 'templates/parts/layout/header/page-header' ); ?>
+		<?php get_template_part( 'layout/header/page-header' ); ?>
 
 		<section class="page-feedback__content-wrapper">
 			<div class="page-feedback__app-wrapper">
@@ -18,7 +20,7 @@ get_header();
 			</div>
 		</section>
 
-		<?php get_template_part( 'templates/parts/layout/section', 'sign-up' ); ?>
+		<?php get_template_part( 'layout/section-sign-up' ); ?>
 
 	</main>
 

@@ -5,6 +5,8 @@
  * @package slim-chance
  */
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
 ?>
 
 <!DOCTYPE html>
@@ -22,5 +24,5 @@
 <?php wp_body_open(); ?>
 
 <div id="js-site-wrapper" class="site-wrapper">
-	<?php get_template_part( 'templates/parts/layout/header/masthead' ); ?>
+	<?php get_template_part( 'layout/header/masthead' ); ?>
 	<div id="primary-content-area" class="content-area">

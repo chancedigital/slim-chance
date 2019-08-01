@@ -5,6 +5,8 @@
  * @package slim-chance
  */
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
 get_header();
 ?>
 
@@ -12,7 +14,7 @@ get_header();
 
 	<main id="main" class="page-single-job__main">
 
-		<?php get_template_part( 'templates/parts/layout/header/page-header' ); ?>
+		<?php get_template_part( 'layout/header/page-header' ); ?>
 
 		<div class="page-single-job__content-wrapper">
 			<div class="page-single-job__content-inner">
@@ -24,7 +26,7 @@ get_header();
 			</div>
 		</div>
 
-		<?php get_template_part( 'templates/parts/layout/section', 'sign-up' ); ?>
+		<?php get_template_part( 'layout/section-sign-up' ); ?>
 
 	</main>
 

@@ -3,6 +3,8 @@
  * Template Name: Homepage
  */
 
+use function ChanceDigital\SlimChance\Template\get_template_part;
+
 get_header();
 ?>
 
@@ -10,9 +12,9 @@ get_header();
 
 	<main id="main" class="page-home__main">
 
-		<?php get_template_part( 'templates/parts/templates/page-home/section', 'hero' ); ?>
-		<?php get_template_part( 'templates/parts/layout/blocks/section', 'image-blocks' ); ?>
-		<?php get_template_part( 'templates/parts/layout/section', 'sign-up' ); ?>
+		<?php get_template_part( 'templates/page-home/section-hero' ); ?>
+		<?php get_template_part( 'layout/blocks/section-image-blocks' ); ?>
+		<?php get_template_part( 'layout/section-sign-up' ); ?>
 
 	</main>
 

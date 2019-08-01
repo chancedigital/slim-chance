@@ -3,6 +3,8 @@
  * Template Name: Location Finder
  */
 
+// phpcs:disable WordPress.Security
+
 use function ChanceDigital\SlimChance\Template\get_flex_content;
 use function ChanceDigital\SlimChance\Template\get_template_part;
 use function ChanceDigital\SlimChance\Util\haversine_great_circle_distance;
@@ -13,7 +15,7 @@ get_header();
 
 <div class="page-wrapper page-location-finder">
 
-	<?php get_template_part( 'templates/parts/layout/header/page-header' ); ?>
+	<?php get_template_part( 'layout/header/page-header' ); ?>
 
 	<div class="page-location-finder__content-wrapper">
 
@@ -63,7 +65,8 @@ get_header();
 						}
 					);
 				} catch ( \Exception $e ) {
-					error_log( $e );
+					// TODO: Error handling
+					error_log( $e ); // phpcs:ignore
 				}
 			} else {
 				$locations = array_map(
@@ -82,11 +85,11 @@ get_header();
 				$dist   = isset( $location['distance'] ) ? meters_to_miles( $location['distance'] ) : null;
 				$loc_id = isset( $location['post'] ) ? $location['post']->ID : null;
 				if ( $loc_id ) {
-					$post = $loc_id;
+					$post = $loc_id; // phpcs:ignore
 					setup_postdata( $post );
 					echo '<li class="page-location-finder__location">';
-					echo '<a class="page-location-finder__location-link" href="' . get_permalink() . '" rel="bookmark">';
-					get_template_part( 'templates/parts/components/location-card', [ 'distance' => $dist ] );
+					echo '<a class="page-location-finder__location-link" href="' . esc_url( get_permalink() ) . '" rel="bookmark">';
+					get_template_part( 'components/location-card', [ 'distance' => $dist ] );
 					echo '</a></li>';
 				}
 				wp_reset_postdata();
@@ -97,13 +100,13 @@ get_header();
 		</main>
 
 		<aside id="aside" class="page-location-finder__sidebar">
-			<?php get_template_part( 'templates/parts/components/location-search-form' ) ?>
+			<?php get_template_part( 'components/location-search-form' ) ?>
 		</aside>
 	</div>
 
 	<?php
 	get_flex_content();
-	get_template_part( 'templates/parts/layout/section-sign-up' );
+	get_template_part( 'layout/section-sign-up' );
 	?>
 
 
