@@ -3,7 +3,7 @@
  * Template Name: Homepage
  */
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
 
 get_header();
 ?>

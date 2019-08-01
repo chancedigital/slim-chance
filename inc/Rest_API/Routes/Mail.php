@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Rest_API\Routes;
+namespace ChanceDigital\Slim_Chance\Rest_API\Routes;
 
 if ( ! defined( 'WPINC' ) ) {
 	exit;

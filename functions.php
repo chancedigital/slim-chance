@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance;
+namespace ChanceDigital\Slim_Chance;
 
 // Constants
 require_once __DIR__ . '/inc/constants.php';

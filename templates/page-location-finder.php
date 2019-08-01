@@ -5,10 +5,10 @@
 
 // phpcs:disable WordPress.Security
 
-use function ChanceDigital\SlimChance\Template\get_flex_content;
-use function ChanceDigital\SlimChance\Template\get_template_part;
-use function ChanceDigital\SlimChance\Util\haversine_great_circle_distance;
-use function ChanceDigital\SlimChance\Util\meters_to_miles;
+use function ChanceDigital\Slim_Chance\Template\get_flex_content;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Util\haversine_great_circle_distance;
+use function ChanceDigital\Slim_Chance\Util\meters_to_miles;
 
 get_header();
 ?>

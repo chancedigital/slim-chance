@@ -1,7 +1,7 @@
 <?php
 
-use function ChanceDigital\SlimChance\Icons\get_svg;
-use function ChanceDigital\SlimChance\Template\get_address_from_location_post;
+use function ChanceDigital\Slim_Chance\Icons\get_svg;
+use function ChanceDigital\Slim_Chance\Template\get_address_from_location_post;
 
 $phone        = get_field( 'phone' );
 $map_url      = get_field( 'map_link' );

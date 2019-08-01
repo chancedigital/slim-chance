@@ -19,4 +19,4 @@ define( 'SLIM_CHANCE_PATH', trailingslashit( get_template_directory() ) );
 define( 'SLIM_CHANCE_INC', SLIM_CHANCE_PATH . 'inc/' );
 define( 'SLIM_CHANCE_IMG_PATH', SLIM_CHANCE_PATH . 'dist/img/' );
 define( 'SLIM_CHANCE_IMG_URL', SLIM_CHANCE_TEMPLATE_URL . '/dist/img' );
-define( 'SLIM_CHANCE_NAMESPACE', 'ChanceDigital\\SlimChance' );
+define( 'SLIM_CHANCE_NAMESPACE', 'ChanceDigital\\Slim_Chance' );

@@ -1,7 +1,7 @@
 <?php
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
-use function ChanceDigital\SlimChance\Template\load_more_button;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\load_more_button;
 
 $heading    = get_sub_field( 'section_heading' );
 $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );

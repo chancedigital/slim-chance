@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Util;
+namespace ChanceDigital\Slim_Chance\Util;
 
 /**
  * Checks if an array is multidimensional.

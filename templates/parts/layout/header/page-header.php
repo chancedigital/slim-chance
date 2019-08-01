@@ -1,7 +1,7 @@
 <?php
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
-use function ChanceDigital\SlimChance\Template\kses_post;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\kses_post;
 
 $bg_img = get_field( 'header_background_image' );
 if ( ! $bg_img && is_single() ) {

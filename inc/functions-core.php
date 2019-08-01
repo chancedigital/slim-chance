@@ -5,10 +5,10 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Core;
+namespace ChanceDigital\Slim_Chance\Core;
 
-use function ChanceDigital\SlimChance\Util\get_asset_url;
-use function ChanceDigital\SlimChance\Util\get_asset_version;
+use function ChanceDigital\Slim_Chance\Util\get_asset_url;
+use function ChanceDigital\Slim_Chance\Util\get_asset_version;
 
 /**
  * Set up theme defaults and register supported WordPress features.

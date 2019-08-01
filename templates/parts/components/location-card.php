@@ -1,6 +1,6 @@
 <?php
 
-use function ChanceDigital\SlimChance\Template\get_address_from_location_post;
+use function ChanceDigital\Slim_Chance\Template\get_address_from_location_post;
 
 global $post;
 

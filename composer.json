@@ -22,7 +22,7 @@
   },
   "autoload": {
     "psr-4": {
-      "ChanceDigital\\SlimChance\\": "inc"
+      "ChanceDigital\\Slim_Chance\\": "inc"
     }
   },
   "config": {

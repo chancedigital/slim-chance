@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Cleanup;
+namespace ChanceDigital\Slim_Chance\Cleanup;
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\start_cleanup' );
 

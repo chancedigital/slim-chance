@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Nav;
+namespace ChanceDigital\Slim_Chance\Nav;
 
 if ( ! defined( 'WPINC' ) ) {
 	exit;

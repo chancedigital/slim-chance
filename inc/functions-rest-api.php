@@ -5,9 +5,9 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Rest_Api;
+namespace ChanceDigital\Slim_Chance\Rest_API;
 
-use ChanceDigital\SlimChance\Rest_Api\Routes\Mail;
+use ChanceDigital\Slim_Chance\Rest_API\Routes\Mail;
 
 add_action( 'rest_api_init', __NAMESPACE__ . '\\register_routes', 10, 0 );
 add_filter(

@@ -1,7 +1,7 @@
 <?php
 
-use function ChanceDigital\SlimChance\Template\enqueue_instagram_embed_script;
-use function ChanceDigital\SlimChance\Template\instagram_embed;
+use function ChanceDigital\Slim_Chance\Template\enqueue_instagram_embed_script;
+use function ChanceDigital\Slim_Chance\Template\instagram_embed;
 
 $heading = get_sub_field( 'section_heading' );
 $links   = get_sub_field( 'instagram_links' );

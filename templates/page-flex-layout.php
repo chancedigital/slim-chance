@@ -3,8 +3,8 @@
  * Template Name: Flex Layout
  */
 
-use function ChanceDigital\SlimChance\Template\get_flex_content;
-use function ChanceDigital\SlimChance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\get_flex_content;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
 
 get_header();
 ?>

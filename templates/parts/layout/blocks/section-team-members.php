@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
 
 $heading = get_sub_field( 'section_heading' );
 ?>

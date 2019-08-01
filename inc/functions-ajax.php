@@ -5,10 +5,10 @@
  * @package pyapc
  */
 
-namespace ChanceDigital\SlimChance\Ajax;
+namespace ChanceDigital\Slim_Chance\Ajax;
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
-use function ChanceDigital\SlimChance\Util\is_whole_number;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Util\is_whole_number;
 
 add_action( 'wp_ajax_nopriv_load_more_posts', __NAMESPACE__ . '\\load_more_posts' );
 add_action( 'wp_ajax_load_more_posts',        __NAMESPACE__ . '\\load_more_posts' );

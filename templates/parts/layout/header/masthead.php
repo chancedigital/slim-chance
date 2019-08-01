@@ -5,8 +5,8 @@
  * @package slim-chance
  */
 
-use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem;
-use function ChanceDigital\SlimChance\Template\get_template_part;
+use ChanceDigital\Slim_Chance\Nav\Walker_Nav_Menu_Bem;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
 
 ?>
 

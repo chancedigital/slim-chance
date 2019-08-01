@@ -5,7 +5,7 @@
  * @package slim-chance
  */
 
-use ChanceDigital\SlimChance\Nav\Walker_Nav_Menu_Bem;
+use ChanceDigital\Slim_Chance\Nav\Walker_Nav_Menu_Bem;
 
 ?>
 

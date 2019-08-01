@@ -1,6 +1,6 @@
 <?php
 
-use function ChanceDigital\SlimChance\Template\get_template_part;
+use function ChanceDigital\Slim_Chance\Template\get_template_part;
 
 $bg_image        = get_sub_field( 'background_image' );
 $heading         = get_sub_field( 'heading' );

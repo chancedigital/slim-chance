@@ -5,10 +5,10 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Template;
+namespace ChanceDigital\Slim_Chance\Template;
 
-use function ChanceDigital\SlimChance\Icons\get_svg;
-use function ChanceDigital\SlimChance\Util\convert_state_name;
+use function ChanceDigital\Slim_Chance\Icons\get_svg;
+use function ChanceDigital\Slim_Chance\Util\convert_state_name;
 
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_options_page', 10, 0 );
 add_filter( 'body_class',        __NAMESPACE__ . '\\body_classes' );

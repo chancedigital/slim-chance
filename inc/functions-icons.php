@@ -6,7 +6,7 @@
  * @package slim-chance
  */
 
-namespace ChanceDigital\SlimChance\Icons;
+namespace ChanceDigital\Slim_Chance\Icons;
 
 add_action( 'wp_footer',                                __NAMESPACE__ . '\\include_svg_icons', 9999 );
 add_filter( 'walker_nav_menu_start_el',                 __NAMESPACE__ . '\\nav_menu_social_icons', 10, 4 );
