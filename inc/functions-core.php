@@ -26,7 +26,6 @@ function setup() {
 	add_action( 'wp_enqueue_scripts',        $n( 'scripts' ) );
 	add_action( 'wp_enqueue_scripts',        $n( 'styles' ) );
 	add_action( 'widgets_init',              $n( 'widgets' ) );
-	add_filter( 'acf/update_value',          $n( 'acf_on_update' ), 10, 3 );
 	add_filter( 'acf/fields/google_map/api', $n( 'acf_map_api' ), 10, 1 );
 	add_filter( 'script_loader_tag',         $n( 'script_loader_tag' ), 10, 2 );
 }
