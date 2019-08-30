@@ -93,7 +93,7 @@ const config = {
 			},
 			{
 				test: /\.js$/,
-				exclude: [ '/node_modules/' ],
+				exclude: [ /@babel(?:\/|\\{1,2})runtime|core-js/ ],
 				include: assets,
 				use: [
 					{

@@ -13,12 +13,19 @@
 	}
 
 	&__list {
-		display: grid;
-		grid-template: auto / auto;
-		gap: $global-grid-gap;
-		margin: 0;
+		max-width: rem( 500 );
+		margin: 0 auto;
 		padding: 0;
 		list-style: none;
+
+		/* autoprefixer: ignore next */
+		@supports ( display: grid ) {
+			display: grid;
+			grid-template: auto / 1fr;
+			gap: $global-grid-gap;
+			max-width: none;
+			margin: 0;
+		}
 
 		@include breakpoint( medium ) {
 			grid-template: auto / repeat( 2, 1fr );
@@ -32,26 +39,32 @@
 
 	&__list-item {
 		display: flex;
-		flex-direction: column;
 		position: relative;
+		flex-direction: column;
+		margin-bottom: $global-grid-gap;
 		list-style-type: none;
 		box-shadow: $global-box-shadow;
 
 		> * {
-			flex: 0 1 100%;
 			z-index: 1;
+			flex: 0 1 100%;
+		}
+
+		/* autoprefixer: ignore next */
+		@supports ( display: grid ) {
+			margin-bottom: 0;
 		}
 	}
 
 	&__load-more-wrapper {
 		display: flex;
-		justify-content: center;
-		align-items: center;
 		z-index: 1;
+		align-items: center;
+		justify-content: center;
 
 		> * {
-			margin: $global-grid-gap 0 0;
 			width: 100%;
+			margin: $global-grid-gap 0 0;
 
 			@include breakpoint( large ) {
 				margin: ( $global-grid-gap * 2 ) 0 0;

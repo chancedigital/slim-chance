@@ -1,12 +1,24 @@
 .question-blocks {
 	display: grid;
-	grid-template: auto / auto;
+	grid-template:
+		"col1" auto
+		"col2" auto
+		"col3" auto
+		"col4" auto / 1fr;
 	gap: $global-grid-gap;
 	transform: translateY( $global-grid-gap );
 
 	@include breakpoint( medium ) {
-		grid-template: auto / 1fr 1fr;
+		grid-template:
+			"col1 col2" auto
+			"col3 col4" auto / 1fr 1fr;
 		transform: translateY( rem( 55 ) );
+	}
+
+	@for $i from 1 through 4 {
+		> :nth-child( #{ $i } ) {
+			grid-area: col#{ $i };
+		}
 	}
 
 	&__block-wrapper {
@@ -29,5 +41,6 @@
 	}
 
 	&__inner {
+		//
 	}
 }

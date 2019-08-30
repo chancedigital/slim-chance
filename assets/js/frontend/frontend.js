@@ -1,6 +1,6 @@
 import 'what-input';
-import Router from './lib/class-router';
 import polyfills from './lib/polyfills';
+import Router from './lib/class-router';
 
 // Import route for each page.
 import common from './routes/common';

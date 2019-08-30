@@ -21,29 +21,33 @@
 
 		@include breakpoint( medium ) {
 			display: grid;
-			grid-template-columns: $text-col-size $img-col-size;
+			grid-template: "text img" auto / $text-col-size $img-col-size;
 			justify-content: start;
 			min-height: rem( 380 );
 
-			&:nth-child( odd ) {
-				justify-content: end;
-			}
-
 			&:nth-child( 4n + 2 ) {
-				grid-template-columns: $img-col-size-smaller $text-col-size;
+				grid-template: "img text" auto / $img-col-size-smaller $text-col-size;
 			}
 
 			&:nth-child( 4n + 3 ) {
-				grid-template-columns: $text-col-size $img-col-size-smaller;
+				grid-template: "text img" auto / $text-col-size $img-col-size-smaller;
 			}
 
 			&:only-child {
-				grid-template-columns: $img-col-size-smaller $text-col-size;
+				grid-template: "img text" auto / $img-col-size-smaller $text-col-size;
 				justify-content: center;
 
 				.image-blocks__image {
 					max-width: none;
 				}
+
+				> * {
+					// justify-self: center;
+				}
+			}
+
+			&:nth-child( odd ) {
+				justify-content: end;
 			}
 		}
 	}
@@ -52,9 +56,7 @@
 		overflow: hidden;
 		@include breakpoint( medium ) {
 			position: relative;
-			#{$self}__block:nth-child( odd ):not(:only-child) & {
-				order: 2;
-			}
+			grid-area: img;
 		}
 	}
 
@@ -85,6 +87,7 @@
 		box-shadow: $shadow;
 
 		@include breakpoint( medium ) {
+			grid-area: text;
 			padding: rem( 58 );
 		}
 	}

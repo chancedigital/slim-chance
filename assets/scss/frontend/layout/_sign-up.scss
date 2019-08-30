@@ -16,10 +16,13 @@
 
 	&__wrapper {
 		@include make-container;
+	}
+
+	&__info {
+		max-width: rem( 406 );
+		margin: 0 auto;
 		@include breakpoint( medium ) {
-			display: grid;
-			grid-template: auto / rem( 406 );
-			justify-content: end;
+			margin: 0 0 0 auto;
 		}
 	}
 

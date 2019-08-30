@@ -31,11 +31,13 @@
 		position: relative;
 		grid-template: auto / minmax( auto, rem( 450 ) );
 		gap: $global-grid-gap;
-		justify-content: center;
 		@include breakpoint( medium ) {
 			display: grid;
 			grid-template: auto / minmax( rem( 380 ), 50% ) auto;
-			justify-content: end;
+		}
+
+		@include breakpoint( small down ) {
+			justify-content: center;
 		}
 	}
 

@@ -4,12 +4,12 @@
 	z-index: 2;
 	top: 0;
 	width: 100%;
-	padding: rem(8) 0;
+	padding: rem( 8 ) 0;
 	transition: 0.2s all ease-in-out;
 
 	@include breakpoint( medium ) {
 		position: fixed;
-		padding: rem(22) 0;
+		padding: rem( 22 ) 0;
 	}
 
 	body.admin-bar & {
@@ -25,17 +25,10 @@
 		box-shadow: 0 3px 15px 0 rgba( 74, 74, 74, 0.125 );
 	}
 
-	&__logo-wrapper {
-		a {
-			display: block;
-			max-height: rem( 86 );
-		}
-	}
-
 	&__wrapper {
 		@include make-container;
 		display: grid;
-		grid-template-columns: rem( 86 ) auto;
+		grid-template: "logo nav" auto / rem( 86 ) 1fr;
 		gap: rem( $global-grid-gap );
 		align-items: center;
 
@@ -44,7 +37,20 @@
 		}
 	}
 
+	&__logo-wrapper {
+		grid-area: logo;
+
+		a,
+		img {
+			display: block;
+			width: rem( 86 );
+			height: rem( 86 );
+		}
+	}
+
 	&__hamburger {
+		grid-area: nav;
+		justify-self: end;
 		padding: 0;
 		transition: 0.3s transform ease-in;
 		border: 0;
@@ -69,6 +75,8 @@
 	}
 
 	&__nav-wrapper {
+		grid-area: nav;
+
 		@include breakpoint( small down ) {
 			position: fixed;
 			z-index: 10;
@@ -77,7 +85,7 @@
 			width: rem( 180 );
 			height: calc( 100% - #{$global-grid-gap * 2} );
 			padding: rem( $global-grid-gap );
-			transition: 0.3s transform ease-in,  0.3s box-shadow ease-in;
+			transition: 0.3s transform ease-in, 0.3s box-shadow ease-in;
 			background: $white;
 			box-shadow: none;
 

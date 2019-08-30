@@ -4,11 +4,13 @@
 	&__wrapper {
 		@include make-container;
 		display: grid;
-		grid-template: auto / auto;
+		grid-template:
+			"words" auto
+			"pizza" auto / 1fr;
 		align-items: center;
 
 		@include breakpoint( medium ) {
-			grid-template: auto / auto minmax( 40%, #{rem( 380 )} );
+			grid-template: "pizza words" auto / auto minmax( 40%, #{rem( 380 )} );
 			margin-top: rem( 200 );
 			margin-bottom: rem( 200 );
 		}
@@ -20,7 +22,8 @@
 	}
 
 	&__image {
-		transform: scale( 1.5 );
+		width: 100%;
+		transform: scale( 1.25 );
 		transform-origin: right center;
 
 		@include breakpoint( medium ) {
@@ -41,14 +44,16 @@
 	}
 
 	&__image-wrapper {
+		grid-area: pizza;
+
 		@include breakpoint( small down ) {
-			order: 2;
 			margin-top: 5%;
 			transform: rotate( 270deg );
 		}
 	}
 
 	&__content {
+		grid-area: words;
 		max-width: rem( 300 );
 		margin-right: auto;
 		margin-left: auto;
