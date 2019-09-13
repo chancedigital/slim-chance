@@ -38,7 +38,8 @@ use ChanceDigital\Slim_Chance\Nav\Walker_Nav_Menu_Bem;
 		);
 		?>
 		<nav class="site-footer__copyright" aria-label="<?php esc_attr_e( 'Additional Information', 'slim-chance' ) ?>">
-			<a href="/privacy-policy/"><?php esc_html_e( 'Privacy Policy', 'slim-chance' ) ?></a>.
+			<a href="/privacy-policy/"><?php esc_html_e( 'Privacy Policy', 'slim-chance' ) ?></a> |
+			<a href="/refund-policy/"><?php esc_html_e( 'Refund Policy', 'slim-chance' ) ?></a> |
 			<?php
 			echo esc_html( sprintf(
 				/* translators: 1. Copyright symbol; 2. Current year */
