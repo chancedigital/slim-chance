@@ -37,7 +37,12 @@ svg {
 hr {
 	height: 2px;
 	margin-top: rem( $global-grid-gap );
-    margin-bottom: rem( $global-grid-gap );
+	margin-bottom: rem( $global-grid-gap );
 	border: 0;
 	background-color: $color-primary;
+}
+
+b,
+strong {
+	font-weight: $font-bold;
 }
