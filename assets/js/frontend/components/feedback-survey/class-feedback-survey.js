@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { startCase, snakeCase, get, isNil } from 'lodash';
-import NavButton from './components/nav-button';
+import FeedbackNav from './components/feedback-nav';
 import FeedbackForm from './components/feedback-form';
 import FeedbackDefault from './components/feedback-default';
-import fetch from 'isomorphic-unfetch';
 import getQuestions from './data/questions';
 import {
 	formFields,
@@ -12,7 +11,8 @@ import {
 	validateField,
 } from './data/form-fields';
 import { sortLocations, mapLocations } from './utils';
-import { WP_API_BASE_URL, DEV } from '../../lib/constants';
+import { DEV } from '../../lib/constants';
+import WP_API from './class-wp-api';
 
 /**
  * @typedef {object} MouseEvent
@@ -135,8 +135,7 @@ class FeedbackSurvey extends Component {
 	fetchLocations = async () => {
 		this.setState( { loading: true } );
 		try {
-			const res = await fetch( `${ WP_API_BASE_URL }/wp/v2/location` );
-			const posts = await res.json();
+			const posts = await WP_API.fetchLocations();
 			const locations = posts.map( mapLocations ).sort( sortLocations );
 			this.setState( { locations, loading: false } );
 		} catch ( err ) {
@@ -204,11 +203,7 @@ class FeedbackSurvey extends Component {
 		// headers.append( 'X-WP-Nonce', window.wpApiSettings.nonce );
 		const { queryString, ...params } = this.getMailParams();
 		try {
-			const res = await fetch(
-				`${ WP_API_BASE_URL }/mail/v1/send?${ queryString }`,
-				{ method: 'POST' },
-			);
-			const response = await res.json();
+			const response = await WP_API.mailSubmit( queryString );
 
 			// eslint-disable-next-line no-console
 			DEV && console.log( { params, response } );
@@ -436,6 +431,7 @@ class FeedbackSurvey extends Component {
 				// as `skipIf` for that question doesn't evaluate to true
 				return q.id > currentQuestionId && q.skipIf !== true;
 			}
+			return null;
 		} );
 		return isNil( nextQuestion ) ? null : nextQuestion;
 	};
@@ -488,6 +484,7 @@ class FeedbackSurvey extends Component {
 	 */
 	componentDidCatch( error, info ) {
 		console.error( error, info );
+		this.setState( { fetchError: true } );
 	}
 
 	/**
@@ -547,29 +544,14 @@ class FeedbackSurvey extends Component {
 						question={ currentQuestion }
 					/>
 				) }
-				<nav className="feedback-survey__nav-wrapper">
-					{ previousQuestion && (
-						<NavButton
-							buttonText="Go Back"
-							className="feedback-survey__nav-button feedback-survey__nav-button--prev"
-							handleNav={ this.handleGoBack }
-						/>
-					) }
-					{ nextQuestion ? (
-						<NavButton
-							buttonText="Next"
-							className="feedback-survey__nav-button feedback-survey__nav-button--next"
-							handleNav={ this.handleAdvance }
-						/>
-					) : (
-						<NavButton
-							buttonText="Submit"
-							className="feedback-survey__nav-button feedback-survey__nav-button--submit"
-							onClick={ this.handleSubmit }
-							disabled={ submitted }
-						/>
-					) }
-				</nav>
+				<FeedbackNav
+					previousQuestion={ previousQuestion }
+					nextQuestion={ nextQuestion }
+					handleGoBack={ this.handleGoBack }
+					handleAdvance={ this.handleAdvance }
+					handleSubmit={ this.handleSubmit }
+					submitted={ submitted }
+				/>
 			</div>
 		);
 	}

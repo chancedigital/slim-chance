@@ -1,3 +1,4 @@
+import sass from '@chancestrickland/gulp-sass';
 import cssnano from 'cssnano';
 import gulp from 'gulp';
 import notify from 'gulp-notify';
@@ -5,7 +6,6 @@ import postcss from 'gulp-postcss';
 import tildeImporter from 'node-sass-tilde-importer';
 import postcssPresetEnv from 'postcss-preset-env';
 import rename from 'gulp-rename';
-import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import pump from 'pump';
 import { scssFiles, assets, dist, isProd, successMessage } from '../index';

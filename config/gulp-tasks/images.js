@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import cache from 'gulp-cache';
 import imagemin from 'gulp-imagemin';
 import notify from 'gulp-notify';
+import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import { assets, dist, successMessage } from '../index';
 
 const task = 'images';
@@ -12,8 +13,8 @@ gulp.task( task, () => {
 		.pipe(
 			cache(
 				imagemin( [
+					imageminJpegRecompress( { accurate: true, quality: 'high' } ),
 					imagemin.gifsicle( { interlaced: true } ),
-					imagemin.jpegtran( { progressive: true } ),
 					imagemin.optipng( { optimizationLevel: 5 } ), // 0-7 low-high.
 					imagemin.svgo( {
 						plugins: [ { removeViewBox: false }, { cleanupIDs: true } ],
