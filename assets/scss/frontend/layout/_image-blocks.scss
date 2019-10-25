@@ -33,8 +33,12 @@
 				grid-template: "text img" auto / $text-col-size $img-col-size-smaller;
 			}
 
+			&:nth-child( 4n + 4 ) {
+				justify-content: center;
+			}
+
 			&:only-child {
-				grid-template: "img text" auto / $img-col-size-smaller $text-col-size;
+				grid-template: "img text" auto / $img-col-size $text-col-size;
 				justify-content: center;
 
 				.image-blocks__image {
@@ -64,10 +68,8 @@
 		display: block;
 		@include breakpoint(medium) {
 			position: absolute;
-			object-fit: cover;
 			top: 50%;
-			width: 100%;
-			max-width: rem( 700 );
+			width: auto;
 			height: 100%;
 			transform: translateY( -50% );
 
@@ -77,6 +79,15 @@
 
 			#{$self}__block:nth-child( even ) & {
 				right: 0;
+			}
+
+			@supports ( object-fit: cover ) {
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				transform: none;
 			}
 		}
 	}
