@@ -34,6 +34,7 @@
 			}
 
 			&:nth-child( 4n + 4 ) {
+				grid-template: "img text" auto / $img-col-size-smaller $text-col-size;
 				justify-content: center;
 			}
 
