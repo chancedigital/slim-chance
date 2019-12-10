@@ -30,10 +30,14 @@
 		display: grid;
 		grid-template: "logo nav" auto / rem( 86 ) 1fr;
 		gap: rem( $global-grid-gap );
-		align-items: center;
 
 		@include breakpoint( small down ) {
+			/* autoprefixer: ignore next */
 			justify-content: space-between;
+		}
+
+		> * {
+			align-self: center;
 		}
 	}
 

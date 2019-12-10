@@ -41,15 +41,6 @@
 		}
 	}
 
-	&__team-member {
-		display: grid;
-		row-gap: $global-grid-gap;
-	}
-
-	&__team-member-header {
-		@include primary-border( bottom );
-	}
-
 	&__team-member-quote {
 		position: relative;
 		padding-left: $global-grid-gap * 2.5;
@@ -78,18 +69,6 @@
 		}
 	}
 
-	&__team-member-content {
-
-		// get the first child's first child to remove the top margin
-		> :first-child > :first-child {
-			margin-top: 0;
-		}
-
-		> :last-child > :last-child {
-			margin-bottom: 0;
-		}
-	}
-
 	&__team-member-heading {
 		margin-bottom: 0.125em;
 	}
@@ -103,19 +82,21 @@
 		box-shadow: $global-box-shadow;
 	}
 
-	@include breakpoint( medium ) {
-		&__team-member {
-			row-gap: $global-grid-gap * 2;
-			grid-template: auto / auto;
-			grid-template-areas:
-				"head"
-				"bio";
+	&__team-member {
+		display: grid;
+		gap: $global-grid-gap;
+		grid-template: "head" auto "bio" auto / 1fr;
+
+		&--has-image {
+			grid-template: "head" auto "img" auto "bio" auto / 1fr;
+		}
+
+		@include breakpoint( medium ) {
+			gap: $global-grid-gap * 2;
+			grid-template: "head" auto "bio" auto / 1fr;
 
 			&--has-image {
-				grid-template: auto / 1fr 1.5fr;
-				grid-template-areas:
-					"head head"
-					"img bio";
+				grid-template: "head head" auto "img bio" auto / 1fr 1.5fr;
 				column-gap: $global-grid-gap * 4;
 				#{ $self }__list-item:nth-child( even ) & {
 					grid-template: auto / 1.5fr 1fr;
@@ -125,17 +106,27 @@
 				}
 			}
 		}
+	}
 
-		&__team-member-image-wrapper {
-			grid-area: img;
+	&__team-member-image-wrapper {
+		grid-area: img;
+	}
+
+	&__team-member-header {
+		@include primary-border( bottom );
+		grid-area: head;
+	}
+
+	&__team-member-content {
+		grid-area: bio;
+
+		// get the first child's first child to remove the top margin
+		> :first-child > :first-child {
+			margin-top: 0;
 		}
 
-		&__team-member-header {
-			grid-area: head;
-		}
-
-		&__team-member-content {
-			grid-area: bio;
+		> :last-child > :last-child {
+			margin-bottom: 0;
 		}
 	}
 }

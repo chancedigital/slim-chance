@@ -6,26 +6,34 @@
 	.page-header__wrapper {
 		display: grid;
 		gap: $global-grid-gap;
-		align-items: end;
+		grid-template: "contact" auto "hours" auto / 1fr;
 
 		@include breakpoint( medium ) {
-			grid-template: auto / auto;
+			/* autoprefixer: ignore next */
 			justify-content: center;
 		}
 
 		@include breakpoint( large ) {
 			gap: $global-grid-gap * 3;
-			grid-template-columns: 1fr rem( 550 );
+			grid-template: "hours contact" auto / 1fr rem( 550 );
+		}
+
+		> * {
+			align-self: end;
 		}
 	}
 
 	.page-header__content-wrapper {
-		grid-column: initial;
+		grid-area: contact;
 		max-width: none;
 		margin: 0;
 
 		@include breakpoint( medium down ) {
 			transform: none;
 		}
+	}
+
+	.location-hours {
+		grid-area: hours;
 	}
 }

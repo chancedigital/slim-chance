@@ -22,6 +22,7 @@
 		@include breakpoint( medium ) {
 			display: grid;
 			grid-template: "text img" auto / $text-col-size $img-col-size;
+			/* autoprefixer: ignore next */
 			justify-content: start;
 			min-height: rem( 380 );
 
@@ -35,11 +36,13 @@
 
 			&:nth-child( 4n + 4 ) {
 				grid-template: "img text" auto / $img-col-size-smaller $text-col-size;
+				/* autoprefixer: ignore next */
 				justify-content: center;
 			}
 
 			&:only-child {
 				grid-template: "img text" auto / $img-col-size $text-col-size;
+				/* autoprefixer: ignore next */
 				justify-content: center;
 
 				.image-blocks__image {
@@ -52,6 +55,7 @@
 			}
 
 			&:nth-child( odd ) {
+				/* autoprefixer: ignore next */
 				justify-content: end;
 			}
 		}

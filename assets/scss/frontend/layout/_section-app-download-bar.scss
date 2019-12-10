@@ -19,11 +19,13 @@
 		grid-template:
 			"content" auto
 			"img" auto / minmax( auto, rem( 300 ) );
+		/* autoprefixer: ignore next */
 		justify-content: center;
 
 		@include breakpoint( medium ) {
 			gap: $global-grid-gap * 2;
 			grid-template: "img content" auto / minmax( auto, rem( 300 ) ) minmax( rem( 360 ), rem( 500 ) );
+			/* autoprefixer: ignore next */
 			justify-content: end;
 		}
 
@@ -61,6 +63,7 @@
 		@include breakpoint( medium ) {
 
 			#{$self}__wrapper {
+				/* autoprefixer: ignore next */
 				justify-content: center;
 			}
 		}

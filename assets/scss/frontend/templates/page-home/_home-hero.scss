@@ -7,7 +7,7 @@
 		grid-template:
 			"words" auto
 			"pizza" auto / 1fr;
-		align-items: center;
+		// align-items: center;
 
 		@include breakpoint( medium ) {
 			grid-template: "pizza words" auto / auto minmax( 40%, #{rem( 380 )} );
@@ -18,6 +18,10 @@
 		@include breakpoint( xxlarge ) {
 			margin-top: rem( 250 );
 			margin-bottom: rem( 200 );
+		}
+
+		> * {
+			align-self: center;
 		}
 	}
 

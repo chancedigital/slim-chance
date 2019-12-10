@@ -15,6 +15,7 @@
 			<property name="customAutoEscapedFunctions" type="array">
 				<element value="kses_post"/>
 				<element value="get_custom_logo"/>
+				<element value="get_address_from_location_post"/>
 				<element value="get_html_attributes_from_array"/>
 				<element value="get_responsive_image"/>
 				<element value="get_svg"/>

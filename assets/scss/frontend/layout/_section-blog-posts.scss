@@ -22,6 +22,7 @@
 		@supports ( display: grid ) {
 			display: grid;
 			grid-template: auto / 1fr;
+			/* autoprefixer: ignore next */
 			gap: $global-grid-gap;
 			max-width: none;
 			margin: 0;

@@ -29,14 +29,15 @@
 		@include make-container;
 		display: grid;
 		position: relative;
-		grid-template: auto / minmax( auto, rem( 450 ) );
+		grid-template: "content" auto "other" auto / minmax( auto, rem( 450 ) );
 		gap: $global-grid-gap;
 		@include breakpoint( medium ) {
 			display: grid;
-			grid-template: auto / minmax( rem( 380 ), 50% ) auto;
+			grid-template: "other content" auto / minmax( rem( 380 ), 50% ) auto;
 		}
 
 		@include breakpoint( small down ) {
+			/* autoprefixer: ignore next */
 			justify-content: center;
 		}
 	}
@@ -47,14 +48,13 @@
 
 	&__content-wrapper {
 		@include block-center;
-		// max-width: rem( 450 );
+		grid-area: content;
 		padding: $global-grid-gap * 2;
 		transform: translateY( $global-grid-gap );
 		background: $white;
 		box-shadow: $global-box-shadow;
 
 		@include breakpoint( medium ) {
-			grid-column: 2 / 3;
 			max-width: none;
 			// margin-right: 0;
 			// margin-left: auto;
@@ -69,6 +69,10 @@
 		> :last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	&__other {
+		grid-area: other;
 	}
 
 	&__body > :last-child {
