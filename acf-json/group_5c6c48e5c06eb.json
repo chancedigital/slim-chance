@@ -635,12 +635,60 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "Please manage menu items under the Food label in the left sidebar. Print menus can be updated under the Site Options panel.",
+                            "message": "Please manage menu items under the Food label in the left sidebar.",
                             "new_lines": "wpautop",
                             "esc_html": 0
                         },
                         {
                             "key": "field_5c8f9074d1af9",
+                            "label": "id",
+                            "name": "id",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "field_5c8f8fe1d1af2"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_5defb8c1ce82f": {
+                    "key": "layout_5defb8c1ce82f",
+                    "name": "pizza_menu",
+                    "label": "Pizza Menu",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_5defb8c1ce830",
+                            "label": "Note",
+                            "name": "",
+                            "type": "message",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Please manage pizza menu under the Pizzas label in the left sidebar. Print menus can be updated under the Site Options panel.",
+                            "new_lines": "wpautop",
+                            "esc_html": 0
+                        },
+                        {
+                            "key": "field_5defb8c1ce831",
                             "label": "id",
                             "name": "id",
                             "type": "clone",
@@ -683,7 +731,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "message": "Please manage menu items under the Food label in the left sidebar. Print menus can be updated under the Site Options panel.",
+                            "message": "Please manage locations under the Store Locations label in the left sidebar.",
                             "new_lines": "wpautop",
                             "esc_html": 0
                         },
@@ -1312,5 +1360,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1564597144
+    "modified": 1575991533
 }
