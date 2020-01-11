@@ -1,28 +1,27 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const AnswerButton = ( {
+function AnswerButton( {
 	active,
 	onClick = e => e,
-	setActive = ( q, id ) => ( { q, id } ),
+	setActive = ( q, i ) => ( { q, id: i } ),
 	children,
 	question = null,
 	id = null,
-} ) => {
-	const handleClick = e => {
-		setActive( question, id );
-		onClick( e );
-	};
+} ) {
 	return (
 		<button
 			className={ classNames( 'feedback-survey__answer-button', {
 				'feedback-survey__answer-button--active': active,
 			} ) }
-			onClick={ handleClick }
+			onClick={ e => {
+				setActive( question, id );
+				onClick( e );
+			} }
 		>
 			{ children }
 		</button>
 	);
-};
+}
 
 export default AnswerButton;

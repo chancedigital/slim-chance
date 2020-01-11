@@ -1,1 +1,1 @@
-export { default } from './class-answer-button';
+export { default } from './answer-button';

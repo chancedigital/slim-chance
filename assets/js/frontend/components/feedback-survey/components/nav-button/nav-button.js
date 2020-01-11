@@ -2,13 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { noop } from 'lodash';
 
-const NavButton = ( {
+function NavButton( {
 	handleNav = noop,
 	onClick = noop,
 	className,
 	buttonText = 'Next',
 	...rest
-} ) => {
+} ) {
 	return (
 		<button
 			type="button"
@@ -23,6 +23,6 @@ const NavButton = ( {
 			{ buttonText }
 		</button>
 	);
-};
+}
 
 export default NavButton;

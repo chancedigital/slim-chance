@@ -1,1 +1,1 @@
-export { default } from './class-form-field';
+export { default } from './form-field';

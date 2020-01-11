@@ -1,1 +1,1 @@
-export { default } from './class-feedback-form';
+export { default } from './feedback-form';

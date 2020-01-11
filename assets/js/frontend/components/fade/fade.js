@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-const Fade = ( { duration = 500, in: inProp = true, children, ...rest } ) => {
+function Fade( { duration = 500, in: inProp = true, children, ...rest } ) {
 	const durationNumber =
 		typeof duration === 'number' ? duration : duration.enter;
 	const defaultStyle = {
@@ -28,7 +28,7 @@ const Fade = ( { duration = 500, in: inProp = true, children, ...rest } ) => {
 			) }
 		</Transition>
 	);
-};
+}
 
 Fade.propTypes = {
 	duration: PropTypes.oneOfType( [

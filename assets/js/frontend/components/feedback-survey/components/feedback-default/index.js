@@ -1,1 +1,1 @@
-export { default } from './class-feedback-default';
+export { default } from './feedback-default';

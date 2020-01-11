@@ -1,1 +1,1 @@
-export { default } from './class-nav-button';
+export { default } from './nav-button';
