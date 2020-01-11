@@ -25,20 +25,20 @@ $has_phone    = preg_match(
 
 		<?php if ( $has_phone ) : ?>
 
-			<a class="location-contact__button button" href="tel:<?php echo preg_replace( '/[^0-9]/', '', $phone ) ?>"><?php _e( 'Call Now', 'slim-chance' ) ?></a>
+			<a class="location-contact__button button" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $phone ) ) ?>"><?php _e( 'Call Now', 'slim-chance' ) // phpcs:ignore ?></a>
 
 		<?php endif; ?>
 
 		<?php if ( $map_url ) : ?>
 
-			<a class="location-contact__button button" href="<?php echo esc_url( $map_url ) ?>" rel="noopener noreferrer" target="_blank"><?php _e( 'Get Directions', 'slim-chance' ) ?></a>
+			<a class="location-contact__button button" href="<?php echo esc_url( $map_url ) ?>" rel="noopener noreferrer" target="_blank"><?php _e( 'Get Directions', 'slim-chance' ) // phpcs:ignore ?></a>
 
 		<?php endif; ?>
 
 		<?php if ( $has_delivery && $doordash_id ) : ?>
 
 			<a class="location-contact__button button" href="https://www.doordash.com/store/<?php echo esc_attr( $doordash_id ) ?>/?utm_source=partner-link&utm_medium=website&utm_campaign=<?php echo esc_attr( $doordash_id ) ?>" target="_blank">
-				<?php _e( 'Order Delivery', 'slim-chance' ) ?>
+				<?php _e( 'Order Delivery', 'slim-chance' ) // phpcs:ignore ?>
 				<span class="button__icon">
 					<?php echo get_svg( [ 'icon' => 'doordash' ] ) ?>
 				</span>
@@ -49,7 +49,7 @@ $has_phone    = preg_match(
 		<?php if ( $has_carryout && $online_order ) : ?>
 
 			<a class="location-contact__button button" href="https://slimandhuskys.alohaorderonline.com/Locations.aspx" target="_blank" rel="noreferrer noopener">
-				<?php _e( 'Order Carryout', 'slim-chance' ) ?>
+				<?php _e( 'Order Carryout', 'slim-chance' ) // phpcs:ignore ?>
 			</a>
 
 		<?php endif; ?>

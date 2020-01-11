@@ -18,6 +18,7 @@
 				<element value="get_html_attributes_from_array"/>
 				<element value="get_responsive_image"/>
 				<element value="get_svg"/>
+				<element value="get_address_from_location_post"/>
 			</property>
 		</properties>
 	</rule>

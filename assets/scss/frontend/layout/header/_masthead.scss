@@ -1,5 +1,7 @@
 .masthead {
 	$self: &;
+	$logo-width: 106;
+	$logo-width-large: $logo-width * 1.125;
 	position: absolute;
 	z-index: 2;
 	top: 0;
@@ -28,23 +30,34 @@
 	&__wrapper {
 		@include make-container;
 		display: grid;
-		grid-template: "logo nav" auto / rem( 86 ) 1fr;
-		gap: rem( $global-grid-gap );
+		grid-template: "logo nav" auto / rem( $logo-width ) 1fr;
 		align-items: center;
+		gap: rem( $global-grid-gap );
 
 		@include breakpoint( small down ) {
 			justify-content: space-between;
+		}
+
+		@include breakpoint( large ) {
+			grid-template: "logo nav" auto / rem( $logo-width-large ) 1fr;
 		}
 	}
 
 	&__logo-wrapper {
 		grid-area: logo;
 
-		a,
+		a {
+			display: flex;
+		}
+
 		img {
 			display: block;
-			width: rem( 86 );
-			height: rem( 86 );
+			width: rem( $logo-width );
+			height: auto;
+
+			@include breakpoint( large ) {
+				width: rem( $logo-width-large );
+			}
 		}
 	}
 
