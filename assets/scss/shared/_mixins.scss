@@ -6,23 +6,23 @@
 }
 
 @mixin make-form-field {
-	display: block;
-    box-sizing: border-box;
-    width: 100%;
-    height: rem( 36 );
-    margin: 0 0 1rem;
-    padding: 0.5rem;
-    transition: border-color 0.25s ease-in-out;
-    border: 1px solid $color-gray-mid;
-    border-radius: 0;
-    background-color: $white;
-    box-shadow: none;
-    color: $black;
-    font-family: inherit;
-    font-size: 1rem;
-    font-weight: normal;
-    line-height: 1;
 	appearance: none;
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	height: rem( 36 );
+	margin: 0 0 1rem;
+	padding: 0.5rem;
+	transition: border-color 0.25s ease-in-out;
+	border: 1px solid $color-gray-mid;
+	border-radius: 0;
+	background-color: $white;
+	box-shadow: none;
+	color: $black;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 1;
 
 	&:focus {
 		border-color: $black;
@@ -41,67 +41,67 @@
 	margin: -1px;
 	padding: 0;
 	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
+	clip: rect( 1px, 1px, 1px, 1px );
+	clip-path: inset( 50% );
 	border: 0;
-	clip-path: inset(50%);
 	word-wrap: normal !important;
 }
 
 /// Typography
 @mixin font-giant {
-	font-size: rem(32);
+	font-size: rem( 32 );
 	@include breakpoint(medium) {
-		font-size: rem(66);
+		font-size: rem( 66 );
 	}
 	@include breakpoint(large) {
-		font-size: rem(96);
+		font-size: rem( 96 );
 	}
 }
 
 @mixin font-xxlg {
-	font-size: rem(30);
-	@include breakpoint(medium) {
-		font-size: rem(60);
+	font-size: rem( 30 );
+	@include breakpoint( medium ) {
+		font-size: rem( 60 );
 	}
-	@include breakpoint(large) {
-		font-size: rem(70);
+	@include breakpoint( large ) {
+		font-size: rem( 70 );
 	}
 }
 
 @mixin font-xlg {
-	font-size: rem(24);
-	@include breakpoint(medium) {
-		font-size: rem(30);
+	font-size: rem( 24 );
+	@include breakpoint( medium ) {
+		font-size: rem( 30 );
 	}
 }
 
 @mixin font-lg {
-	font-size: rem(20);
-	@include breakpoint(medium) {
-		font-size: rem(24);
+	font-size: rem( 20 );
+	@include breakpoint( medium ) {
+		font-size: rem( 24 );
 	}
 }
 
 @mixin font-std-lg {
-	font-size: rem(18);
+	font-size: rem( 18 );
 }
 
 @mixin font-std {
-	font-size: rem(16);
+	font-size: rem( 16 );
 }
 
 @mixin font-sm {
-	font-size: rem(14);
+	font-size: rem( 14 );
 }
 
 @mixin font-tiny {
-	font-size: rem(12);
+	font-size: rem( 12 );
 }
 
-@mixin primary-border( $position: 'bottom' ) {
-	$prop: 'border-#{ $position }';
-	@if $position == 'all' {
-		$prop: 'border';
+@mixin primary-border( $position: "bottom" ) {
+	$prop: "border-#{ $position }";
+	@if $position == "all" {
+		$prop: "border";
 	}
 	#{ $prop }: 2px solid $color-primary;
 }

@@ -49,9 +49,9 @@
 	&__location-link:hover,
 	&__location-link:focus {
 		display: block;
-		text-decoration: none;
-		color: inherit;
 		transition: 400ms transform ease-out;
+		color: inherit;
+		text-decoration: none;
 	}
 
 	&__location-link:hover,

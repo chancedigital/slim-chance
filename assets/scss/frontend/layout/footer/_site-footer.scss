@@ -4,7 +4,7 @@
 	color: $white;
 
 	@include breakpoint( medium ) {
-		padding: rem(80) 0;
+		padding: rem( 80 ) 0;
 	}
 
 	&__wrapper {
@@ -29,11 +29,11 @@
 	}
 
 	&__nav {
-		margin: rem(20) 0;
-		font-size: rem(20);
+		margin: rem( 20 ) 0;
+		font-size: rem( 20 );
 	}
 
 	&__copyright {
-		font-size: rem(16);
+		font-size: rem( 16 );
 	}
 }

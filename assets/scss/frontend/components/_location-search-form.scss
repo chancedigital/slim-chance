@@ -1,7 +1,7 @@
 .location-search-form {
-	box-shadow: $global-box-shadow;
 	padding: rem( $global-grid-gap * 2 );
 	background: $white;
+	box-shadow: $global-box-shadow;
 
 	&__heading {
 		margin-top: 0;

@@ -5,8 +5,8 @@
 
 	.page-header__wrapper {
 		display: grid;
-		gap: $global-grid-gap;
 		align-items: end;
+		gap: $global-grid-gap;
 
 		@include breakpoint( medium ) {
 			grid-template: auto / auto;
@@ -14,8 +14,8 @@
 		}
 
 		@include breakpoint( large ) {
-			gap: $global-grid-gap * 3;
 			grid-template-columns: 1fr rem( 550 );
+			gap: $global-grid-gap * 3;
 		}
 	}
 

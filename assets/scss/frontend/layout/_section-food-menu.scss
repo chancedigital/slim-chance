@@ -47,7 +47,7 @@
 
 			&:before,
 			&:after {
-				content: '';
+				content: "";
 				position: absolute;
 				top: 50%;
 				width: 10em;
@@ -57,12 +57,12 @@
 
 			&:before {
 				left: 50%;
-				transform: translateX(-114%);
+				transform: translateX( -114% );
 			}
 
 			&:after {
 				right: 50%;
-				transform: translateX(114%);
+				transform: translateX( 114% );
 			}
 		}
 	}
@@ -83,10 +83,10 @@
 		padding: 0;
 		list-style: none;
 		@include breakpoint( medium ) {
-			row-gap: $global-grid-gap * 2;
 			grid-template: 1fr / repeat( 2, 1fr );
-			margin: rem( $global-grid-gap * 4 ) 0;
 			column-gap: rem( 70 );
+			row-gap: $global-grid-gap * 2;
+			margin: rem( $global-grid-gap * 4 ) 0;
 		}
 		@include breakpoint( large ) {
 			column-gap: rem( 140 );

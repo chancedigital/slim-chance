@@ -12,7 +12,7 @@
 		max-width: rem( 780 );
 		@include breakpoint( medium ) {
 			display: grid;
-			grid-template-columns: repeat(1fr, 2);
+			grid-template-columns: repeat( 1fr, 2 );
 			column-gap: $global-grid-gap;
 		}
 		@include breakpoint( large ) {
