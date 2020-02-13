@@ -1,5 +1,5 @@
 <?php
-$food_menu = get_field( 'food_menu', 'option' );
+$pizza_menu = get_field( 'pizza_menu', 'option' );
 ?>
 <section class="section-pizza-menu" id="<?php echo esc_attr( get_sub_field( 'section_id' ) ?: uniqid() ) ?>">
 	<div class="section-pizza-menu__wrapper">
@@ -8,9 +8,9 @@ $food_menu = get_field( 'food_menu', 'option' );
 				You Can Get With <strong>This</strong>
 			</h2>
 			<p class="section-pizza-menu__subheading">S+H Signature Artisan Pizzas</p>
-			<?php if ( $food_menu ) : ?>
+			<?php if ( $pizza_menu ) : ?>
 				<a
-					href="<?php echo esc_url( $food_menu['url'] ) ?>"
+					href="<?php echo esc_url( $pizza_menu['url'] ) ?>"
 					class="section-pizza-menu__button button"
 					target="_blank"
 					rel="noreferrer noopener"
