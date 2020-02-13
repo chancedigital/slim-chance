@@ -1,1 +1,1 @@
-export { default } from './class-question';
+export { default } from './question';

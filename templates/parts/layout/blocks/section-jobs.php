@@ -1,6 +1,3 @@
-<?php
-?>
-
 <section class="section-jobs" id="<?php echo esc_attr( get_sub_field( 'section_id' ) ?: uniqid() ) ?>">
 	<div class="section-jobs__wrapper">
 		<h2 class="section-jobs__heading">Current Openings</h2>

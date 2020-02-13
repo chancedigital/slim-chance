@@ -1,17 +1,17 @@
-[type='text'],
-[type='password'],
-[type='date'],
-[type='datetime'],
-[type='datetime-local'],
-[type='month'],
-[type='week'],
-[type='email'],
-[type='number'],
-[type='search'],
-[type='tel'],
-[type='time'],
-[type='url'],
-[type='color'],
+[type="text"],
+[type="password"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="week"],
+[type="email"],
+[type="number"],
+[type="search"],
+[type="tel"],
+[type="time"],
+[type="url"],
+[type="color"],
 textarea {
 	@include make-form-field;
 }
@@ -23,12 +23,12 @@ textarea {
 
 select {
 	@include make-form-field;
-    padding-right: 1.5rem;
-	background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
-    background-origin: content-box;
-    background-repeat: no-repeat;
-    background-position: right -1rem center;
-    background-size: rem( 9 ) rem( 6 );
+	padding-right: 1.5rem;
+	background-image: url( "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>" );
+	background-origin: content-box;
+	background-position: right -1rem center;
+	background-repeat: no-repeat;
+	background-size: rem( 9 ) rem( 6 );
 }
 
 .form {
@@ -42,11 +42,11 @@ select {
 	&__field-alert {
 		display: block;
 		position: absolute;
-		top: rem(7);
-		right: rem(8);
-		width: rem(22);
-		height: rem(22);
-		background-image: url('../img/validation-error.svg');
+		top: rem( 7 );
+		right: rem( 8 );
+		width: rem( 22 );
+		height: rem( 22 );
+		background-image: url( "../img/validation-error.svg" );
 		background-repeat: no-repeat;
 		background-size: contain;
 		color: transparent;
@@ -92,11 +92,11 @@ div.wpcf7-response-output {
 	margin-top: $global-grid-gap;
 	margin-right: 0;
 	margin-left: 0;
-	padding: rem(6) rem(8);
+	padding: rem( 6 ) rem( 8 );
 	border: 0 !important;
 	background-color: #ffd399;
 	color: $black;
-	font-size: rem(14);
+	font-size: rem( 14 );
 	font-style: italic;
 	font-weight: 700;
 

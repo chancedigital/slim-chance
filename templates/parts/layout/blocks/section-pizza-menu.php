@@ -21,18 +21,18 @@ $pizza_menu = get_field( 'pizza_menu', 'option' );
 		</header>
 
 		<?php
-		$menu_query = new WP_Query(
+		$pizza_query = new WP_Query(
 			[
 				'post_type'      => 'pizza',
 				'posts_per_page' => 50,
 			]
 		);
-		if ( $menu_query->have_posts() ) :
+		if ( $pizza_query->have_posts() ) :
 			?>
 			<ul class="section-pizza-menu__menu">
 				<?php
-				while ( $menu_query->have_posts() ) :
-					$menu_query->the_post();
+				while ( $pizza_query->have_posts() ) :
+					$pizza_query->the_post();
 					?>
 
 					<li class="section-pizza-menu__item">

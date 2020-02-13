@@ -46,7 +46,7 @@ $heading = get_sub_field( 'section_heading' );
 					?>
 				<ul class="section-team-members__list">
 					<?php
-					foreach ( $team_members as $post ) :
+					foreach ( $team_members as $post ) : // phpcs:ignore
 						setup_postdata( $post );
 						?>
 						<li class="section-team-members__list-item">

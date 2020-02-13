@@ -46,7 +46,7 @@ $section_id = esc_attr( get_sub_field( 'section_id' ) ?: uniqid() );
 
 		if ( $blog_query->have_posts() ) :
 			?>
-			<ul class="section-blog-posts__list more-wrapper" id="js-posts-container-<?php echo $section_id ?>">
+			<ul class="section-blog-posts__list more-wrapper" id="js-posts-container-<?php echo esc_attr( $section_id ) ?>">
 				<?php
 				while ( $blog_query->have_posts() ) :
 					$blog_query->the_post();

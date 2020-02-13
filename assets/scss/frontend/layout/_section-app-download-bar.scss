@@ -15,18 +15,18 @@
 	&__wrapper {
 		@include make-container;
 		display: grid;
-		gap: $global-grid-gap;
 		grid-template:
 			"content" auto
 			"img" auto / minmax( auto, rem( 300 ) );
 		/* autoprefixer: ignore next */
 		justify-content: center;
+		gap: $global-grid-gap;
 
 		@include breakpoint( medium ) {
-			gap: $global-grid-gap * 2;
 			grid-template: "img content" auto / minmax( auto, rem( 300 ) ) minmax( rem( 360 ), rem( 500 ) );
 			/* autoprefixer: ignore next */
 			justify-content: end;
+			gap: $global-grid-gap * 2;
 		}
 
 		@include breakpoint( large ) {

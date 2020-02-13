@@ -3,6 +3,6 @@
 		<?php if ( get_sub_field( 'section_heading' ) ) : ?>
 			<h2 class="section-one-column__heading"><?php echo esc_html( get_sub_field( 'section_heading' ) ) ?></h2>
 		<?php endif; ?>
-		<?php echo get_sub_field( 'content' ) // figure out proper escaping ?>
+		<?php echo get_sub_field( 'content' ) // phpcs:ignore ?>
 	</div>
 </section>

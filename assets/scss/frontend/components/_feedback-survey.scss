@@ -33,7 +33,7 @@
 			margin: $global-grid-gap;
 			font-size: rem( 16 );
 
-			&:hover:not(:active) {
+			&:hover:not( :active ) {
 				transform: translate3d( 0, rem( -2 ), 0 );
 			}
 		}
@@ -55,9 +55,9 @@
 		&--next,
 		&--submit {
 			margin-right: 0;
-			margin-inline-end: 0;
 			margin-left: auto;
 			margin-inline-start: auto;
+			margin-inline-end: 0;
 		}
 	}
 

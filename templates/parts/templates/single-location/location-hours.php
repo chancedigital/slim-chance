@@ -1,7 +1,7 @@
 <div class="location-hours">
 	<?php if ( get_field( 'coming_soon' ) ) : ?>
 		<div>
-			<h2><?php _e( 'Store opening soon!', 'slim-chance' ); ?></h2>
+			<h2><?php _e( 'Store opening soon!', 'slim-chance' ) // phpcs:ignore ?></h2>
 		</div>
 	<?php elseif ( have_rows( 'hours' ) ) : ?>
 		<table class="location-hours__table">

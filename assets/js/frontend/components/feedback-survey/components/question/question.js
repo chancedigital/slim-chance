@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Question = ( { heading, description, children } ) => {
+function Question( { heading, description, children } ) {
 	return (
 		<section className="feedback-survey__question-wrapper">
 			<header className="feedback-survey__header">
@@ -9,8 +9,7 @@ const Question = ( { heading, description, children } ) => {
 			</header>
 			<div className="feedback-survey__options">{ children }</div>
 		</section>
-
 	);
-};
+}
 
 export default Question;

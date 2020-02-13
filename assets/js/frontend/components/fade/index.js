@@ -1,1 +1,1 @@
-export { default } from './class-fade';
+export { default } from './fade';

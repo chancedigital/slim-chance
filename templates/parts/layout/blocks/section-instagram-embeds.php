@@ -16,8 +16,8 @@ if ( $links ) :
 			<?php endif; ?>
 			<ul class="section-instagram-embeds__list">
 				<?php
-				foreach ( $links as $link ) :
-					$ig_url = $link['post_url'];
+				foreach ( $links as $_link ) :
+					$ig_url = $_link['post_url'];
 					if ( $ig_url ) :
 						?>
 						<li class="section-instagram-embeds__list-item">

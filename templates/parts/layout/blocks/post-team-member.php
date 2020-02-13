@@ -1,5 +1,4 @@
 <?php
-// global $post;
 $job_title = get_field( 'job_title' );
 $quote     = get_field( 'featured_quote' );
 $bio       = get_field( 'bio' );

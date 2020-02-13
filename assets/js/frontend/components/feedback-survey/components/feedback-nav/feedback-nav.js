@@ -1,14 +1,14 @@
 import React from 'react';
 import NavButton from '../nav-button';
 
-const FeedbackNav = ( {
+function FeedbackNav( {
 	previousQuestion,
 	nextQuestion,
 	handleSubmit,
 	handleAdvance,
 	handleGoBack,
 	submitted,
-} ) => {
+} ) {
 	return (
 		<nav className="feedback-survey__nav-wrapper">
 			{ previousQuestion && (
@@ -34,6 +34,6 @@ const FeedbackNav = ( {
 			) }
 		</nav>
 	);
-};
+}
 
 export default FeedbackNav;

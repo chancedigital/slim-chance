@@ -2,10 +2,13 @@ import React from 'react';
 import classNames from 'classnames';
 import { noop, kebabCase } from 'lodash';
 import Question from '../question';
-import { initialFormValues, initialFormValidation } from '../../data/form-fields';
+import {
+	initialFormValues,
+	initialFormValidation,
+} from '../../data/form-fields';
 import FormField from '../../../form-field';
 
-const FeedbackForm = ( {
+function FeedbackForm( {
 	onFormChange = noop,
 	onSubmit = noop,
 	formFields = [],
@@ -14,7 +17,7 @@ const FeedbackForm = ( {
 	heading,
 	description,
 	submitAttempted,
-} ) => {
+} ) {
 	return (
 		<Question heading={ heading } description={ description }>
 			<form className="feedback-survey__form form" onSubmit={ onSubmit }>
@@ -39,6 +42,6 @@ const FeedbackForm = ( {
 			</form>
 		</Question>
 	);
-};
+}
 
 export default FeedbackForm;

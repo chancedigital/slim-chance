@@ -1,11 +1,11 @@
 .sign-up {
 	padding: rem( 40 ) 0;
-	background-color: #ff9000;
-	background-image: url('../img/bg-signup.jpg');
-	background-repeat: no-repeat;
-	background-position: center;
-	background-size: cover;
 	background-blend-mode: luminosity;
+	background-color: #ff9000;
+	background-image: url( "../img/bg-signup.jpg" );
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	color: $white;
 
 	@include breakpoint( medium ) {

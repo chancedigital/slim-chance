@@ -25,7 +25,7 @@ $has_phone    = preg_match(
 
 		<?php if ( $has_phone ) : ?>
 
-			<a class="location-contact__button button" href="tel:<?php echo preg_replace( '/[^0-9]/', '', $phone ) ?>"><?php _e( 'Call Now', 'slim-chance' ) // phpcs:ignore ?></a>
+			<a class="location-contact__button button" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $phone ) ) ?>"><?php _e( 'Call Now', 'slim-chance' ) // phpcs:ignore ?></a>
 
 		<?php endif; ?>
 

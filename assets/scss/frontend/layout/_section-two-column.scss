@@ -15,7 +15,9 @@
 		gap: $global-grid-gap;
 
 		@include breakpoint( medium ) {
-			grid-template: "heading heading" auto "col1 col2" auto / 1fr 1fr;
+			display: grid;
+			grid-template-columns: repeat( 1fr, 2 );
+			column-gap: $global-grid-gap;
 		}
 
 		@include breakpoint( large ) {
