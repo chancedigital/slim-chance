@@ -1,12 +1,19 @@
 .location-hours {
 	margin: 1rem 0;
-	padding: rem( $global-grid-gap );
-	background: $white;
 	font-size: rem( 14 );
+
+	&__inner {
+		padding: rem( $global-grid-gap );
+		background: $white;
+	}
 
 	@include breakpoint( medium down ) {
 		order: 2;
 		margin-top: 0;
+	}
+
+	@include breakpoint( large ) {
+		margin: 0;
 	}
 
 	&__table {
