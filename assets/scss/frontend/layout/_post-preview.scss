@@ -1,0 +1,33 @@
+.post-preview {
+	padding: $global-grid-gap;
+	background: $white;
+
+	&__article-title {
+		margin-bottom: 0.125em;
+	}
+
+	&__link {
+
+		&:hover,
+		&:focus {
+			text-decoration: none;
+		}
+	}
+
+	&__img-wrapper {
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding-bottom: 58%;
+		overflow: hidden;
+	}
+
+	&__img {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: auto;
+		transform: translate( -50%, -50% );
+	}
+}

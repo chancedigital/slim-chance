@@ -1,0 +1,44 @@
+.app-dl-buttons {
+	margin: $global-grid-gap 0;
+
+	@include breakpoint( medium ) {
+		display: flex;
+		align-items: center;
+	}
+
+	&__link {
+		display: block;
+		width: rem( 150 );
+		height: rem( 44 );
+		margin: ( $global-grid-gap / 2 ) auto;
+		overflow: hidden;
+		background-color: transparent;
+		background-position: top left;
+		background-repeat: no-repeat;
+		background-size: contain;
+		text-indent: 120%;
+		white-space: nowrap;
+
+		@include breakpoint( medium ) {
+			display: inline-block;
+			margin: 0 $global-grid-gap / 2;
+
+			&:first-child {
+				margin-left: 0;
+			}
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+
+		&--ios {
+			background-image: url( "../img/itunes-store.png" );
+		}
+
+		&--google {
+			background-image: url( "../img/google-play.png" );
+		}
+	}
+}

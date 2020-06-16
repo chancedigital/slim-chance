@@ -1,0 +1,57 @@
+@import "../shared/mixins";
+
+@mixin extend-form-fields {
+	[type="text"],
+	[type="password"],
+	[type="date"],
+	[type="datetime"],
+	[type="datetime-local"],
+	[type="month"],
+	[type="week"],
+	[type="email"],
+	[type="number"],
+	[type="search"],
+	[type="tel"],
+	[type="time"],
+	[type="url"],
+	[type="color"],
+	textarea,
+	select {
+		@content;
+	}
+}
+
+@mixin make-container( $constrain-width: $global-container-width ) {
+	@if $constrain-width != false {
+		max-width: rem( $constrain-width );
+	}
+	width: calc( 100% - #{rem( $global-grid-gap * 2 )} );
+	margin-right: auto;
+	margin-left: auto;
+}
+
+@mixin make-menu( $breakpoint: medium ) {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	@include breakpoint( $breakpoint ) {
+		li {
+			display: inline-block;
+		}
+	}
+}
+
+@mixin heading-underline( $color: $color-primary ) {
+	&:after {
+		content: "";
+		display: block;
+		width: 50%;
+		max-width: rem( 106 );
+		height: 2px;
+		margin: inherit;
+		margin-top: rem( 18 );
+		margin-bottom: rem( 18 );
+		background: $color;
+	}
+}

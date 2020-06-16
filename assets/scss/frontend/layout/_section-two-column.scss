@@ -1,0 +1,53 @@
+.section-two-column {
+	margin-top: rem( 40 );
+	margin-bottom: rem( 40 );
+
+	@include breakpoint( medium ) {
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		display: grid;
+		grid-template: "heading" auto "col1" auto "col2" auto / 1fr;
+		max-width: rem( 780 );
+		gap: $global-grid-gap;
+
+		@include breakpoint( medium ) {
+			display: grid;
+			grid-template-columns: repeat( 1fr, 2 );
+			column-gap: $global-grid-gap;
+		}
+
+		@include breakpoint( large ) {
+			column-gap: rem( 100 );
+		}
+	}
+
+	&__heading {
+		@include heading-underline;
+		grid-area: heading;
+		margin-bottom: 0;
+	}
+
+	&__col {
+
+		> *:first-child,
+		> blockquote p:first-child {
+			margin-top: 0;
+		}
+
+		&--1 {
+			grid-area: col1;
+		}
+
+		&--2 {
+			grid-area: col2;
+		}
+	}
+
+	blockquote {
+		margin-bottom: 1.5em;
+	}
+}

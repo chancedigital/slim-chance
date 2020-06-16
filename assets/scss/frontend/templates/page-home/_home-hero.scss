@@ -1,0 +1,120 @@
+.home-hero {
+	overflow: hidden;
+
+	&__wrapper {
+		@include make-container;
+		display: grid;
+		grid-template:
+			"words" auto
+			"pizza" auto / 1fr;
+		// align-items: center;
+
+		@include breakpoint( medium ) {
+			grid-template: "pizza words" auto / auto minmax( 40%, #{rem( 380 )} );
+			margin-top: rem( 200 );
+			margin-bottom: rem( 200 );
+		}
+
+		@include breakpoint( xxlarge ) {
+			margin-top: rem( 250 );
+			margin-bottom: rem( 200 );
+		}
+
+		> * {
+			align-self: center;
+		}
+	}
+
+	&__image {
+		width: 100%;
+		transform: scale( 1.25 );
+		transform-origin: right center;
+
+		@include breakpoint( medium ) {
+			transform: scale( 1.5 );
+		}
+
+		@include breakpoint( xxlarge ) {
+			transform: scale( 1.8 );
+		}
+
+		@include breakpoint( 1800 ) {
+			transform: scale( 1.9 ) translateY( rem( 10 ) );
+		}
+
+		@include breakpoint( 2200 ) {
+			transform: scale( 2 ) translateY( rem( 10 ) ) translateX( rem( -90 ) );
+		}
+	}
+
+	&__image-wrapper {
+		grid-area: pizza;
+
+		@include breakpoint( small down ) {
+			margin-top: 5%;
+			transform: rotate( 270deg );
+		}
+	}
+
+	&__content {
+		grid-area: words;
+		max-width: rem( 300 );
+		margin-right: auto;
+		margin-left: auto;
+		text-align: center;
+
+		@include breakpoint( small down ) {
+			margin-top: rem( 140 );
+		}
+
+		@include breakpoint( 600 ) {
+			max-width: rem( 500 );
+		}
+
+		@include breakpoint( medium ) {
+			max-width: none;
+			text-align: right;
+		}
+
+	}
+
+	&__heading {
+		@include heading-underline;
+		margin-bottom: 0.25em;
+		font-size: rem( 60 );
+
+		&:after {
+			margin-right: 0;
+			margin-left: auto;
+			@include breakpoint( small down ) {
+				@include block-center;
+			}
+		}
+
+
+		@include breakpoint( 600 ) {
+			font-size: rem( 80 );
+		}
+
+		@include breakpoint( medium ) {
+			font-size: rem( 80 );
+		}
+
+		@include breakpoint( large ) {
+			font-size: rem( 96 );
+		}
+	}
+
+	&__subheading {
+		font-family: $font-marker;
+		font-size: rem( 18 );
+
+		@include breakpoint( medium ) {
+			font-size: rem( 22 );
+		}
+	}
+
+	&__button {
+		display: inline-block;
+	}
+}

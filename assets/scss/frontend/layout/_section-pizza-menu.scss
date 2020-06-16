@@ -1,0 +1,106 @@
+.section-pizza-menu {
+	margin-top: rem( 50 );
+	margin-bottom: rem( 50 );
+
+	@include breakpoint( medium ) {
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container( 780 );
+	}
+
+	&__header,
+	&__footer {
+		margin: 1em 0;
+		font-size: rem( 16 );
+		text-align: center;
+		@include breakpoint( medium ) {
+			font-size: rem( 20 );
+		}
+
+		.button {
+			margin-top: 1rem;
+		}
+	}
+
+	&__heading {
+		margin: 0;
+		font-family: $font-sans-husky;
+		font-size: 1em;
+		text-transform: uppercase;
+
+		strong {
+			display: block;
+			font-size: 294%;
+			font-weight: inherit;
+		}
+
+		em {
+			display: block;
+			position: relative;
+			margin-bottom: 0.5em;
+			font-family: $font-sans;
+			font-size: 78%;
+			font-style: inherit;
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				width: 10em;
+				height: 1px;
+				background: currentColor;
+			}
+
+			&:before {
+				left: 50%;
+				transform: translateX( -114% );
+			}
+
+			&:after {
+				right: 50%;
+				transform: translateX( 114% );
+			}
+		}
+	}
+
+	&__subheading {
+		margin: 0;
+		margin-top: -0.35em;
+		font-family: $font-sans-slim;
+		font-size: 1.25em;
+		text-transform: uppercase;
+	}
+
+	&__menu {
+		display: grid;
+		grid-template: auto / auto;
+		row-gap: $global-grid-gap;
+		margin: rem( $global-grid-gap * 2 ) 0;
+		padding: 0;
+		list-style: none;
+		@include breakpoint( medium ) {
+			row-gap: $global-grid-gap * 2;
+			grid-template: 1fr / repeat( 2, 1fr );
+			margin: rem( $global-grid-gap * 4 ) 0;
+			column-gap: rem( 70 );
+		}
+		@include breakpoint( large ) {
+			column-gap: rem( 140 );
+		}
+	}
+
+	&__item-heading {
+		margin-top: 0;
+		margin-bottom: 0.5em;
+	}
+
+	&__item-description,
+	&__item-description p {
+		margin-top: 0.5em;
+		margin-bottom: 0;
+	}
+}

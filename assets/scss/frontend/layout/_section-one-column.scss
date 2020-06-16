@@ -1,0 +1,18 @@
+.section-one-column {
+	margin-top: rem( 40 );
+	margin-bottom: rem( 40 );
+
+	@include breakpoint( medium ) {
+		margin-top: rem( 100 );
+		margin-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		max-width: rem( 780 );
+	}
+
+	blockquote {
+		margin-bottom: 1.5em;
+	}
+}

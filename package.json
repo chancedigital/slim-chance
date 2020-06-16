@@ -1,0 +1,174 @@
+{
+  "name": "slim-chance",
+  "version": "3.0.0",
+  "description": "Custom WordPress theme for the Slim + Huskys website.",
+  "homepage": "https://slimandhuskys.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chancedigital/slim-chance"
+  },
+  "author": {
+    "name": "Chance Strickland",
+    "email": "hi@chancedigital.io",
+    "url": "https://chancedigital.io",
+    "role": "developer"
+  },
+  "scripts": {
+    "setup": "yarn && composer install && composer install-codestandards",
+    "start": "yarn dev",
+    "dev": "NODE_ENV=development gulp dev --gulpfile config/gulpfile.babel.js",
+    "build": "NODE_ENV=production gulp build --gulpfile config/gulpfile.babel.js",
+    "build:staging": "NODE_ENV=staging gulp build --gulpfile config/gulpfile.babel.js",
+    "lint-css": "stylelint assets/scss",
+    "lint-js": "eslint assets/js",
+    "docs:sass": "sassdoc assets/scss -d assets/scss/docs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "7.7.7",
+    "@babel/plugin-proposal-class-properties": "7.7.4",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "7.7.7",
+    "@babel/plugin-proposal-optional-chaining": "7.7.5",
+    "@babel/plugin-transform-react-jsx": "7.7.7",
+    "@babel/plugin-transform-runtime": "7.7.6",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-react": "7.7.4",
+    "@babel/register": "7.7.7",
+    "@chancedigital/browserslist-config": "1.0.4",
+    "@chancedigital/eslint-config": "5.0.1",
+    "@chancedigital/stylelint-config": "4.0.0",
+    "@chancestrickland/gulp-sass": "1.0.1",
+    "@wordpress/eslint-plugin": "3.3.0",
+    "babel-eslint": "10.0.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-lodash": "3.3.4",
+    "browserslist": "4.8.3",
+    "caniuse-db": "^1.0.*",
+    "cssnano": "4.1.10",
+    "dateformat": "3.0.3",
+    "del": "5.1.0",
+    "dotenv-webpack": "1.7.0",
+    "eslint": "6.8.0",
+    "eslint-loader": "3.0.3",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-jest": "23.4.0",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.17.0",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "eslint-plugin-wpcalypso": "4.1.0",
+    "gulp": "4.0.2",
+    "gulp-cache": "1.1.3",
+    "gulp-env": "0.4.0",
+    "gulp-filter": "6.0.0",
+    "gulp-header-comment": "0.6.1",
+    "gulp-if": "3.0.0",
+    "gulp-imagemin": "6.2.0",
+    "gulp-notify": "3.2.0",
+    "gulp-phpcs": "3.1.0",
+    "gulp-postcss": "8.0.0",
+    "gulp-rename": "2.0.0",
+    "gulp-sourcemaps": "2.6.5",
+    "gulp-string-replace": "1.1.2",
+    "gulp-zip": "5.0.1",
+    "husky": "4.0.6",
+    "imagemin-jpeg-recompress": "6.0.0",
+    "lint-staged": "9.5.0",
+    "node-sass": "4.13.0",
+    "node-sass-tilde-importer": "1.0.2",
+    "postcss-preset-env": "6.7.0",
+    "prettier": "git+https://github.com/chancedigital/wp-prettier#wp-prettier-1.19.1",
+    "pump": "3.0.0",
+    "require-dir": "1.2.0",
+    "stylelint": "12.0.1",
+    "stylelint-config-recommended-scss": "4.1.0",
+    "stylelint-scss": "3.13.0",
+    "terser-webpack-plugin": "2.3.2",
+    "vinyl": "2.2.0",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10",
+    "webpack-merge": "4.2.2",
+    "webpack-stream": "5.2.1",
+    "webpackbar": "4.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.7.7",
+    "@fancyapps/fancybox": "3.5.7",
+    "classnames": "2.2.6",
+    "core-js": "3.6.3",
+    "isomorphic-unfetch": "3.0.0",
+    "lodash": "4.17.15",
+    "motion-ui": "2.0.3",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-transition-group": "4.3.0",
+    "regenerator-runtime": "0.13.3",
+    "what-input": "5.2.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "@chancedigital/eslint-config/jest",
+      "@chancedigital/eslint-config/react",
+      "@chancedigital/eslint-config/wp"
+    ],
+    "globals": {
+      "jQuery": false,
+      "wp": false
+    },
+    "rules": {
+      "no-console": [
+        1,
+        {
+          "allow": [
+            "warn",
+            "error"
+          ]
+        }
+      ],
+      "no-debugger": 1
+    }
+  },
+  "eslintIgnore": [
+    "assets/js/_vendor",
+    "assets/js/admin/_vendor",
+    "assets/js/frontend/_vendor",
+    "assets/js/shared/_vendor",
+    "tests",
+    "dist/**/*"
+  ],
+  "stylelint": {
+    "extends": [
+      "@chancedigital/stylelint-config/wp"
+    ],
+    "ignoreFiles": [
+      "assets/scss/docs/**/*",
+      "**/*.js",
+      "dist/**/*"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "singleQuote": true,
+    "parenSpacing": true,
+    "trailingComma": "all"
+  },
+  "browserslist": [
+    "extends @chancedigital/browserslist-config",
+    "ie 11"
+  ],
+  "engineStrict": true,
+  "engines": {
+    "node": "~12"
+  }
+}

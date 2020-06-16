@@ -1,0 +1,74 @@
+body {
+	color: $black;
+	font-size: rem( 16 );
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	font-family: $font-sans-slim;
+	font-weight: 400;
+	line-height: 0.9;
+}
+
+p,
+li {
+	line-height: $base-line-height;
+}
+
+h1 {
+	@include font-xxlg;
+}
+
+h2 {
+	@include font-xlg;
+}
+
+h3 {
+	@include font-lg;
+}
+
+h4 {
+	@include font-std-lg;
+}
+
+h5 {
+	@include font-std;
+}
+
+h6 {
+	@include font-sm;
+}
+
+blockquote {
+	margin: 0;
+	margin-bottom: rem( 16 );
+	font-size: rem( 20 );
+	font-weight: 200;
+
+	@include breakpoint( medium ) {
+		font-size: rem( 24 );
+	}
+
+	cite {
+		font-family: $font-marker;
+		font-size: rem( 16 );
+		font-style: normal;
+	}
+}
+
+a {
+	color: $color-primary;
+	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		color: darken( saturate( $color-primary, 10% ), 10% );
+		text-decoration: underline;
+	}
+}

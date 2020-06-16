@@ -1,0 +1,33 @@
+.signup-form {
+
+	&__wrapper {
+		display: grid;
+		grid-template:
+			"field button" auto
+			"checkbox checkbox" auto / 1fr auto;
+		gap: $global-grid-gap;
+	}
+
+	&__email-wrapper {
+		grid-area: field;
+	}
+
+	&__checkbox-wrapper {
+		grid-area: checkbox;
+	}
+
+	&__button-wrapper {
+		grid-area: button;
+	}
+
+	&__button {
+		height: 100%;
+	}
+
+	// CF7 stuff
+	input[type="email"],
+	input[type="text"] {
+		height: initial;
+		margin: 0;
+	}
+}

@@ -1,0 +1,20 @@
+.page-single-post {
+
+	&__content-wrapper {
+		padding-top: rem( 40 );
+		padding-bottom: rem( 40 );
+
+		@include breakpoint( medium ) {
+			padding-top: rem( 100 );
+			padding-bottom: rem( 100 );
+		}
+	}
+
+	&__content-inner {
+		@include make-container;
+	}
+
+	&__content {
+		margin-bottom: rem( 40 );
+	}
+}

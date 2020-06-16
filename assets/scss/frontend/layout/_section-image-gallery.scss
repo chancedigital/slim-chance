@@ -1,0 +1,39 @@
+.section-image-gallery {
+	$self: &;
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
+
+	@include breakpoint( medium ) {
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+	}
+
+	&__image {
+		display: block;
+	}
+
+	&__image-link {
+		display: block;
+	}
+
+	&__list {
+		display: grid;
+		grid-template: auto / repeat( 3, 1fr );
+		gap: $global-grid-gap;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		@include breakpoint( medium ) {
+			grid-template: auto / repeat( 6, 1fr );
+		}
+	}
+
+	&__list-item {
+		list-style-type: none;
+	}
+}

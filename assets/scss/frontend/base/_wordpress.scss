@@ -1,0 +1,49 @@
+/**
+ * WordPress Generated Classes
+ * @see http://codex.wordpress.org/CSS#WordPress_Generated_Classes
+ */
+
+// Media alignment
+.alignnone {
+	max-width: 100%;
+	height: auto;
+	margin-right: 0;
+	margin-left: 0;
+}
+
+.aligncenter {
+	display: block;
+	height: auto;
+}
+
+.alignleft,
+.alignright {
+	height: auto;
+}
+
+@include breakpoint(medium) {
+
+	.alignleft {
+		float: left;
+	}
+
+	.alignright {
+		float: right;
+	}
+}
+
+// Captions
+.wp-caption {
+
+	&-text {
+		padding: 2px 6px 4px;
+		font-size: 12px;
+		font-style: italic;
+		font-weight: 400;
+	}
+}
+
+// Text meant only for screen readers
+.screen-reader-text {
+	@include srt;
+}

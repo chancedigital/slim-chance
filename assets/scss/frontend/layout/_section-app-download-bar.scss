@@ -1,0 +1,72 @@
+.section-app-download-bar {
+	$self: &;
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
+
+	@include breakpoint( medium ) {
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
+	}
+
+	@include breakpoint( small down ) {
+		text-align: center;
+	}
+
+	&__wrapper {
+		@include make-container;
+		display: grid;
+		grid-template:
+			"content" auto
+			"img" auto / minmax( auto, rem( 300 ) );
+		/* autoprefixer: ignore next */
+		justify-content: center;
+		gap: $global-grid-gap;
+
+		@include breakpoint( medium ) {
+			grid-template: "img content" auto / minmax( auto, rem( 300 ) ) minmax( rem( 360 ), rem( 500 ) );
+			/* autoprefixer: ignore next */
+			justify-content: end;
+			gap: $global-grid-gap * 2;
+		}
+
+		@include breakpoint( large ) {
+			gap: $global-grid-gap * 4;
+		}
+	}
+
+	&__content-wrapper {
+		grid-area: content;
+		// max-width: rem( 500 );
+		//text-align: center;
+	}
+
+	&:not( #{$self}--dark-text ) {
+		color: $white;
+
+		& #{$self}__content {
+			text-shadow: 0 2px 3px rgba( black, 0.8 );
+		}
+	}
+
+	&__img {
+		grid-area: img;
+
+		@include breakpoint( small down ) {
+			// max-width: rem( 300 );
+			// margin: 0 auto;
+		}
+	}
+
+	&--has-img {
+		padding-bottom: 0;
+
+		@include breakpoint( medium ) {
+
+			#{$self}__wrapper {
+				/* autoprefixer: ignore next */
+				justify-content: center;
+			}
+		}
+	}
+
+}

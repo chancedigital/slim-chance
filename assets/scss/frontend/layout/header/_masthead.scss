@@ -1,0 +1,138 @@
+.masthead {
+	$self: &;
+	$logo-width: 106;
+	$logo-height: 78;
+	$logo-width-large: $logo-width * 1.125;
+	$logo-height-large: $logo-height * 1.125;
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	width: 100%;
+	padding: rem( 8 ) 0;
+	transition: 0.2s all ease-in-out;
+
+	@include breakpoint( medium ) {
+		position: fixed;
+		padding: rem( 22 ) 0;
+	}
+
+	body.admin-bar & {
+		top: 32px;
+		@media screen and ( max-width: 782px ) {
+			top: 46px;
+		}
+	}
+
+	&--sticky {
+		padding: 12px 0;
+		background-color: $white;
+		box-shadow: 0 3px 15px 0 rgba( 74, 74, 74, 0.125 );
+	}
+
+	&__wrapper {
+		@include make-container;
+		display: grid;
+		grid-template: "logo nav" auto / rem( $logo-width ) 1fr;
+		align-items: center;
+		gap: rem( $global-grid-gap );
+
+		@include breakpoint( small down ) {
+			/* autoprefixer: ignore next */
+			justify-content: space-between;
+		}
+
+		@include breakpoint( large ) {
+			grid-template: "logo nav" auto / rem( $logo-width-large ) 1fr;
+		}
+	}
+
+	&__logo-wrapper {
+		grid-area: logo;
+
+		a {
+			display: flex;
+		}
+
+		img {
+			display: block;
+			width: rem( $logo-width );
+			height: rem( $logo-height );
+
+			@include breakpoint( large ) {
+				width: rem( $logo-width-large );
+				height: rem( $logo-height-large );
+			}
+		}
+	}
+
+	&__hamburger {
+		grid-area: nav;
+		justify-self: end;
+		padding: 0;
+		transition: 0.3s transform ease-in;
+		border: 0;
+		outline: 0;
+		background: 0;
+		box-shadow: none;
+
+		&--nav-open {
+			// position: fixed;
+			// top: rem( 100 - 46 );
+			// right: $global-grid-gap;
+			transform: translateX( #{rem( -180 ) - ( $global-grid-gap * 2 )} );
+
+			body.admin-bar & {
+				// top: rem( 100 );
+			}
+		}
+
+		@include breakpoint( medium ) {
+			display: none;
+		}
+	}
+
+	&__nav-wrapper {
+		grid-area: nav;
+
+		@include breakpoint( small down ) {
+			position: fixed;
+			z-index: 10;
+			top: 0;
+			right: rem( -180 ) - ( $global-grid-gap * 2 );
+			width: rem( 180 );
+			height: calc( 100% - #{$global-grid-gap * 2} );
+			padding: rem( $global-grid-gap );
+			transition: 0.3s transform ease-in, 0.3s box-shadow ease-in;
+			background: $white;
+			box-shadow: none;
+
+			&--nav-open {
+				transform: translateX( #{rem( -180 ) - ( $global-grid-gap * 2 )} );
+				box-shadow: 0 0 rem( 30 ) rgba( $black, 0.25 );
+			}
+		}
+
+		body.admin-bar & {
+			@include breakpoint( small down ) {
+				top: 46px;
+				height: calc( 100% - #{rem( $global-grid-gap * 2 )} - 46px );
+			}
+		}
+	}
+
+	&__nav-sep {
+		margin-top: rem( 10 );
+		margin-bottom: rem( 10 );
+	}
+}
+
+@include breakpoint( small down ) {
+	body.nav-open {
+		max-height: 100vh;
+		overflow: hidden;
+	}
+
+	body.nav-open.admin-bar {
+		max-height: calc( 100vh - 46px );
+	}
+}

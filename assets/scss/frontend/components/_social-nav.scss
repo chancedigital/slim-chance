@@ -1,0 +1,43 @@
+.social-nav {
+	$item-size: 28;
+	$item-padding: 6;
+	$item-border: 2;
+	$item-transition: 0.1s all ease-in;
+
+	&__menu {
+		margin: 0;
+		padding: 0;
+	}
+
+	&__item {
+		display: inline-block;
+		margin: 0 rem( 5 );
+	}
+
+	&__link {
+		display: block;
+		width: rem( $item-size - $item-padding * 2 - $item-border );
+		height: rem( $item-size - $item-padding * 2 - $item-border );
+		padding: rem( $item-padding );
+		transition: $item-transition;
+		border: rem( $item-border ) solid $color-primary;
+		border-radius: rem( 999 );
+		background: transparent;
+
+		&:hover,
+		&:focus {
+			transform: scale( 1.2 );
+			background: $color-primary;
+		}
+	}
+
+	.icon {
+		display: block;
+		width: rem( $item-size - $item-padding * 2 + $item-border );
+		max-width: 100%;
+		height: rem( $item-size - $item-padding * 2 + $item-border );
+		max-height: 100%;
+		fill: currentColor;
+		color: inherit;
+	}
+}

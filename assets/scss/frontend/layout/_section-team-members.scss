@@ -1,0 +1,132 @@
+.section-team-members {
+	$self: &;
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
+	background-color: $color-gray-light;
+
+	@include breakpoint( medium ) {
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
+	}
+
+	&__wrapper {
+		@include make-container;
+	}
+
+	&__list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__list-item {
+		margin: rem( 40 ) 0;
+		list-style-type: none;
+		@include breakpoint( medium ) {
+			margin: rem( 80 ) 0;
+		}
+		@include breakpoint( xlarge ) {
+			&:nth-child( odd ) {
+				//margin-left: rem( -120 );
+			}
+			&:nth-child( even ) {
+				//margin-right: rem( -120 );
+			}
+		}
+		&:first-child {
+			margin-top: 0;
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__team-member-quote {
+		position: relative;
+		padding-left: $global-grid-gap * 2.5;
+		@include breakpoint( medium ) {
+			padding: 0;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+
+		&:before {
+			content: open-quote;
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: darken( $color-gray-light, 10% );
+			font-family: $font-sans-slim;
+			font-size: rem( 78 );
+			line-height: 1;
+
+			@include breakpoint( medium ) {
+				left: $global-grid-gap * -2.5;
+			}
+		}
+	}
+
+	&__team-member-heading {
+		margin-bottom: 0.125em;
+	}
+
+	&__team-member-job-title {
+		display: block;
+		margin-bottom: $global-grid-gap;
+	}
+
+	&__team-member-image {
+		box-shadow: $global-box-shadow;
+	}
+
+	&__team-member {
+		display: grid;
+		gap: $global-grid-gap;
+		grid-template: "head" auto "bio" auto / 1fr;
+
+		&--has-image {
+			grid-template: "head" auto "img" auto "bio" auto / 1fr;
+		}
+
+		@include breakpoint( medium ) {
+			gap: $global-grid-gap * 2;
+			grid-template: "head" auto "bio" auto / 1fr;
+
+			&--has-image {
+				grid-template: "head head" auto "img bio" auto / 1fr 1.5fr;
+				column-gap: $global-grid-gap * 4;
+				#{ $self }__list-item:nth-child( even ) & {
+					grid-template: auto / 1.5fr 1fr;
+					grid-template-areas:
+						"head head"
+						"bio img";
+				}
+			}
+		}
+	}
+
+	&__team-member-image-wrapper {
+		grid-area: img;
+	}
+
+	&__team-member-header {
+		@include primary-border( bottom );
+		grid-area: head;
+	}
+
+	&__team-member-content {
+		grid-area: bio;
+
+		// get the first child's first child to remove the top margin
+		> :first-child > :first-child {
+			margin-top: 0;
+		}
+
+		> :last-child > :last-child {
+			margin-bottom: 0;
+		}
+	}
+}

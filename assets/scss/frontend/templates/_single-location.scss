@@ -1,0 +1,35 @@
+@import "single-location/location-contact";
+@import "single-location/location-hours";
+
+.page-single-location {
+
+	.page-header__wrapper {
+		display: grid;
+		align-items: end;
+		gap: $global-grid-gap;
+
+		@include breakpoint( medium ) {
+			/* autoprefixer: ignore next */
+			justify-content: center;
+		}
+
+		@include breakpoint( large ) {
+			grid-template-columns: 1fr rem( 550 );
+			gap: $global-grid-gap * 3;
+		}
+	}
+
+	.page-header__content-wrapper {
+		grid-area: contact;
+		max-width: none;
+		margin: 0;
+
+		@include breakpoint( medium down ) {
+			transform: none;
+		}
+	}
+
+	.location-hours {
+		grid-area: hours;
+	}
+}

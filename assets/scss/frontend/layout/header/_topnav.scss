@@ -1,0 +1,32 @@
+.topnav {
+	font-family: $font-sans-slim;
+	font-size: rem( 20 );
+	line-height: 1.2;
+	text-align: right;
+
+	&__menu {
+		@include make-menu;
+	}
+
+	&__link {
+		color: $black;
+		text-decoration: none;
+
+		&:hover,
+		&:focus {
+			text-decoration: underline;
+		}
+	}
+
+	&__item:not(:last-child) {
+
+		@include breakpoint( medium ) {
+			margin-right: 1em;
+
+			@supports ( margin-inline-end: 1em ) {
+				margin: 0;
+				margin-inline-end: 1em;
+			}
+		}
+	}
+}

@@ -1,0 +1,14 @@
+node_modules
+node_modules/**
+.vscode
+assets
+assets/**
+/tests
+.gitignore
+.git
+.nvmrc
+.prettierrc
+package.json
+phpcs.ruleset.xml
+README.md
+yarn.lock

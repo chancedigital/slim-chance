@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ruleset>
+	<!-- Use Chance Digital Coding Standards -->
+	<rule ref="vendor/chancedigital/wp-coding-standards">
+		<!-- Extra spacing allowed for readability -->
+		<exclude name="Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma" />
+	</rule>
+
+	<!--
+	Exclude auto-escaped functions from security warnings.
+	See https://github.com/WordPress/WordPress-Coding-Standards/wiki/Whitelisting-code-which-flags-errors
+	-->
+	<rule ref="WordPress.Security.EscapeOutput">
+		<properties>
+			<property name="customAutoEscapedFunctions" type="array">
+				<element value="kses_post"/>
+				<element value="get_custom_logo"/>
+				<element value="get_address_from_location_post"/>
+				<element value="get_html_attributes_from_array"/>
+				<element value="get_responsive_image"/>
+				<element value="get_svg"/>
+				<element value="get_address_from_location_post"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!--
+	Allow for theme specific exceptions to the file name rules based
+	on the theme hierarchy and ensure PSR-4 autoloading compatibility.
+	-->
+	<rule ref="WordPress.Files.FileName">
+		<properties>
+			<property name="strict_class_file_names" value="false" />
+			<property name="is_theme" value="true"/>
+		</properties>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+	</rule>
+	<rule ref="ChanceDigital">
+		<exclude name="ChanceDigital.Files.ClassFileName" />
+		<exclude name="ChanceDigital.Files.NamespaceDirectoryName" />
+	</rule>
+
+</ruleset>

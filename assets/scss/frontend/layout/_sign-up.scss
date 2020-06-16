@@ -1,0 +1,51 @@
+.sign-up {
+	padding: rem( 40 ) 0;
+	background-blend-mode: luminosity;
+	background-color: #ff9000;
+	background-image: url( "../img/bg-signup.jpg" );
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: $white;
+
+	@include breakpoint( medium ) {
+		padding: rem( 80 ) 0;
+		background-position: calc( 50% - 300px ) center;
+		background-size: contain;
+	}
+
+	&__wrapper {
+		@include make-container;
+	}
+
+	&__info {
+		max-width: rem( 406 );
+		margin: 0 auto;
+		@include breakpoint( medium ) {
+			margin: 0 0 0 auto;
+		}
+	}
+
+	&__heading {
+		@include heading-underline( rgba( $white, 0.5 ) );
+		margin-bottom: 0;
+	}
+
+	&__content {
+		p:first-child {
+			margin-top: 0;
+		}
+	}
+
+	&__form-wrapper {
+
+		// CF7 stuff
+		form br {
+			display: none;
+		}
+
+		.ajax-loader {
+			display: none !important;
+		}
+	}
+}

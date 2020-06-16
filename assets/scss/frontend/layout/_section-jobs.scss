@@ -1,0 +1,52 @@
+.section-jobs {
+	padding-top: rem( 50 );
+	padding-bottom: rem( 50 );
+	background: $color-gray-light;
+
+	@include breakpoint( medium ) {
+		padding-top: rem( 100 );
+		padding-bottom: rem( 100 );
+	}
+
+	&__heading {
+		@include heading-underline;
+	}
+
+	&__wrapper {
+		@include make-container;
+	}
+
+	&__listings {
+		display: grid;
+		row-gap: $global-grid-gap;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		@include breakpoint( medium ) {
+			grid-template: auto / repeat( 2, 1fr );
+			column-gap: $global-grid-gap;
+		}
+		@include breakpoint( large ) {
+			column-gap: $global-grid-gap * 4;
+		}
+	}
+
+	&__job {
+		padding: $global-grid-gap * 2;
+		background: $white;
+		box-shadow: 0 rem( 20 ) rem( 50 ) rgba( #000, 0.18 );
+		@include breakpoint( medium ) {
+			padding: $global-grid-gap * 4;
+		}
+	}
+
+	&__job-heading {
+		margin-top: 0;
+	}
+
+	&__locations {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+}
