@@ -1,10 +1,10 @@
-@import 'single-location/location-contact';
-@import 'single-location/location-hours';
+@import "single-location/location-contact";
+@import "single-location/location-hours";
 
 .page-single-location {
 	.page-header__wrapper {
 		display: grid;
-		grid-template: 'contact' auto 'hours' auto / 1fr;
+		grid-template: "contact" auto "hours" auto / 1fr;
 		// align-items: end;
 		gap: $global-grid-gap;
 
@@ -14,7 +14,7 @@
 		}
 
 		@include breakpoint( large ) {
-			grid-template: 'hours contact' auto / 1fr rem( 550 );
+			grid-template: "hours contact" auto / 1fr rem( 550 );
 			// grid-template-columns: 1fr rem( 550 );
 			gap: $global-grid-gap * 3;
 		}
