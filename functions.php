@@ -65,3 +65,16 @@ foreach ( [
 
 // Run the setup functions.
 Core\setup();
+
+add_filter( 'rest_post_query', function ( $args, $request ) {
+	if (
+		isset( $request["custom_per_page"] ) &&
+		is_int( intval( $request["custom_per_page"] ) )
+	) {
+		$max = max( (int) $request->get_param( 'custom_per_page' ), 200 );
+		$args['posts_per_page'] = $max;
+    }
+    return $args;
+}
+, 10, 2 );
+

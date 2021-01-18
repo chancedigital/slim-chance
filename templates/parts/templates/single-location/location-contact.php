@@ -3,6 +3,7 @@
 use function ChanceDigital\Slim_Chance\Icons\get_svg;
 use function ChanceDigital\Slim_Chance\Template\get_address_from_location_post;
 
+$coming_soon  = get_field( 'coming_soon' );
 $phone        = get_field( 'phone' );
 $map_url      = get_field( 'map_link' );
 $has_carryout = get_field( 'carryout' );
@@ -20,14 +21,26 @@ $has_phone    = preg_match(
 		<address>
 			<?php echo get_address_from_location_post() ?>
 		</address>
+
+		<?php if ( ! $coming_soon ) : ?>
+
+			<div class="location-contact__note">
+				We do not accept call-in orders at this time. To place an order, please <a href="#section-app-download-bar">download our app</a> or use one of the links below.
+			</div>
+
+		<?php endif; ?>
+
 	</div>
 	<div class="location-contact__col">
 
-		<?php if ( $has_phone ) : ?>
+		<?php /* if ( $has_phone ) : ?>
+
+			Call-in orders not desired at this time, want to drive people to the app.
+			If this changes in the future let's add this link back.
 
 			<a class="location-contact__button button" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9]/', '', $phone ) ) ?>"><?php _e( 'Call Now', 'slim-chance' ) // phpcs:ignore ?></a>
 
-		<?php endif; ?>
+		<?php endif; */ ?>
 
 		<?php if ( $map_url ) : ?>
 

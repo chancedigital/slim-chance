@@ -30,4 +30,18 @@
 	address {
 		font-style: inherit;
 	}
+
+	&__note {
+		margin: 1rem 0;
+		padding: 1rem;
+		background: #f9a31a;
+		box-shadow: 0 0.25rem 1.125rem rgba( 37, 37, 37, 0.3 );
+		font-weight: bold;
+
+		a {
+			opacity: 0.65;
+			color: inherit;
+			text-decoration: underline;
+		}
+	}
 }
