@@ -25,7 +25,7 @@ $has_phone    = preg_match(
 		<?php if ( ! $coming_soon ) : ?>
 
 			<div class="location-contact__note">
-				We do not accept call-in orders at this time. To place an order, please <a href="#section-app-download-bar">download our app</a> or use one of the links below.
+				We do not accept call-in orders. To place an order, please <a href="#section-app-download-bar">download our app</a> or use one of the links below.
 			</div>
 
 		<?php endif; ?>
