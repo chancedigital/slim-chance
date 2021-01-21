@@ -1,18 +1,13 @@
-name: Build
-
+name: Deploy (staging)
 on:
   push:
     branches:
       - main
       - develop
-  pull_request:
-    branches:
-      - main
-      - develop
-
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
+    if: github.repository == 'chancedigital/slim-chance'
     steps:
 
       # Setup
@@ -49,3 +44,14 @@ jobs:
         run: yarn
       - name: Run build
         run: yarn build
+
+      # Deploy to staging
+      - name: Deploy to staging
+        uses: wlixcc/SFTP-Deploy-Action@v1.0
+        with:
+          username: 'slimandhuskys'
+          server: ${{ secrets.SFTP_SERVER }}
+          ssh_private_key: ${{ secrets.SSH_SECRET }}
+          local_path: './*'
+          remote_path: '/www/slimandhuskys_612/public/wp-content/themes/slim-chance'
+          args: '-o ConnectTimeout=5'
