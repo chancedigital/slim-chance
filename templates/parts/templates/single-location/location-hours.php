@@ -1,8 +1,16 @@
+<?php
+$open_status = get_field( 'open_status' );
+?>
+
 <div class="location-hours">
 	<div class="location-hours__inner">
-		<?php if ( get_field( 'coming_soon' ) ) : ?>
+		<?php if ( $open_status === 'coming_soon' ) : ?>
 			<div>
 				<h2><?php _e( 'Store opening soon!', 'slim-chance' ) // phpcs:ignore ?></h2>
+			</div>
+		<?php elseif ( $open_status === 'temporarily_closed' ) : ?>
+			<div>
+				<h2><?php _e( 'Temporarily closed', 'slim-chance' ) // phpcs:ignore ?></h2>
 			</div>
 		<?php elseif ( have_rows( 'hours' ) ) : ?>
 			<table class="location-hours__table">

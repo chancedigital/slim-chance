@@ -14,8 +14,9 @@
     "role": "developer"
   },
   "scripts": {
-    "setup": "yarn && composer install && composer install-codestandards",
+    "setup": "yarn install",
     "start": "yarn dev",
+    "postinstall": "composer install && composer install-codestandards",
     "dev": "NODE_ENV=development gulp dev --gulpfile config/gulpfile.babel.js",
     "build": "NODE_ENV=production gulp build --gulpfile config/gulpfile.babel.js",
     "build:staging": "NODE_ENV=staging gulp build --gulpfile config/gulpfile.babel.js",
@@ -165,9 +166,5 @@
   "browserslist": [
     "extends @chancedigital/browserslist-config",
     "ie 11"
-  ],
-  "engineStrict": true,
-  "engines": {
-    "node": "~12"
-  }
+  ]
 }
