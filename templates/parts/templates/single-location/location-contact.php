@@ -61,7 +61,7 @@ $has_phone          = preg_match(
 
 		<?php endif; ?>
 
-		<?php if ( $has_delivery && $doordash_id ) : ?>
+		<?php if ( $open_status === 'open' && $has_delivery && $doordash_id ) : ?>
 
 			<a class="location-contact__button button" href="https://www.doordash.com/store/<?php echo esc_attr( $doordash_id ) ?>/?utm_source=partner-link&utm_medium=website&utm_campaign=<?php echo esc_attr( $doordash_id ) ?>" target="_blank">
 				<?php _e( 'Order Delivery', 'slim-chance' ) // phpcs:ignore ?>
@@ -72,7 +72,7 @@ $has_phone          = preg_match(
 
 		<?php endif; ?>
 
-		<?php if ( $has_carryout && $online_order ) : ?>
+		<?php if ( $open_status === 'open' && $has_carryout && $online_order ) : ?>
 
 			<a class="location-contact__button button" href="https://slimandhuskys.alohaorderonline.com/Locations.aspx" target="_blank" rel="noreferrer noopener">
 				<?php _e( 'Order Carryout', 'slim-chance' ) // phpcs:ignore ?>
