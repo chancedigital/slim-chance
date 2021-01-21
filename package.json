@@ -14,9 +14,9 @@
     "role": "developer"
   },
   "scripts": {
-    "setup": "yarn install",
+    "install:php": "composer install",
+    "setup": "yarn install && yarn install:php",
     "start": "yarn dev",
-    "postinstall": "composer install && composer install-codestandards",
     "dev": "NODE_ENV=development gulp dev --gulpfile config/gulpfile.babel.js",
     "build": "NODE_ENV=production gulp build --gulpfile config/gulpfile.babel.js",
     "build:staging": "NODE_ENV=staging gulp build --gulpfile config/gulpfile.babel.js",
