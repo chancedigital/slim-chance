@@ -55,6 +55,7 @@ foreach ( [
 	'template',
 	'images',
 	'ajax',
+	'marketing',
 	'rest-api',
 ] as $inc ) {
 	$filename = SLIM_CHANCE_INC . "functions-$inc.php";
