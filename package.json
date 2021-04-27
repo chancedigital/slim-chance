@@ -14,7 +14,8 @@
     "role": "developer"
   },
   "scripts": {
-    "setup": "yarn && composer install && composer install-codestandards",
+    "install:php": "composer install",
+    "setup": "yarn install && yarn install:php",
     "start": "yarn dev",
     "dev": "NODE_ENV=development gulp dev --gulpfile config/gulpfile.babel.js",
     "build": "NODE_ENV=production gulp build --gulpfile config/gulpfile.babel.js",
@@ -96,7 +97,7 @@
     "classnames": "2.2.6",
     "core-js": "3.6.5",
     "isomorphic-unfetch": "3.0.0",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "motion-ui": "2.0.3",
     "prop-types": "15.7.2",
     "react": "16.13.1",
@@ -165,9 +166,5 @@
   "browserslist": [
     "extends @chancedigital/browserslist-config",
     "ie 11"
-  ],
-  "engineStrict": true,
-  "engines": {
-    "node": "~12"
-  }
+  ]
 }

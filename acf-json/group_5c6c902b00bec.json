@@ -81,11 +81,11 @@
             ]
         },
         {
-            "key": "field_5ccc3bba078e3",
-            "label": "Coming soon",
-            "name": "coming_soon",
-            "type": "true_false",
-            "instructions": "Select this option if the location is not yet open to the public.",
+            "key": "field_6009a33c139bc",
+            "label": "Open status",
+            "name": "open_status",
+            "type": "select",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -93,11 +93,52 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
-            "default_value": 0,
+            "choices": {
+                "open": "Open",
+                "coming_soon": "Coming soon",
+                "temporarily_closed": "Temporarily closed"
+            },
+            "default_value": "open",
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_6009a727aa0d0",
+            "label": "Status explanation",
+            "name": "status_explanation",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6009a33c139bc",
+                        "operator": "==",
+                        "value": "coming_soon"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_6009a33c139bc",
+                        "operator": "==",
+                        "value": "temporarily_closed"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -115,7 +156,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1556888540
+    "modified": 1611245948
 }

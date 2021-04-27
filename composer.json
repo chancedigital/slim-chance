@@ -1,5 +1,5 @@
 {
-  "name": "slim-chance",
+  "name": "chancedigital/slim-chance",
   "type": "wordpress-theme",
   "description": "Custom WordPress theme for the Slim + Huskys website.",
   "authors": [
@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "php": ">=7.1",
+    "php": ">=7.3",
     "vlucas/phpdotenv": "^3.5.0"
   },
   "require-dev": {
@@ -27,10 +27,13 @@
   },
   "config": {
     "platform": {
-      "php": "7.1"
+      "php": "7.3"
     }
   },
   "scripts": {
+    "post-install-cmd": [
+      "composer install-codestandards"
+    ],
     "install-codestandards": [
       "Dealerdirect\\Composer\\Plugin\\Installers\\PHPCodeSniffer\\Plugin::run"
     ],
